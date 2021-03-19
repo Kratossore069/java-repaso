@@ -6,6 +6,7 @@ import java.util.Iterator;
 import Modelo.PartidoFutbol;
 
 public class Main3 {
+
     public static void main(String[] args) {
         ArrayList<PartidoFutbol> equipos = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
