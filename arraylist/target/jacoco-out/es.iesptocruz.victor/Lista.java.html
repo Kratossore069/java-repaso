@@ -3,38 +3,58 @@
 import java.util.ArrayList;
 
 public class Lista {
-    
-<span class="fc" id="L7">    ArrayList&lt;String&gt; elementos=null;</span>
+
+<span class="fc" id="L7">    ArrayList&lt;String&gt; elementos = null;</span>
 
     /**
      * Constructor por defecto de la clase
      */
-<span class="fc" id="L12">    public Lista(){</span>
-<span class="fc" id="L13">        elementos=new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L12">    public Lista() {</span>
+<span class="fc" id="L13">        elementos = new ArrayList&lt;&gt;();</span>
 <span class="fc" id="L14">    }</span>
 
     /**
      * Método que inserta un elemento en el arraylist
+     * 
      * @param dato elemento a insertar
      */
-    public void insertarDatos(String dato){
-<span class="fc" id="L21">        elementos.add(dato);</span>
-<span class="fc" id="L22">    }</span>
+    public void insertar(String dato) {
+<span class="fc" id="L22">        elementos.add(dato);</span>
+<span class="fc" id="L23">    }</span>
+
     /**
      * Función que verifica si la lista contiene el dato
+     * 
      * @param dato a encontrar
      * @return respuesta
      */
-    public boolean existe(String dato){
-<span class="fc" id="L29">        return elementos.contains(dato);</span>
+    public boolean existe(String dato) {
+<span class="fc" id="L32">        return elementos.contains(dato);</span>
     }
 
     /**
      * Método que elimina de una lista una posición
+     * 
      * @param lugar posición a eliminar
      */
-    public void eliminarElemento(int lugar){
-<span class="nc" id="L37">        elementos.remove(lugar);</span>
-<span class="nc" id="L38">    }</span>
+    public void eliminar(String lugar) {
+<span class="fc" id="L41">        elementos.remove(lugar);</span>
+<span class="fc" id="L42">    }</span>
+
+    /**
+     * Buscar un elemento
+     * 
+     * @param dato el elemento a buscar
+     * @return el elemento si existe
+     */
+    public String buscar(String dato) {
+<span class="fc" id="L51">        int posicion = -1;</span>
+<span class="fc" id="L52">        String elemento = null;</span>
+<span class="fc" id="L53">        posicion = elementos.indexOf(dato);</span>
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">        if (posicion != -1) {</span>
+<span class="fc" id="L55">            elemento = elementos.get(posicion);</span>
+        }
+<span class="fc" id="L57">        return elemento;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

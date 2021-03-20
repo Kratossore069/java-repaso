@@ -18,12 +18,12 @@ public class ListaTest {
         if (lista == null) {
             lista = new Lista();
         }
-        lista.insertarDatos(dato);
+        lista.insertar(dato);
     }
 
     @AfterEach
     public void afterUp() {
-
+        lista.eliminar(dato);
     }
 
     @Test
@@ -31,9 +31,10 @@ public class ListaTest {
         assertTrue(lista.existe(dato),"Elemento no encontrado");
     }
 
-    // @Test
-    // public void eliminarTest(){
-    //     assertNotNull(lista.eliminarElemento(posicion),"Error al eliminar");
-    // }
+    @Test
+    public void buscarTest() {
+        String datoBuscar=lista.buscar(dato);
+        assertTrue(datoBuscar.equals(dato), "Elemento no esperado");
+    }
 
 }
