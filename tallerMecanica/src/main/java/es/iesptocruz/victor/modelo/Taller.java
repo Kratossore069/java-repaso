@@ -26,12 +26,12 @@ public class Taller {
      * @param matricula es un string
      * @return devuelve si existe
      */
-    public ArrayList<String> buscarCoche(String matricula){
-        ArrayList<String> resultado=new ArrayList<>();
+    public String buscarCoche(String matricula){
+        ArrayList<String> listaMostrar=new ArrayList<>();
         if(coches.contains(matricula)){
-            resultado.add(matricula);
+            listaMostrar.add(matricula);
         }
-        return resultado;
+        return listaMostrar.toString();
     }
 
     /**
