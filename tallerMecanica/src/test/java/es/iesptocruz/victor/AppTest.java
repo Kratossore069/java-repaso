@@ -23,32 +23,32 @@ public class AppTest {
     }
 
     /**
-     * Determinar el número de coches introducidos
+     * Determinar el número de matriculas introducidos
      */
     @Test
     public void numeroTest(){
-        assertEquals(0, taller.numeroCoches());
+        assertEquals(0, taller.numeromatriculas());
     }
 
     /**
-     * Si inserta bien los coches nuevos
+     * Si inserta bien los matriculas nuevos
      */
     @Test
     public void aniadirTest(){
         String matricula="123A";
         taller.aniadirCoche(matricula);
-        assertEquals(1, taller.numeroCoches());
+        assertEquals(1, taller.numeromatriculas());
     }
 
     /**
-     * Eliminar coches del taller
+     * Eliminar matriculas del taller
      */
     @Test
     public void eliminarTest(){
         String matricula="123A";
         taller.aniadirCoche(matricula);
         taller.eliminarCoche(matricula);
-        assertEquals(0, taller.numeroCoches());
+        assertEquals(0, taller.numeromatriculas());
     }
 
     /**
@@ -57,6 +57,6 @@ public class AppTest {
     @Test
     public void buscarTest(){
         taller.aniadirCoche("matricula");
-        assertEquals("[matricula]", taller.buscarCoche("matricula"));
+        assertEquals(true, taller.buscarCoche("matricula"));
     }
 }

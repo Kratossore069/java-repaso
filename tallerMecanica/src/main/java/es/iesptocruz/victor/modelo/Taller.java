@@ -4,21 +4,21 @@ import java.util.ArrayList;
 
 public class Taller {
 
-    ArrayList<String> coches=null;
+    ArrayList<String> matriculas;
 
     /**
      * Constructor por defecto
      */
     public Taller(){
-        coches=new ArrayList<>();
+        matriculas=new ArrayList<>();
     }
 
     /**
-     * Coches existentes en el taller
-     * @return número de coches, si no devuelve nada, no hay ninguno
+     * matriculas existentes en el taller
+     * @return número de matriculas, si no devuelve nada, no hay ninguno
      */
-    public int numeroCoches(){
-        return coches.size();
+    public int numeromatriculas(){
+        return matriculas.size();
     }
 
     /**
@@ -26,12 +26,8 @@ public class Taller {
      * @param matricula es un string
      * @return devuelve si existe
      */
-    public String buscarCoche(String matricula){
-        ArrayList<String> listaMostrar=new ArrayList<>();
-        if(coches.contains(matricula)){
-            listaMostrar.add(matricula);
-        }
-        return listaMostrar.toString();
+    public boolean buscarCoche(String matricula){
+        return matriculas.contains(matricula);
     }
 
     /**
@@ -39,7 +35,7 @@ public class Taller {
      * @param matricula a insertar
      */
     public void aniadirCoche(String matricula){
-        coches.add(matricula);
+        matriculas.add(matricula);
     }
 
     /**
@@ -49,8 +45,8 @@ public class Taller {
      */
     public String eliminarCoche(String matricula){
         String salida="";
-        if(coches.contains(matricula)){
-            coches.remove(matricula);
+        if(matriculas.contains(matricula)){
+            matriculas.remove(matricula);
             salida="Eliminado "+matricula;
         }else{
             salida="No encontrado";
