@@ -17,7 +17,7 @@ public class Taller {
      * matriculas existentes en el taller
      * @return número de matriculas, si no devuelve nada, no hay ninguno
      */
-    public int numeromatriculas(){
+    public int tamanioCoches(){
         return matriculas.size();
     }
 
@@ -26,7 +26,7 @@ public class Taller {
      * @param matricula es un string
      * @return devuelve si existe
      */
-    public boolean buscarCoche(String matricula){
+    public boolean existeCoche(String matricula){
         return matriculas.contains(matricula);
     }
 
@@ -44,13 +44,23 @@ public class Taller {
      * @return mensaje de si se ha eliminado o no
      */
     public String eliminarCoche(String matricula){
-        String salida="";
-        if(matriculas.contains(matricula)){
-            matriculas.remove(matricula);
-            salida="Eliminado "+matricula;
-        }else{
-            salida="No encontrado";
+        String salida="Elemento no eliminado";
+        if(matriculas.remove(matricula)){
+            salida="Elemento eliminado";
         }
         return salida;
+    }
+
+    /**
+     * Buscar una matrícula
+     * @param matricula a buscar
+     * @return matricula encontrada, si se encuentra
+     */
+    public String buscarMatricula(String matricula){
+        String matriculaEncontrada=null;
+        if(matriculas.contains(matricula)){
+            matriculaEncontrada=matricula;
+        }
+        return matriculaEncontrada;
     }
 }

@@ -1,8 +1,8 @@
 package es.iesptocruz.victor;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,20 +14,20 @@ import es.iesptocruz.victor.modelo.Taller;
 public class AppTest {
 
     Taller taller;
+    String matricula;
 
     @Before
     public void setUp(){
         if(taller==null){
             taller=new Taller();
         }
+        matricula="123A";
+        taller.aniadirCoche(matricula);
     }
 
-    /**
-     * Determinar el número de matriculas introducidos
-     */
-    @Test
-    public void numeroTest(){
-        assertEquals(0, taller.numeromatriculas());
+    @After
+    public void setDown(){
+        taller.eliminarCoche(matricula);
     }
 
     /**
@@ -35,28 +35,28 @@ public class AppTest {
      */
     @Test
     public void aniadirTest(){
-        String matricula="123A";
-        taller.aniadirCoche(matricula);
-        assertEquals(1, taller.numeromatriculas());
+        assertEquals(1, taller.tamanioCoches());
     }
 
     /**
      * Eliminar matriculas del taller
      */
     @Test
-    public void eliminarTest(){
-        String matricula="123A";
-        taller.aniadirCoche(matricula);
+    public void eliminarTest(){   
         taller.eliminarCoche(matricula);
-        assertEquals(0, taller.numeromatriculas());
+        assertEquals(0, taller.tamanioCoches());
     }
 
     /**
      * Buscar un coche y mostrar resultado
      */
     @Test
-    public void buscarTest(){
-        taller.aniadirCoche("matricula");
-        assertEquals(true, taller.buscarCoche("matricula"));
+    public void existeTest(){
+        assertEquals(true, taller.existeCoche(matricula));
+    }
+
+    @Test
+    public void busquedaTest(){
+        assertEquals(matricula, taller.buscarMatricula(matricula));
     }
 }
