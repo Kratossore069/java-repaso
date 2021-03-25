@@ -42,4 +42,18 @@ public class Palabras {
         }
         return contador;
     }
+
+    /**
+     * Funcion que elimina una palabra de la lista
+     * @param palabra a eliminar
+     * @return true si existe, false si no
+     */
+    public boolean eliminar(String palabra){
+        boolean existe=false;
+        if(listaPalabras.contains(palabra)){
+            listaPalabras.remove(palabra);
+            existe=true;
+        }
+        return existe;
+    }
 }
