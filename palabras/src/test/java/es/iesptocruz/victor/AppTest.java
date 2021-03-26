@@ -1,30 +1,29 @@
 package es.iesptocruz.victor;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
+
+import java.util.ArrayList;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-
-public class AppTest 
-{
+public class AppTest {
     Palabras palabras;
-    String sustantivo="Casa";
+    String sustantivo = "Casa";
 
     @Before
-    public void setUp(){
-        if(palabras==null){
-            palabras=new Palabras();
+    public void setUp() {
+        if (palabras == null) {
+            palabras = new Palabras();
         }
         palabras.insertar(sustantivo);
     }
 
     @After
-    public void setDown(){
+    public void setDown() {
         palabras.eliminar(sustantivo);
     }
 
@@ -32,72 +31,85 @@ public class AppTest
      * Test de insertar registros en la lista
      */
     @Test
-    public void insertarTest(){
-        assertEquals("La lista debería tener un registro",
-        1, palabras.numeroPalabras());
+    public void insertarTest() {
+        assertEquals("La lista debería tener un registro", 1, palabras.numeroPalabras());
     }
 
     /**
      * Test de NO insertar registros
      */
     @Test
-    public void noInsertarTest(){
+    public void noInsertarTest() {
         palabras.eliminar(sustantivo);
-        assertEquals("La lista no debería tener más registros",
-        0, palabras.numeroPalabras());
+        assertEquals("La lista no debería tener más registros", 0, palabras.numeroPalabras());
     }
 
     /**
      * Test del numero de palabras
      */
     @Test
-    public void numeroPalabrasTest(){
-        assertEquals("La lista debería tener un registro",
-        1, palabras.numeroPalabras());
+    public void numeroPalabrasTest() {
+        assertEquals("La lista debería tener un registro", 1, palabras.numeroPalabras());
     }
 
     /**
      * Test para errar el numero de palabras
      */
     @Test
-    public void errorNumeroPalabrasTest(){
-        assertNotEquals("No debería haber 5 palabras insertadas",
-        5, palabras.numeroPalabras());
+    public void errorNumeroPalabrasTest() {
+        assertNotEquals("No debería haber 5 palabras insertadas", 5, palabras.numeroPalabras());
     }
 
     /**
      * Test para comprobar que hay palabras iguales
      */
     @Test
-    public void igualesTest(){
-        assertEquals("Debería aparecer un registro",
-        1, palabras.palabrasIguales(sustantivo));
+    public void igualesTest() {
+        assertEquals("Debería aparecer un registro", 1, palabras.palabrasIguales(sustantivo));
     }
 
     /**
      * Comprobar que hay palabras que no coinciden
      */
     @Test
-    public void noIgualesTest(){
-        assertNotEquals("No debería coincidir la palabra, el registro debe ser 0",
-        10, palabras.palabrasIguales(sustantivo));
+    public void noIgualesTest() {
+        assertNotEquals("No debería coincidir la palabra, el registro debe ser 0", 10,
+                palabras.palabrasIguales(sustantivo));
     }
 
     /**
      * Comprobamos el eliminar
      */
     @Test
-    public void eliminarTest(){
+    public void eliminarTest() {
         setDown();
-        assertEquals("No debería haber registros",
-        0, palabras.numeroPalabras());
-    }    
+        assertEquals("No debería haber registros", 0, palabras.numeroPalabras());
+    }
 
     /**
      * Comprobamos que no se elimina nada
      */
     @Test
-    public void noEliminarTest(){
+    public void noEliminarTest() {
         assertFalse("No debería eliminar", palabras.eliminar("Perro"));
+    }
+
+    @Test
+    public void revesTest(){
+        palabras.insertar("Perro");
+        ArrayList<String> salida=palabras.listaReves();
+        assertEquals("Tiene que salir la lista dada la vuelta",
+        sustantivo, salida.get(1));
+    }
+
+    /**
+     * Eliminar palabras funciona
+     */
+    @Test
+    public void eliminarRepetidasTest(){
+        palabras.insertar("Casa");
+        palabras.eliminarRepetidas();
+        assertEquals("Solo debe haber un registro",
+        1, palabras.numeroPalabras());
     }
 }
