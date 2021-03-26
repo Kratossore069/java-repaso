@@ -61,15 +61,16 @@ public class Palabras {
 
     /**
      * Dar la vuelta a la lista original
+     * 
      * @return la lista dada la vuelta
      */
     public ArrayList<String> listaReves() {
         ArrayList<String> reves = new ArrayList<String>();
         for (int i = 0; i < lista.size(); i++) {
-            String elemento = lista.get(lista.size() - i);
+            String elemento = lista.get(lista.size() - 1);
             reves.add(elemento);
         }
-        return reves; //Aquí hay algo mal
+        return reves;
     }
 
     /**

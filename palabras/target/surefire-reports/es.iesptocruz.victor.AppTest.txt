@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: es.iesptocruz.victor.AppTest
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.116 s <<< FAILURE! - in es.iesptocruz.victor.AppTest
-revesTest(es.iesptocruz.victor.AppTest)  Time elapsed: 0.011 s  <<< ERROR!
-java.lang.IndexOutOfBoundsException: Index 2 out of bounds for length 2
-	at es.iesptocruz.victor.AppTest.revesTest(AppTest.java:100)
-
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.263 s - in es.iesptocruz.victor.AppTest

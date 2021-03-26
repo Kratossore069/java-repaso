@@ -94,12 +94,25 @@ public class AppTest {
         assertFalse("No debería eliminar", palabras.eliminar("Perro"));
     }
 
+    /**
+     * Retorna la posicion de la fila al reves
+     */
     @Test
     public void revesTest(){
         palabras.insertar("Perro");
         ArrayList<String> salida=palabras.listaReves();
         assertEquals("Tiene que salir la lista dada la vuelta",
-        sustantivo, salida.get(1));
+        "Perro", salida.get(0));
+    }
+
+    /**
+     * Lista sin dar la vuelta
+     */
+    @Test
+    public void sinRevesTest(){
+        ArrayList<String> salida=palabras.listaReves();
+        assertEquals("Tiene que salir la lista sin dar la vuelta",
+        sustantivo, salida.get(0));
     }
 
     /**
@@ -111,5 +124,19 @@ public class AppTest {
         palabras.eliminarRepetidas();
         assertEquals("Solo debe haber un registro",
         1, palabras.numeroPalabras());
+    }
+
+    /**
+     * No eliminar palabras repetidas
+     */
+    @Test
+    public void noEliminarRepetidasTest(){
+        palabras.insertar("Perro");
+        palabras.insertar("Casa");
+        palabras.insertar("Hogar");
+        palabras.insertar("Perro");
+        palabras.eliminarRepetidas();
+        assertEquals("Debe haber más de un registro",
+        2, palabras.numeroPalabras());
     }
 }
