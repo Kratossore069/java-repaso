@@ -80,9 +80,9 @@ public class Palabras {
         for (int i = 0; i < lista.size(); i++) {
             String palabra = lista.get(i);
             for (int j = 0; j < lista.size(); j++) {
-                String palabra2 = lista.get(j);
-                if (palabra.equals(palabra2)) {
-                    lista.remove(palabra2);
+                String palabraEvaluar = lista.get(j);
+                if (palabra.equals(palabraEvaluar)) {
+                    lista.remove(palabraEvaluar);
                 }
             }
         }
