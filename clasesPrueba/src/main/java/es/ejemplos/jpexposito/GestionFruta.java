@@ -26,10 +26,12 @@ public class GestionFruta extends Fruta {
      * @param precio precio
      * @param color color
      * @param peso peso
-     * @param nombre nombre
+     * @param nombre nombre debe ponerse siempre
      */
     public void insertar(float peso, String color, float precio, String nombre) {
-        listaFrutas.add(new Fruta(peso,color,precio,nombre));
+        if(!(nombre==null)){
+            listaFrutas.add(new Fruta(peso,color,precio,nombre));
+        }
     }
 
     /**
