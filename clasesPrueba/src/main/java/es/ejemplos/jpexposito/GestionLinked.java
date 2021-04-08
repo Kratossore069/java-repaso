@@ -41,22 +41,24 @@ public class GestionLinked extends Fruta{
     }
 
     /**
-     * Mostrar por pantalla el primer o la ultima fruta aniadida
+     * Funcion que devuelve el objeto por pantalla si se encuentra
      * @param posicion 0 para el principio y 1 para el final
+     * @return el objeto si lo encuentra
      */
-    public void mostrar(int posicion){
+    public String mostrar(int posicion){
+        String resultado=null;
         switch(posicion){
-            case 0: listaFrutas.getFirst();
+            case 0: resultado=listaFrutas.getFirst().toString();
                     break;
-            case 1: listaFrutas.getLast();
+            case 1: resultado=listaFrutas.getLast().toString();
+                    break;
+            default: resultado="No existe esa posición";
                     break;
         }        
+        return resultado;
     }
 
-    /**
-     * Inventario de las frutas
-     * @return numero de frutas en stock
-     */
+    
     public int inventarioFrutas(){
         return listaFrutas.size();
     }
