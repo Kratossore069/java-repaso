@@ -10,13 +10,16 @@ import org.junit.jupiter.api.Test;
 public class AppTest {
 
     GestionFruta gestion;
+    GestionLinked gestionLinked;
 
     @BeforeEach
     public void setUp() {
-        if (gestion == null) {
+        if (gestion == null || gestionLinked==null) {
             gestion = new GestionFruta();
+            gestionLinked=new GestionLinked();
         }
         gestion.insertar(10.2f, "Verde", 10.2f, "Pomelo");
+        gestionLinked.aniadir(0, new Fruta(2.5f,"Amarillo",2.5f,"Pera"));
     }
 
     /**
@@ -86,5 +89,38 @@ public class AppTest {
     public void noEliminarTest(){
         gestion.eliminar(new Fruta(10.2f, "Verde", 10.2f, "Manzano"));
         assertEquals(1, gestion.inventario(),"Hay un registro");
+    }
+
+    /**
+     * Test que ve si se aniaden nuevas frutas
+     */
+    @Test
+    public void aniadirTest(){
+        assertEquals(1, gestionLinked.inventarioFrutas(),"Hay un registro");
+    }
+
+    /**
+     * Test que muestra que no se aniaden mas frutas al inventario
+     */
+    @Test
+    public void noAniadirTest(){
+        gestionLinked.eliminar(0);
+        assertEquals(0, gestionLinked.inventarioFrutas(),"No hay un registro");
+    }    
+
+    @Test
+    public void eliminarLinkedTest(){
+        gestionLinked.eliminar(0);
+        assertEquals(0, gestionLinked.inventarioFrutas(),"No hay registros");
+    }
+
+    // @Test
+    // public void noEliminarLinkedTest(){
+        
+    // }
+
+    @Test
+    public void mostrarTest(){
+        
     }
 }
