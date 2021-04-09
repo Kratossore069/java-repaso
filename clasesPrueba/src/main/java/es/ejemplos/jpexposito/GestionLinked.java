@@ -19,6 +19,8 @@ public class GestionLinked extends Fruta{
      * @param fruta fruta a insertar
      */
     public void aniadir(int posicion,Fruta fruta){
+      
+        
         switch(posicion){
             case 0: listaFrutas.addFirst(fruta);
                     break;
@@ -32,6 +34,10 @@ public class GestionLinked extends Fruta{
      * @param posicion 0 para el principio y 1 para el final
      */
     public void eliminar(int posicion){
+
+        if(listaFrutas.isEmpty()){
+            return;    
+        }
         switch(posicion){
             case 0: listaFrutas.removeFirst();
                     break;
@@ -58,7 +64,9 @@ public class GestionLinked extends Fruta{
         return resultado;
     }
 
-    
+    /**
+     * Funcion que resuelve el numero de frutas en la lista
+     */
     public int inventarioFrutas(){
         return listaFrutas.size();
     }
