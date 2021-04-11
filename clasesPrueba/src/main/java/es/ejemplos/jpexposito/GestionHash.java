@@ -36,11 +36,13 @@ public class GestionHash {
      * @return una lista en String
      */
     public String mostrarLista(){
-        String lista=null;
-        for(int i=0;i<listaHash.size();i++){
-            lista=listaHash.get(i).toString();
+        String resultado=null;
+        for (Integer codigo: listaHash.keySet()) {
+            String key = codigo.toString();
+            String value = listaHash.get(codigo).toString();
+            resultado=key+" "+value;
         }
-        return lista;
+        return resultado;
     }
 
     /**

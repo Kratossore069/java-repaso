@@ -34,10 +34,23 @@ public class HashTest {
         assertEquals(1, gestion.inventarioFrutas(),"Debe haber solo una fruta");
     }
 
-    // @Test Null Pointer Exception
-    // public void listarTest(){
-    //     assertEquals(null, gestion.mostrarLista());
-    // }
+    /**
+     * Test para comprobar la salida de información
+     */
+    @Test
+    public void listarTest(){
+        assertEquals("100 Nombre:Pomelo, Color:Verde, Peso:10.2, Precio:10.2",
+        gestion.mostrarLista());
+    }
+
+    /**
+     * Test que demuestra que sale nulo si no hay registros
+     */
+    @Test
+    public void noListarTest(){
+        gestion.eliminarFruta(100);
+        assertEquals(null, gestion.mostrarLista());
+    }
 
     /**
      * Test que elimina una fruta por su numero de serie
