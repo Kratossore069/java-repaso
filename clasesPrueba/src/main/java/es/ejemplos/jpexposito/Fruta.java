@@ -7,6 +7,7 @@ public class Fruta {
     String color;
     float precio;
     String nombre;
+    int identificador;
 
     public Fruta() {
     }
@@ -56,12 +57,24 @@ public class Fruta {
         this.nombre = nombre;
     }
 
-
-    public Fruta(float peso, String color, float precio, String nombre) {
+    /**
+     * Constructor con todos los parametros del objeto
+     * @param identificador id del objeto
+     * @param peso del objeto
+     * @param color del objeto
+     * @param precio del objeto
+     * @param nombre del objeto
+     */
+    public Fruta(int identificador,float peso, String color, float precio, String nombre) {
+        this.identificador=identificador;
         this.peso = peso;
         this.color = color;
         this.precio = precio;
         this.nombre = nombre;
+    }
+
+    public int getIdentificador() {
+        return identificador;
     }
 
     @Override

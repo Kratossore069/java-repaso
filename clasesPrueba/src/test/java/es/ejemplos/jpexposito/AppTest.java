@@ -11,6 +11,8 @@ public class AppTest {
 
     GestionFruta gestion;
     GestionLinked gestionLinked;
+    Fruta fruta;
+    Fruta noExiste;
 
     @BeforeEach
     public void setUp() {
@@ -18,8 +20,10 @@ public class AppTest {
             gestion = new GestionFruta();
             gestionLinked=new GestionLinked();
         }
-        gestion.insertar(10.2f, "Verde", 10.2f, "Pomelo");
-        gestionLinked.aniadir(0, new Fruta(2.5f,"Amarillo",2.5f,"Pera"));
+        //gestion.insertar(1,10.2f, "Verde", 10.2f, "Pomelo");
+        fruta=new Fruta(1,10.2f, "Verde", 10.2f, "Pomelo");
+        gestion.insertar(fruta);
+        gestionLinked.aniadir(fruta.getIdentificador(),fruta);
     }
 
     /**
@@ -35,7 +39,7 @@ public class AppTest {
      */
     @Test
     public void noInsertarTest(){
-        gestion.insertar(10.2f, "Verde", 10.2f, null);
+        gestion.insertar(null);
         assertEquals(1, gestion.inventario(),"Un solo registro");
     }
 
@@ -52,7 +56,7 @@ public class AppTest {
      */
     @Test
     public void noInventarioTest(){
-        gestion.eliminar(new Fruta(10.2f, "Verde", 10.2f, "Pomelo"));
+        gestion.eliminar(new Fruta(1,10.2f, "Verde", 10.2f, "Pomelo"));
         assertEquals(0, gestion.inventario(),"No hay registros");
     }
 
@@ -62,7 +66,7 @@ public class AppTest {
      */
     @Test
     public void buscarTest(){
-        assertTrue(gestion.buscar(new Fruta(10.2f, "Verde", 10.2f, "Pomelo")));
+        assertTrue(gestion.buscar(fruta));
     }
 
     /**
@@ -70,7 +74,7 @@ public class AppTest {
      */
     @Test
     public void noBuscarTest(){
-        assertFalse(gestion.buscar(new Fruta(10.2f, "Verde", 10.2f, "Manzano")));
+        assertFalse(gestion.buscar(new Fruta(2,10.2f, "Verde", 10.2f, "Manzano")));
     }
 
     /**
@@ -78,7 +82,7 @@ public class AppTest {
      */
     @Test
     public void eliminarTest(){
-        gestion.eliminar(new Fruta(10.2f, "Verde", 10.2f, "Pomelo"));
+        gestion.eliminar(new Fruta(1,10.2f, "Verde", 10.2f, "Pomelo"));
         assertEquals(0, gestion.inventario(),"No hay registros");
     }
 
@@ -87,7 +91,7 @@ public class AppTest {
      */
     @Test
     public void noEliminarTest(){
-        gestion.eliminar(new Fruta(10.2f, "Verde", 10.2f, "Manzano"));
+        gestion.eliminar(new Fruta(2,10.2f, "Verde", 10.2f, "Manzano"));
         assertEquals(1, gestion.inventario(),"Hay un registro");
     }
 
@@ -132,7 +136,7 @@ public class AppTest {
      */
     @Test
     public void mostrarTest(){
-        assertEquals("Nombre:Pera, Color:Amarillo, Peso:2.5, Precio:2.5",
+        assertEquals("Nombre:Pomelo, Color:Verde, Peso:10.2, Precio:10.2",
         gestionLinked.mostrar(0));
     }
 

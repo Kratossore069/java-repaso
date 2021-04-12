@@ -20,17 +20,13 @@ public class GestionFruta extends Fruta {
     public int inventario(){
         return listaFrutas.size();
     }
-
     /**
-     * Metodo que inserta una fruta nueva
-     * @param precio precio
-     * @param color color
-     * @param peso peso
-     * @param nombre nombre debe ponerse siempre
+     * Metodo para insertar frutas en la lista
+     * @param fruta a insertar
      */
-    public void insertar(float peso, String color, float precio, String nombre) {
-        if(!(nombre==null)){
-            listaFrutas.add(new Fruta(peso,color,precio,nombre));
+    public void insertar(Fruta fruta) {
+        if(fruta!=null){
+            listaFrutas.add(fruta);
         }
     }
 

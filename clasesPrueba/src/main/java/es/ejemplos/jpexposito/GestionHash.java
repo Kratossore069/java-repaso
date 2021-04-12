@@ -23,12 +23,9 @@ public class GestionHash {
     /**
      * Metodo para introducir frutas
      * @param fruta a insertar
-     * @param numSerie numero de serie del producto
      */
-    public void insertarFrutas(int numSerie,Fruta fruta){
-        if(numSerie>99){
-            listaHash.put(numSerie, fruta);
-        }
+    public void insertarFruta(Fruta fruta){
+        listaHash.put(fruta.getIdentificador(),fruta);
     }
 
     /**

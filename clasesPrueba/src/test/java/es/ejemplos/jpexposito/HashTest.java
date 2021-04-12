@@ -7,13 +7,15 @@ import org.junit.jupiter.api.Test;
 
 public class HashTest {
     GestionHash gestion;
+    Fruta fruta;
 
     @BeforeEach
     public void setUp() {
         if (gestion == null) {
             gestion = new GestionHash();
         }
-        gestion.insertarFrutas(100,new Fruta(10.2f, "Verde", 10.2f, "Pomelo"));
+        fruta=new Fruta(1,10.2f, "Verde", 10.2f, "Pomelo");
+        gestion.insertarFruta(fruta);
     }
 
     /**
@@ -30,7 +32,7 @@ public class HashTest {
      */
     @Test
     public void noInsertarTest(){
-        gestion.insertarFrutas(50, new Fruta(5.2f,"Azul",5.2f,"Zanahoria"));
+        gestion.insertarFruta(new Fruta(1,5.2f,"Azul",5.2f,"Zanahoria"));
         assertEquals(1, gestion.inventarioFrutas(),"Debe haber solo una fruta");
     }
 
@@ -39,7 +41,7 @@ public class HashTest {
      */
     @Test
     public void listarTest(){
-        assertEquals("100 Nombre:Pomelo, Color:Verde, Peso:10.2, Precio:10.2",
+        assertEquals("1 Nombre:Pomelo, Color:Verde, Peso:10.2, Precio:10.2",
         gestion.mostrarLista());
     }
 
@@ -48,7 +50,7 @@ public class HashTest {
      */
     @Test
     public void noListarTest(){
-        gestion.eliminarFruta(100);
+        gestion.eliminarFruta(1);
         assertEquals(null, gestion.mostrarLista());
     }
 
@@ -57,7 +59,7 @@ public class HashTest {
      */
     @Test
     public void eliminarTest(){
-        gestion.eliminarFruta(100);
+        gestion.eliminarFruta(fruta.getIdentificador());
         assertEquals(0, gestion.inventarioFrutas(),"No hay frutas");
     }
 
