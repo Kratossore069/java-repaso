@@ -37,10 +37,12 @@ public class Files {
     public String escriboFichero(String destino) {
         String salida = null;
         try {
+          if(destino!=null){
             FileWriter myWriter = new FileWriter(destino);
             myWriter.write("Files in Java might be tricky, but it is fun enough!");
             myWriter.close();
             salida = "Successfully wrote to the file.";
+          }
         } catch (IOException e) {
             salida = "An error occurred.";
             e.printStackTrace();
