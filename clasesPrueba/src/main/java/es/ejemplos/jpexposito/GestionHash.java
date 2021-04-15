@@ -33,7 +33,7 @@ public class GestionHash {
      * @return una lista en String
      */
     public String mostrarLista(){
-        String resultado=null;
+        String resultado="";
         for (Integer codigo: listaHash.keySet()) {
             String key = codigo.toString();
             String value = listaHash.get(codigo).toString();
