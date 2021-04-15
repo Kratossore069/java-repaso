@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: es.iesptocruz.victor.CalculadoraTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.134 s - in es.iesptocruz.victor.CalculadoraTest
