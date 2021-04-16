@@ -137,4 +137,42 @@ public class Fichero {
         }
         return resultado;
     }
+
+    /**
+     * Funcion que muestra informacion del fichero
+     * @param nombre del fichero
+     * @return datos del archivo
+     * @throws FicheroException error controlado
+     */
+    public String datosFichero(String nombre) throws FicheroException{
+        File file;
+        String datos="";
+
+        if(existe(nombre)){
+            file=new File(nombre);
+            datos=file.getName()+" "+file.getAbsolutePath();
+        }else{
+            throw new FicheroException("Error con el fichero deseado");
+        }
+        return datos;
+    }
+
+    /**
+     * Funcion que elimina un fichero
+     * @param nombre del fichero
+     * @return true or false
+     * @throws FicheroException error controlado
+     */
+    public boolean eliminoFichero(String nombre) throws FicheroException { 
+        File file;
+        boolean eliminado=false;
+
+        if(existe(nombre)){
+            file=new File(nombre);
+            eliminado=file.delete();
+        }else{
+            throw new FicheroException("Error al eliminar el fichero");
+        } 
+        return eliminado;
+    } 
 }
