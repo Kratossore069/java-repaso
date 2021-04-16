@@ -1,2 +1,4 @@
-excepciones/NumeroExceptions.class
 es/iesptocruz/victor/Calculadora.class
+excepciones/NumeroExceptions.class
+es/iesptocruz/victor/Fichero.class
+excepciones/FicheroException.class
