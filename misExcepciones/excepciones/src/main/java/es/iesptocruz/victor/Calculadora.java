@@ -1,6 +1,6 @@
 package es.iesptocruz.victor;
 
-import excepciones.Exceptions;
+import excepciones.NumeroExceptions;
 
 public class Calculadora {
 
@@ -16,10 +16,10 @@ public class Calculadora {
      * @return resultado
      * @throws Exceptions si no es posible dividir entre 0
      */
-    public int division(int dividendo, int divisor) throws Exceptions {
+    public int division(int dividendo, int divisor) throws NumeroExceptions {
         int resultado=0;
         if(divisor<=0){
-            throw new Exceptions("No se puede dividir entre 0");
+            throw new NumeroExceptions("No se puede dividir entre 0");
         }else{
             resultado = dividendo / divisor;
         }

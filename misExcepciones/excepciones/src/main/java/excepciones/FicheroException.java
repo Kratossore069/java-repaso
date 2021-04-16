@@ -1,8 +1,7 @@
 package excepciones;
 
-public class Exceptions extends Exception {
-
-   /**
+public class FicheroException extends Exception{
+    /**
     * Esto hay que incluirlo obligatoriamente para que no de error
     */
    private static final long serialVersionUID = 1L;
@@ -12,7 +11,7 @@ public class Exceptions extends Exception {
     * 
     * @param mensaje descriptivo
     */
-   public Exceptions(String mensaje) {
+   public FicheroException(String mensaje) {
       super(mensaje);
    }
 
@@ -22,7 +21,7 @@ public class Exceptions extends Exception {
     * @param mensaje   descriptivo
     * @param exception descriptiva
     */
-   public Exceptions(String mensaje, Exception exception) {
+   public FicheroException(String mensaje, Exception exception) {
       super(mensaje, exception);
    }
 }

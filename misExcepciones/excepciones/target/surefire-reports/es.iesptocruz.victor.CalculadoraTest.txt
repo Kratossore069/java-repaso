@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: es.iesptocruz.victor.CalculadoraTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.134 s - in es.iesptocruz.victor.CalculadoraTest
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.108 s <<< FAILURE! - in es.iesptocruz.victor.CalculadoraTest
+divisionTest(es.iesptocruz.victor.CalculadoraTest)  Time elapsed: 0.02 s  <<< FAILURE!
+java.lang.AssertionError: Debe dar 1 expected:<1> but was:<5>
+	at es.iesptocruz.victor.CalculadoraTest.divisionTest(CalculadoraTest.java:29)
+
