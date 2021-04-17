@@ -36,4 +36,50 @@ public class FicheroTest {
     public void existeTest(){
         assertEquals("Debe existir", true, fichero.existe("algo.txt"));
     }
+
+    /**
+     * Test que muestra si se lee un fichero
+     * @throws FicheroException error controlado
+     */
+    @Test
+    public void leerTest() throws FicheroException{
+        assertEquals(true,fichero.sePuedeLeer("algo.txt"));
+    }
+
+    /**
+     * Muestra si existe texto en un documento
+     * @throws FicheroException error controlado
+     */
+    @Test
+    public void mostrarTest() throws FicheroException{
+        assertEquals("",fichero.mostrarDocumento("algo.txt"));
+    }
+
+    /**
+     * Test de si puede ser escrito un documento si existe
+     * @throws FicheroException error controlado
+     */
+    @Test
+    public void redactarTest() throws FicheroException{
+        assertEquals(true,fichero.sePuedeRedactar("algo.txt"));
+    }
+
+    /**
+     * Test de escribir en un documento
+     * @throws FicheroException error controlado
+     */
+    @Test
+    public void escribirTest() throws FicheroException{
+        assertEquals("Escrito con éxito",fichero.redactarDocumento("algo.txt"));
+    }
+
+    /**
+     * Test que muestra informacion sobre el documento
+     * @throws FicheroException controlado
+     */
+    @Test
+    public void datosTest() throws FicheroException{
+        assertEquals("algo.txt /home/victor/java-repaso/misExcepciones/excepciones/algo.txt",
+        fichero.datosFichero("algo.txt"));
+    }
 }

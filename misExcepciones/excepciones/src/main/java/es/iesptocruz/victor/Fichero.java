@@ -40,7 +40,8 @@ public class Fichero {
         try {
             file.createNewFile();
         } catch (IOException exception) {
-            throw new FicheroException("Se ha producido un error creando el fichero", exception);
+            throw new FicheroException("Se ha producido un error creando el fichero",
+            exception);
         }
     }
 
