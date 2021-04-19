@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: es.iesptocruz.victor.FicheroTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.062 s <<< FAILURE! - in es.iesptocruz.victor.FicheroTest
-eliminarTest(es.iesptocruz.victor.FicheroTest)  Time elapsed: 0.019 s  <<< ERROR!
-excepciones.FicheroException: Error en el setDown
-	at es.iesptocruz.victor.FicheroTest.setDown(FicheroTest.java:28)
-
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.02 s - in es.iesptocruz.victor.FicheroTest

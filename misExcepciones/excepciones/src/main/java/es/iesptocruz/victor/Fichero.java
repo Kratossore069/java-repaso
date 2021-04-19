@@ -12,14 +12,14 @@ public class Fichero {
     /**
      * Funcion encargada de verificar si un fichero existe
      * 
-     * @param nombreFichero nombre del fichero
+     * @param nombre del fichero
      * @return true or false
      */
-    public boolean existe(String nombreFichero) {
+    public boolean existe(String nombre) {
         File file;
         boolean existeFichero = false;
 
-        file = new File(nombreFichero);
+        file = new File(nombre);
         existeFichero = file.exists();
         return existeFichero;
     }
@@ -30,7 +30,7 @@ public class Fichero {
      * @param nombre del fichero
      * @throws FicheroException error controlado
      */
-    public void crearFichero(String nombre) throws FicheroException {
+    public void crear(String nombre) throws FicheroException {
         File file;
 
         if (existe(nombre)) {
@@ -52,7 +52,7 @@ public class Fichero {
      * @return true or false
      * @throws FicheroException error controlado
      */
-    public boolean sePuedeLeer(String nombre) throws FicheroException {
+    public boolean permisoLectura(String nombre) throws FicheroException {
         File file;
         boolean legible = false;
 
@@ -72,11 +72,11 @@ public class Fichero {
      * @return
      * @throws FicheroException
      */
-    public String mostrarDocumento(String nombre) throws FicheroException {
+    public String mostrar(String nombre) throws FicheroException {
         File file;
         String datos = "";
 
-        if (existe(nombre) && sePuedeLeer(nombre)) {
+        if (existe(nombre) && permisoLectura(nombre)) {
             try {
                 file = new File(nombre);
                 Scanner myReader = new Scanner(file);
@@ -119,9 +119,8 @@ public class Fichero {
      * @return mensaje de haber escrito
      * @throws FicheroException error controlado
      */
-    public String redactarDocumento(String nombre) throws FicheroException {
+    public String escribir(String nombre,String datos) throws FicheroException {
         FileWriter fw;
-        String datos = "Hola mundo";
         String resultado = "";
 
         if (existe(nombre) && sePuedeRedactar(nombre)) {
@@ -129,7 +128,7 @@ public class Fichero {
                 fw = new FileWriter(nombre);
                 fw.write(datos);
                 fw.close();
-                resultado = "Escrito con éxito";
+                resultado = "Escrito con exito";
             } catch (IOException exception) {
                 throw new FicheroException("Error al escribir", exception);
             }
@@ -145,7 +144,7 @@ public class Fichero {
      * @return datos del archivo
      * @throws FicheroException error controlado
      */
-    public String datosFichero(String nombre) throws FicheroException{
+    public String info(String nombre) throws FicheroException{
         File file;
         String datos="";
 
@@ -164,7 +163,7 @@ public class Fichero {
      * @return true or false
      * @throws FicheroException error controlado
      */
-    public boolean eliminoFichero(String nombre) throws FicheroException { 
+    public boolean eliminar(String nombre) throws FicheroException { 
         File file;
         boolean eliminado=false;
 

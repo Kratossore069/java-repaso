@@ -2,6 +2,7 @@ package es.iesptocruz.victor;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,20 +11,21 @@ import org.junit.Test;
 import excepciones.FicheroException;
 
 public class FicheroTest {
+    private static final String ALGO_TXT = "algo.txt";
     Fichero fichero;
 
     @Before
     public void setUp() throws FicheroException{
         if(fichero==null){
             fichero=new Fichero();
-            fichero.crearFichero("algo.txt");
+            fichero.crear(ALGO_TXT);
         }
     }
 
     @After
     public void setDown() throws FicheroException{
         try{
-            fichero.eliminoFichero("algo.txt");
+            fichero.eliminar(ALGO_TXT);
         }catch(Exception ex){
             throw new FicheroException("Error en el setDown");
         } 
@@ -34,7 +36,7 @@ public class FicheroTest {
      */
     @Test
     public void existeTest(){
-        assertEquals("Debe existir", true, fichero.existe("algo.txt"));
+        assertEquals("Debe existir", true, fichero.existe(ALGO_TXT));
     }
 
     /**
@@ -43,7 +45,7 @@ public class FicheroTest {
      */
     @Test
     public void leerTest() throws FicheroException{
-        assertEquals(true,fichero.sePuedeLeer("algo.txt"));
+        assertEquals(true,fichero.permisoLectura(ALGO_TXT));
     }
 
     /**
@@ -52,7 +54,7 @@ public class FicheroTest {
      */
     @Test
     public void mostrarTest() throws FicheroException{
-        assertEquals("",fichero.mostrarDocumento("algo.txt"));
+        assertEquals("",fichero.mostrar(ALGO_TXT));
     }
 
     /**
@@ -61,7 +63,7 @@ public class FicheroTest {
      */
     @Test
     public void redactarTest() throws FicheroException{
-        assertEquals(true,fichero.sePuedeRedactar("algo.txt"));
+        assertEquals(true,fichero.sePuedeRedactar(ALGO_TXT));
     }
 
     /**
@@ -69,8 +71,12 @@ public class FicheroTest {
      * @throws FicheroException error controlado
      */
     @Test
-    public void escribirTest() throws FicheroException{
-        assertEquals("Escrito con éxito",fichero.redactarDocumento("algo.txt"));
+    public void escribirTest(){
+        try {
+            fichero.escribir(ALGO_TXT,"texto");
+        } catch (FicheroException e) {
+            fail("Se ha producido un error durante la escritura del fichero");
+        }
     }
 
     /**
@@ -80,6 +86,6 @@ public class FicheroTest {
     @Test
     public void datosTest() throws FicheroException{
         assertEquals("algo.txt /home/victor/java-repaso/misExcepciones/excepciones/algo.txt",
-        fichero.datosFichero("algo.txt"));
+        fichero.info(ALGO_TXT));
     }
 }
