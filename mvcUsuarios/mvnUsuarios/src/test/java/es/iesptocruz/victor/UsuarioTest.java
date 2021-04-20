@@ -18,6 +18,7 @@ public class UsuarioTest
 {
     UsuarioControlador userController;
     Usuario user;
+    Usuario nuevoUser;
 
     @Before
     public void setUp() throws UsuarioException{
@@ -58,5 +59,15 @@ public class UsuarioTest
     public void eliminarTest() throws UsuarioException{
         userController.eliminar(user);
         assertEquals("No debe haber usuarios",0, userController.numeroTotal());
+    }
+
+    /**
+     * Test que muestra que funciona aniadir un usuario
+     */
+    @Test
+    public void aniadirTest() throws UsuarioException{
+        nuevoUser=new Usuario("Victor", "Casas", 30, "002");
+        userController.insertar(nuevoUser);
+        assertEquals("Debe haber dos usuarios", 2, userController.numeroTotal());
     }
 }
