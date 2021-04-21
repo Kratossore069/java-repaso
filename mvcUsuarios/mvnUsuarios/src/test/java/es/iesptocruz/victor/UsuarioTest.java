@@ -14,23 +14,23 @@ import es.iesptocruz.victor.exceptions.UsuarioException;
 /**
  * Unit test for simple App.
  */
-public class UsuarioTest 
-{
+public class UsuarioTest {
     UsuarioControlador userController;
     Usuario user;
     Usuario nuevoUser;
 
     @Before
-    public void setUp() throws UsuarioException{
-        if(userController==null){
-            userController=new UsuarioControlador();
-            user=new Usuario("Pablo", "Jacinto", 25, "001");
+    public void setUp() throws UsuarioException {
+        if (userController == null) {
+            userController = new UsuarioControlador();
+            user = new Usuario("Pablo", "Jacinto", 25, "001");
+            nuevoUser = new Usuario("Victor", "Casas", 30, "002");
             userController.insertar(user);
         }
     }
 
     @After
-    public void setDown(){
+    public void setDown() {
         userController.eliminarTodo();
     }
 
@@ -38,36 +38,106 @@ public class UsuarioTest
      * Test que muestra todos los usuarios insertados
      */
     @Test
-    public void mostrarTodoTest(){
-        String salida="001 { nombre='Pablo', apellidos='Jacinto', edad='25', identificador='001'}";
-        assertEquals("Debe salir un usuario",salida, userController.mostrarTodo());
+    public void mostrarTodoTest() {
+        String salida = "001 { nombre='Pablo', apellidos='Jacinto', edad='25', identificador='001'}";
+        assertEquals("Debe salir un usuario", salida, userController.mostrarTodo());
     }
 
     /**
      * Test que muestra el numero maximo de usuarios
      */
     @Test
-    public void numeroTest(){
-        assertEquals("Debe haber solo un usuario",1, userController.numeroTotal());
+    public void numeroTest() {
+        assertEquals("Debe haber solo un usuario", 1, userController.numeroTotal());
     }
 
     /**
      * Test que demuestra que funciona el eliminar usuarios
+     * 
      * @throws UsuarioException error controlado
      */
     @Test
-    public void eliminarTest() throws UsuarioException{
+    public void eliminarTest() throws UsuarioException {
         userController.eliminar(user);
-        assertEquals("No debe haber usuarios",0, userController.numeroTotal());
+        assertEquals("No debe haber usuarios", 0, userController.numeroTotal());
     }
 
     /**
      * Test que muestra que funciona aniadir un usuario
      */
     @Test
-    public void aniadirTest() throws UsuarioException{
-        nuevoUser=new Usuario("Victor", "Casas", 30, "002");
+    public void aniadirTest() throws UsuarioException {
         userController.insertar(nuevoUser);
         assertEquals("Debe haber dos usuarios", 2, userController.numeroTotal());
+    }
+
+    /**
+     * Test que muestra que se encuentra un usuario en la lista
+     * 
+     * @throws UsuarioException error controlado
+     */
+    @Test
+    public void buscarTest() throws UsuarioException {
+        assertEquals("Debe encontrar un usuario", true, userController.buscar(user));
+    }
+
+    /**
+     * Test que muestra falso si no encuentra un usuario
+     * 
+     * @throws UsuarioException error controlado
+     */
+    @Test
+    public void noBuscarTest() throws UsuarioException {
+        assertEquals("Debe salir falso", false, userController.buscar(nuevoUser));
+    }
+
+    /**
+     * Test que muestra la info de un usuario
+     * 
+     * @throws UsuarioException error controlado
+     */
+    @Test
+    public void mostrarTest() throws UsuarioException {
+        String datosEsperados = "001 { nombre='Pablo', apellidos='Jacinto', edad='25', identificador='001'}";
+        assertEquals("Deben salir unos datos", datosEsperados, userController.mostrar("001"));
+    }
+
+    /**
+     * Test que no muestra nada si no encuentra el usuario
+     * 
+     * @throws UsuarioException error controlado
+     */
+    @Test
+    public void noMostrarTest() throws UsuarioException {
+        assertEquals("No debe salir nada", "Usuario no encontrado", userController.mostrar("002"));
+    }
+
+    /**
+     * Test que muestra la modificacion de los datos
+     * 
+     * @throws UsuarioException error controlado
+     */
+    @Test
+    public void modificarTest() throws UsuarioException {
+        userController.modificar(user);
+        String datosEsperados = "001 { nombre='Modificado', apellidos='Jacinto', edad='25', identificador='001'}";
+        assertEquals("Deberia cambiar el nombre", datosEsperados, userController.mostrar("001"));
+    }
+
+    /**
+     * Test que muestra que falla si no se modifica un usuario
+     * que no existe en la lista
+     * @throws UsuarioException error controlado
+     */
+    @Test
+    public void noModificarTest() throws UsuarioException {
+        try {
+            userController.modificar(nuevoUser);
+            String datosEsperados = "001 { nombre='Modificado', apellidos='Jacinto', edad='25', identificador='001'}";
+            assertEquals("Deberia cambiar el nombre", datosEsperados, userController.mostrar("001"));
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+
     }
 }

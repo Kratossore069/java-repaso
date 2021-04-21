@@ -67,37 +67,63 @@ public class UsuarioControlador {
     }
 
     /**
-     * Modificar un usuario
-     * 
-     * @param usuario a modificar
+     * Funcion que modifica un usuario
+     * @param usuario a buscar
      * @throws UsuarioException error controlado
      */
     public void modificar(Usuario usuario) throws UsuarioException {
         validar(usuario);
+        if(lista.containsKey(usuario.getIdentificador())){
+            usuario.setNombre("Modificado");
+        }else{
+            throw new UsuarioException("Usuario no encontrado, nada modificado");
+        }
     }
 
     /**
-     * Buscar un usuario
-     * 
+     * Funcion para buscar un usuario
      * @param usuario a buscar
+     * @return true or false
      * @throws UsuarioException error controlado
      */
-    public void buscar(Usuario usuario) throws UsuarioException {
+    public boolean buscar(Usuario usuario) throws UsuarioException {
+        boolean bandera=false;
         if (usuario.getIdentificador() == null) {
             throw new UsuarioException("Identificador nulo");
+        }else{
+            for (String codigo: lista.keySet()) {
+                if(lista.containsKey(usuario.getIdentificador())){
+                    bandera=true;
+                    return bandera;
+                }
+            }
         }
+        return bandera;
     }
 
     /**
-     * Mostrar un usuario
-     * 
-     * @param usuario a mostrar
+     * Funcion que muestra los datos de un usuario por su ID
+     * @param identificador del usuario
+     * @return datos del usuario
      * @throws UsuarioException error controlado
      */
-    public void mostrar(Usuario usuario) throws UsuarioException {
-        if (usuario.getIdentificador() == null) {
+    public String mostrar(String identificador) throws UsuarioException {
+        String resultado="";
+        if (identificador == null) {
             throw new UsuarioException("Identificador nulo");
+        }else{
+            for (String codigo: lista.keySet()) {
+                try{
+                    codigo=identificador;
+                    String key = codigo;
+                    String value = lista.get(codigo).toString();
+                    resultado=key+" "+value;
+                }catch(Exception ex){
+                    resultado="Usuario no encontrado";
+                }
+            }
         }
+        return resultado;
     }
 
     /**
