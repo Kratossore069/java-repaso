@@ -20,7 +20,7 @@ public class UsuarioControlador {
 
     /**
      * Valida los parametros de entrada
-     * @param usuario
+     * @param usuario a insertar
      * @throws UsuarioException error controlado
      */
     public void validar(Usuario usuario) throws UsuarioException{
@@ -64,6 +64,13 @@ public class UsuarioControlador {
     public void eliminar(Usuario usuario) throws UsuarioException {
         validar(usuario);
         lista.remove(usuario.getIdentificador(), usuario);
+    }
+
+    /**
+     * Metodo para eliminar todos los usuarios de la lista
+     */
+    public void eliminar(){
+        lista.clear();
     }
 
     /**
@@ -130,28 +137,25 @@ public class UsuarioControlador {
      * Funcion que muestra todos los usuarios registrados
      * @return lista en String
      */
-    public String mostrarTodo() {
+    public String mostrar() {
         String resultado="";
-        for (String codigo: lista.keySet()) {
-            String key = codigo;
-            String value = lista.get(codigo).toString();
-            resultado=key+" "+value;
+        for (Usuario usuario : lista.values()) {
+            resultado+= usuario.toString();
         }
+        // resultado=lista.toString();
+        // for (String codigo: lista.keySet()) {
+        //     String key = codigo;
+        //     String value = lista.get(codigo).toString();
+        //     resultado=key+" "+value;
+        // }
         return resultado;
-    }
-
-    /**
-     * Metodo para eliminar todos los usuarios de la lista
-     */
-    public void eliminarTodo(){
-        lista.clear();
     }
 
     /**
      * Funcion que retorna el numero de usuarios en la lista
      * @return numero de usuarios
      */
-    public int numeroTotal(){
+    public int numeroUsuarios(){
         return lista.size();
     }
 }

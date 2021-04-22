@@ -31,24 +31,24 @@ public class UsuarioTest {
 
     @After
     public void setDown() {
-        userController.eliminarTodo();
+        userController.eliminar();
     }
 
     /**
      * Test que muestra todos los usuarios insertados
      */
     @Test
-    public void mostrarTodoTest() {
-        String salida = "001 { nombre='Pablo', apellidos='Jacinto', edad='25', identificador='001'}";
-        assertEquals("Debe salir un usuario", salida, userController.mostrarTodo());
+    public void mostrarTest() {
+        String salida = "{ nombre='Pablo', apellidos='Jacinto', edad='25', identificador='001'}";
+        assertEquals("Debe salir un usuario", salida, userController.mostrar());
     }
 
     /**
      * Test que muestra el numero maximo de usuarios
      */
     @Test
-    public void numeroTest() {
-        assertEquals("Debe haber solo un usuario", 1, userController.numeroTotal());
+    public void numeroUsuariosTest() {
+        assertEquals("Debe haber solo un usuario", 1, userController.numeroUsuarios());
     }
 
     /**
@@ -59,7 +59,7 @@ public class UsuarioTest {
     @Test
     public void eliminarTest() throws UsuarioException {
         userController.eliminar(user);
-        assertEquals("No debe haber usuarios", 0, userController.numeroTotal());
+        assertEquals("No debe haber usuarios", 0, userController.numeroUsuarios());
     }
 
     /**
@@ -68,7 +68,7 @@ public class UsuarioTest {
     @Test
     public void aniadirTest() throws UsuarioException {
         userController.insertar(nuevoUser);
-        assertEquals("Debe haber dos usuarios", 2, userController.numeroTotal());
+        assertEquals("Debe haber dos usuarios", 2, userController.numeroUsuarios());
     }
 
     /**
@@ -97,7 +97,7 @@ public class UsuarioTest {
      * @throws UsuarioException error controlado
      */
     @Test
-    public void mostrarTest() throws UsuarioException {
+    public void mostrarUsuarioTest() throws UsuarioException {
         String datosEsperados = "001 { nombre='Pablo', apellidos='Jacinto', edad='25', identificador='001'}";
         assertEquals("Deben salir unos datos", datosEsperados, userController.mostrar("001"));
     }
