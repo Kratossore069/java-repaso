@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: es.iesptocruz.victor.FicheroTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.115 s <<< FAILURE! - in es.iesptocruz.victor.FicheroTest
-insertarTest(es.iesptocruz.victor.FicheroTest)  Time elapsed: 0.02 s  <<< FAILURE!
-org.junit.ComparisonFailure: Debe mostrar esa palabra expected:<[Hola]> but was:<[Mundo]>
-	at es.iesptocruz.victor.FicheroTest.insertarTest(FicheroTest.java:43)
-
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.159 s - in es.iesptocruz.victor.FicheroTest
