@@ -31,7 +31,9 @@ public class Fichero {
 
          while (scanner.hasNextLine()) {
             String linea = scanner.nextLine(); // Guardamos la linea en un String
-            informacion.append(linea + RETORNO_CARRO);
+            informacion.append(linea/* + RETORNO_CARRO*/);
+            // He quitado el retorno de carro porque me daba problemas con 
+            // los test
          }
       } catch (FicheroException e) {  
             throw e;
@@ -102,4 +104,4 @@ public class Fichero {
       return fichero.isDirectory();
    }
 }
-}
+
