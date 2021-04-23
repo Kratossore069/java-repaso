@@ -44,7 +44,8 @@ public class FicheroTest {
     @Test
     public void insertarTest() throws FicheroException{
         userModelo.insertar(ruta, "Mundo");
-        assertEquals("Debe sobrescribir el archivo", "Mundo", userModelo.leer(ruta));
+        assertEquals("Debe sobrescribir el archivo",
+        "Mundo", userModelo.leer(ruta));
     }
 
     /**
