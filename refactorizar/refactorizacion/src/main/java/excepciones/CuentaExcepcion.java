@@ -1,12 +1,12 @@
 package excepciones;
 
-public class MisExcepciones extends Exception{
+public class CuentaExcepcion extends Exception{
     
     /**
      * Excepcion propia
      * @param mensaje de error
      */
-    public MisExcepciones(String mensaje){
+    public CuentaExcepcion(String mensaje){
         super(mensaje);
     }
 }

@@ -1,6 +1,6 @@
 package es.iesptocruz.victor;
 
-import excepciones.MisExcepciones;
+import excepciones.CuentaExcepcion;
 
 public class Cuenta {
 
@@ -12,8 +12,8 @@ public class Cuenta {
     /**
      * Constructor por defecto
      */
-    public Cuenta()
-    {
+    public Cuenta(){
+
     }
 
     /**
@@ -23,8 +23,7 @@ public class Cuenta {
      * @param sal saldo
      * @param tipo tpo de interes
      */
-    public Cuenta(String nom, String cue, int sal, double tipo)
-    {
+    public Cuenta(String nom, String cue, int sal, double tipo){
         nombre =nom;
         cuenta=cue;
         saldo=sal;
@@ -34,24 +33,24 @@ public class Cuenta {
     /**
      * Metodo que ingresa dinero en la cuenta
      * @param cantidad a ingresar
-     * @throws MisExcepciones controlado
+     * @throws CuentaExcepcion controlado
      */
-    public void ingresar(int cantidad) throws MisExcepciones {
+    public void ingresar(int cantidad) throws CuentaExcepcion {
         if (cantidad < 0)
-            throw new MisExcepciones("No se puede ingresar una cantidad negativa");
+            throw new CuentaExcepcion("No se puede ingresar una cantidad negativa");
         saldo = saldo + cantidad;
     }
 
     /**
      * Metodo que retira dinero de la cuenta
      * @param cantidad a extraer
-     * @throws MisExcepciones controlado
+     * @throws CuentaExcepcion controlado
      */
-    public void retirar(int cantidad) throws MisExcepciones {
+    public void retirar(int cantidad) throws CuentaExcepcion {
         if (cantidad <= 0)
-            throw new MisExcepciones("No se puede retirar una cantidad negativa");
+            throw new CuentaExcepcion("No se puede retirar una cantidad negativa");
         if (estado() < cantidad)
-            throw new MisExcepciones("No se hay suficiente saldo");
+            throw new CuentaExcepcion("No se hay suficiente saldo");
         saldo = saldo - cantidad;
     }
 
