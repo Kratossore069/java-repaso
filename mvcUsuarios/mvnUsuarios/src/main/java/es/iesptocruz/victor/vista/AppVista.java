@@ -1,32 +1,62 @@
 package es.iesptocruz.victor.vista;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import es.iesptocruz.victor.api.Usuario;
 import es.iesptocruz.victor.controlador.UsuarioControlador;
+import es.iesptocruz.victor.exceptions.UsuarioException;
 
-/**
- * Clase encargada de realizar la tarea encargada
- */
 public class AppVista {
+
+    /**
+     * Atributos que utilizara la clase main
+     */
     static UsuarioControlador usuarioControlador;
     static Usuario nuevoUsuario;
+    static String nombre = null;
+    static String apellido = null;
+    static int edad = 0;
+    static String identificador = null;
+    static Scanner sn;
 
+    /**
+     * Constructor por defecto de la clase
+     */
     public AppVista() {
         usuarioControlador = new UsuarioControlador();
+        sn = new Scanner(System.in);
     }
 
-    public static void main(String[] args) {
+    /**
+     * Funcion que retorna un usuario creado
+     * @return usuario creado
+     */
+    public static Usuario introducirDatos(){
+        System.out.println("Nombre: ");
+        nombre = sn.nextLine();
+        System.out.println("Apellido: ");
+        apellido = sn.nextLine();
+        System.out.println("Edad: ");
+        edad = sn.nextInt();
+        System.out.println("Identificador: (texto)");
+        identificador = sn.nextLine();
+
+        return new Usuario(nombre, apellido, edad, identificador);
+    }
+
+    public static void main(String[] args) throws UsuarioException {
+
         System.out.println("Introduzca una opcion para trabajar: ");
-        Scanner sn = new Scanner(System.in);
+        sn = new Scanner(System.in);
         boolean salir = false;
         int opcion;
 
         while (!salir) {
 
             System.out.println("1. Crear un usuario");
-            System.out.println("2. Opcion 2");
-            System.out.println("3. Opcion 3");
+            System.out.println("2. Eliminar usuario");
+            System.out.println("3. Buscar usuario");
             System.out.println("4. Salir");
 
             try {
@@ -35,29 +65,23 @@ public class AppVista {
                 opcion = sn.nextInt();
 
                 switch (opcion) {
-                case 1:
-                    System.out.println("Nombre: ");
-                    String nombre = sn.nextLine();
-                    System.out.println("Apellido: ");
-                    String apellido = sn.nextLine();
-                    System.out.println("Edad: ");
-                    int edad = sn.nextInt();
-                    System.out.println("Identificador: (texto)");
-                    String identificador = sn.nextLine();
-                    nuevoUsuario = new Usuario(nombre, apellido, edad, identificador);
-                    usuarioControlador.insertar(nuevoUsuario);
-                    break;
-                case 2:
-                    System.out.println("Has seleccionado la opcion 2");
-                    break;
-                case 3:
-                    System.out.println("Has seleccionado la opcion 3");
-                    break;
-                case 4:
-                    salir = true;
-                    break;
-                default:
-                    System.out.println("Solo números entre 1 y 4");
+                    case 1:
+                        introducirDatos();
+                        usuarioControlador.insertar(introducirDatos());
+                        break;
+                    case 2:
+                        introducirDatos();
+                        usuarioControlador.eliminar(introducirDatos());
+                        break;
+                    case 3:
+                        introducirDatos();
+                        usuarioControlador.buscar(introducirDatos());
+                        break;
+                    case 4:
+                        salir = true;
+                        break;
+                    default:
+                        System.out.println("Solo números entre 1 y 4");
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Debes insertar un número");
