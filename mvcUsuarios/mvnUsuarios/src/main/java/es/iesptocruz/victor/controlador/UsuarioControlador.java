@@ -139,12 +139,6 @@ public class UsuarioControlador {
         for (Usuario usuario : lista.values()) {
             resultado += usuario.toString();
         }
-        // resultado=lista.toString();
-        // for (String codigo: lista.keySet()) {
-        // String key = codigo;
-        // String value = lista.get(codigo).toString();
-        // resultado=key+" "+value;
-        // }
         return resultado;
     }
 
