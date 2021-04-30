@@ -81,6 +81,7 @@ public class AppVista {
      * @return usuario creado
      */
     public static Usuario introducirDatos() {
+        
         System.out.println("Nombre: ");
         nombre = sn.nextLine();sn.nextInt();
         System.out.println("Apellido: ");

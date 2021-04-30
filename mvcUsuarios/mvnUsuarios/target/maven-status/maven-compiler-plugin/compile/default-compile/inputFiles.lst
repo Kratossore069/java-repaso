@@ -1,7 +1,9 @@
+/home/victor/java-repaso/mvcUsuarios/mvnUsuarios/src/main/java/es/iesptocruz/victor/modelo/BDD.java
 /home/victor/java-repaso/mvcUsuarios/mvnUsuarios/src/main/java/es/iesptocruz/victor/exceptions/UsuarioException.java
 /home/victor/java-repaso/mvcUsuarios/mvnUsuarios/src/main/java/es/iesptocruz/victor/modelo/Fichero.java
 /home/victor/java-repaso/mvcUsuarios/mvnUsuarios/src/main/java/es/iesptocruz/victor/controlador/UsuarioControlador.java
 /home/victor/java-repaso/mvcUsuarios/mvnUsuarios/src/main/java/es/iesptocruz/victor/exceptions/FicheroException.java
+/home/victor/java-repaso/mvcUsuarios/mvnUsuarios/src/main/java/es/iesptocruz/victor/exceptions/BDDException.java
 /home/victor/java-repaso/mvcUsuarios/mvnUsuarios/src/main/java/es/iesptocruz/victor/modelo/UsuarioModelo.java
 /home/victor/java-repaso/mvcUsuarios/mvnUsuarios/src/main/java/es/iesptocruz/victor/api/Usuario.java
 /home/victor/java-repaso/mvcUsuarios/mvnUsuarios/src/main/java/es/iesptocruz/victor/vista/AppVista.java

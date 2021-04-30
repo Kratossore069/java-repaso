@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: es.iesptocruz.victor.MainTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.196 s <<< FAILURE! - in es.iesptocruz.victor.MainTest
-introducirTest(es.iesptocruz.victor.MainTest)  Time elapsed: 0.026 s  <<< ERROR!
-java.lang.NullPointerException
-	at es.iesptocruz.victor.MainTest.introducirTest(MainTest.java:20)
-
