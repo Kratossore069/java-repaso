@@ -28,23 +28,6 @@ public class AppVista {
         sn = new Scanner(System.in);
     }
 
-    /**
-     * Funcion que retorna un usuario creado
-     * @return usuario creado
-     */
-    public static Usuario introducirDatos(){
-        System.out.println("Nombre: ");
-        nombre = sn.nextLine();
-        System.out.println("Apellido: ");
-        apellido = sn.nextLine();
-        System.out.println("Edad: ");
-        edad = sn.nextInt();
-        System.out.println("Identificador: (texto)");
-        identificador = sn.nextLine();
-
-        return new Usuario(nombre, apellido, edad, identificador);
-    }
-
     public static void main(String[] args) throws UsuarioException {
 
         System.out.println("Introduzca una opcion para trabajar: ");
@@ -57,7 +40,7 @@ public class AppVista {
             System.out.println("1. Crear un usuario");
             System.out.println("2. Eliminar usuario");
             System.out.println("3. Buscar usuario");
-            System.out.println("4. Salir");
+            System.out.println("4. Mostrar usuario");
 
             try {
 
@@ -78,7 +61,9 @@ public class AppVista {
                         usuarioControlador.buscar(introducirDatos());
                         break;
                     case 4:
-                        salir = true;
+                        System.out.println("Introduzca el identificador del usuario: ");
+                        String id = sn.nextLine();
+                        usuarioControlador.mostrar(id);
                         break;
                     default:
                         System.out.println("Solo números entre 1 y 4");
@@ -88,5 +73,23 @@ public class AppVista {
                 sn.next();
             }
         }
+    }
+
+    /**
+     * Funcion que retorna un usuario creado
+     * 
+     * @return usuario creado
+     */
+    public static Usuario introducirDatos() {
+        System.out.println("Nombre: ");
+        nombre = sn.nextLine();sn.nextInt();
+        System.out.println("Apellido: ");
+        apellido = sn.nextLine();sn.nextInt();
+        System.out.println("Edad: ");
+        edad = sn.nextInt();
+        System.out.println("Identificador: (texto)");
+        identificador = sn.nextLine();sn.nextInt();
+
+        return new Usuario(nombre, apellido, edad, identificador);
     }
 }
