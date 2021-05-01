@@ -1,0 +1,4 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+arraylist,es.iesptocruz.victor.modelo,Vehiculos,93,24,22,0,27,8,15,5,4,5
+arraylist,es.iesptocruz.victor.excepciones,VehiculosException,4,0,0,0,2,0,1,0,1,0
+arraylist,es.iesptocruz.victor.controlador,VehiculosController,12,62,2,6,3,17,3,9,1,7

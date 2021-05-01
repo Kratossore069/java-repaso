@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="es.iesptocruz.victor.VehiculosTest" time="0.335" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="es.iesptocruz.victor.VehiculosTest" time="0.407" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="java.specification.version" value="11"/>
     <property name="sun.cpu.isalist" value=""/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/home/victor/java-repaso/mvcTaller/tallermvc/target/test-classes:/home/victor/java-repaso/mvcTaller/tallermvc/target/classes:/home/victor/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/victor/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="java.class.path" value="/home/victor/java-repaso/mvcTaller/tallermvc/target/test-classes:/home/victor/java-repaso/mvcTaller/tallermvc/target/classes:/home/victor/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.6.0/junit-jupiter-api-5.6.0.jar:/home/victor/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/home/victor/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/victor/.m2/repository/org/junit/platform/junit-platform-commons/1.6.0/junit-platform-commons-1.6.0.jar:/home/victor/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.6.0/junit-jupiter-params-5.6.0.jar:/home/victor/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.6.0/junit-jupiter-engine-5.6.0.jar:/home/victor/.m2/repository/org/junit/platform/junit-platform-engine/1.6.0/junit-platform-engine-1.6.0.jar:"/>
     <property name="java.vm.vendor" value="Ubuntu"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://ubuntu.com/"/>
@@ -15,9 +15,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="ES"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/victor/java-repaso/mvcTaller/tallermvc/target/surefire/surefirebooter10181349236116467291.jar /home/victor/java-repaso/mvcTaller/tallermvc/target/surefire 2021-05-01T13-40-31_151-jvmRun1 surefire17115625995448947766tmp surefire_017241057214509497952tmp"/>
+    <property name="sun.java.command" value="/home/victor/java-repaso/mvcTaller/tallermvc/target/surefire/surefirebooter11548793724916513387.jar /home/victor/java-repaso/mvcTaller/tallermvc/target/surefire 2021-05-01T16-15-59_828-jvmRun1 surefire12007473632049831796tmp surefire_013097392259697730633tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/home/victor/java-repaso/mvcTaller/tallermvc/target/test-classes:/home/victor/java-repaso/mvcTaller/tallermvc/target/classes:/home/victor/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/victor/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="surefire.test.class.path" value="/home/victor/java-repaso/mvcTaller/tallermvc/target/test-classes:/home/victor/java-repaso/mvcTaller/tallermvc/target/classes:/home/victor/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.6.0/junit-jupiter-api-5.6.0.jar:/home/victor/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/home/victor/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/victor/.m2/repository/org/junit/platform/junit-platform-commons/1.6.0/junit-platform-commons-1.6.0.jar:/home/victor/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.6.0/junit-jupiter-params-5.6.0.jar:/home/victor/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.6.0/junit-jupiter-engine-5.6.0.jar:/home/victor/.m2/repository/org/junit/platform/junit-platform-engine/1.6.0/junit-platform-engine-1.6.0.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/victor"/>
     <property name="user.language" value="es"/>
@@ -31,7 +31,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/victor/java-repaso/mvcTaller/tallermvc/target/surefire/surefirebooter10181349236116467291.jar"/>
+    <property name="surefire.real.class.path" value="/home/victor/java-repaso/mvcTaller/tallermvc/target/surefire/surefirebooter11548793724916513387.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.9.1+1-Ubuntu-0ubuntu1.20.04"/>
     <property name="user.name" value="victor"/>
@@ -56,8 +56,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="validarTest" classname="es.iesptocruz.victor.VehiculosTest" time="0.12"/>
-  <testcase name="eliminarTest" classname="es.iesptocruz.victor.VehiculosTest" time="0.002"/>
-  <testcase name="insertarTest" classname="es.iesptocruz.victor.VehiculosTest" time="0.002"/>
-  <testcase name="mostrarTodoTest" classname="es.iesptocruz.victor.VehiculosTest" time="0.003"/>
+  <testcase name="validarTest" classname="es.iesptocruz.victor.VehiculosTest" time="0.313"/>
+  <testcase name="eliminarTest" classname="es.iesptocruz.victor.VehiculosTest" time="0.019"/>
+  <testcase name="insertarTest" classname="es.iesptocruz.victor.VehiculosTest" time="0.007"/>
+  <testcase name="mostrarTodoTest" classname="es.iesptocruz.victor.VehiculosTest" time="0.009"/>
 </testsuite>

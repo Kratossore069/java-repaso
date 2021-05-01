@@ -1,7 +1,5 @@
 package es.iesptocruz.victor.excepciones;
 
-import es.iesptocruz.victor.modelo.Vehiculos;
-
 public class VehiculosException extends Exception{
     
     /**

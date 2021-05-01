@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VehiculosController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">arraylist</a> &gt; <a href="index.source.html" class="el_package">es.iesptocruz.victor.controlador</a> &gt; <span class="el_source">VehiculosController.java</span></div><h1>VehiculosController.java</h1><pre class="source lang-java linenums">package es.iesptocruz.victor.controlador;
+
+import java.util.ArrayList;
+
+import es.iesptocruz.victor.excepciones.VehiculosException;
+import es.iesptocruz.victor.modelo.Vehiculos;
+
+public class VehiculosController {
+
+    Vehiculos vehiculos;
+    ArrayList&lt;String&gt; lista;
+
+    /**
+     * Constructor por defecto
+     */
+<span class="fc" id="L16">    public VehiculosController() {</span>
+<span class="fc" id="L17">        vehiculos = new Vehiculos();</span>
+<span class="fc" id="L18">        lista = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L19">    }</span>
+
+    /**
+     * Metodo que aniade vehiculos a una lista
+     * 
+     * @param vehiculo a insertar
+     * @throws VehiculosException controlado
+     */
+    public void insertar(Vehiculos vehiculo) throws VehiculosException {
+<span class="fc" id="L28">        validar(vehiculo);</span>
+<span class="fc" id="L29">        lista.add(vehiculo.toString());</span>
+<span class="fc" id="L30">    }</span>
+
+    /**
+     * Metodo que elimina un coche de la lista
+     * 
+     * @param vehiculo a eliminar
+     * @throws VehiculosException controlada
+     */
+    public void eliminar(Vehiculos vehiculo) throws VehiculosException {
+<span class="fc" id="L39">        validar(vehiculo);</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (existe(vehiculo))</span>
+<span class="fc" id="L41">            lista.remove(vehiculo.toString());</span>
+<span class="fc" id="L42">    }</span>
+
+    /**
+     * Funcion que muestra en una lista todos los vehiculos
+     */
+    public String mostrar() {
+<span class="fc" id="L48">        return lista.toString();</span>
+    }
+
+    /**
+     * Funcion que muestra un vehiculo a partir de una matricula
+     * @param matricula a buscar
+     * @return vehiculo en formato String
+     */
+    public String mostrar(String matricula) {
+        // No sé cómo mostrar un solo objeto a partir de la matricula
+<span class="nc" id="L58">        return &quot;&quot;;</span>
+    }
+
+    /**
+     * Funcion que valora si el vehiculo existe o no en la lista
+     */
+    public boolean existe(Vehiculos vehiculo) {
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        return (lista.contains(vehiculo.toString())) ? true : false;</span>
+    }
+
+    /**
+     * Metodo que se encarga de validar los datos introducidos
+     * 
+     * @param vehiculos es un objeto que debe validar
+     * @throws VehiculosException controlado
+     */
+    public void validar(Vehiculos vehiculos) throws VehiculosException {
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">        if (vehiculos.getMarca() == null) {</span>
+<span class="nc" id="L76">            throw new VehiculosException(&quot;La marca no puede estar vacia o nula&quot;);</span>
+        }
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">        if (vehiculos.getMatricula() == null) {</span>
+<span class="nc" id="L79">            throw new VehiculosException(&quot;La matricula no puede estar vacia o nula&quot;);</span>
+        }
+<span class="fc" id="L81">    }</span>
+
+    /**
+     * Funcion que retorna el numero de items de la lista
+     * @return numero de items en la lista
+     */
+    public int inventario(){
+<span class="fc" id="L88">        return lista.size();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

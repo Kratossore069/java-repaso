@@ -1,12 +1,11 @@
 package es.iesptocruz.victor;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import es.iesptocruz.victor.controlador.VehiculosController;
 import es.iesptocruz.victor.excepciones.VehiculosException;
@@ -20,7 +19,7 @@ public class VehiculosTest {
     VehiculosController controlador;
     Vehiculos vehiculo;
 
-    @Before
+    @BeforeEach
     public void setUp() throws VehiculosException{
         if(controlador==null){
             controlador=new VehiculosController();
@@ -29,7 +28,7 @@ public class VehiculosTest {
         }
     }
 
-    @After
+    @AfterEach
     public void setDown() throws VehiculosException{
         controlador.eliminar(vehiculo);
     }
@@ -39,7 +38,7 @@ public class VehiculosTest {
      */
     @Test
     public void insertarTest(){
-        assertEquals("Debe haber un item", 1, controlador.inventario());
+        assertEquals(1, controlador.inventario(),"Debe haber un item");
     }
 
     /**
@@ -49,7 +48,7 @@ public class VehiculosTest {
     public void eliminarTest(){
         try{
             controlador.eliminar(vehiculo);
-            assertEquals("Debe haber 0 item", 0, controlador.inventario());
+            assertEquals(0, controlador.inventario(),"Debe haber 0 item");
         }catch(Exception ex){
             fail("Hay mas de un item");
         }
@@ -60,8 +59,8 @@ public class VehiculosTest {
      */
     @Test
     public void mostrarTodoTest(){
-        assertEquals("Debe haber un solo registro",
-        "[Vehiculos [marca=Ford, matricula=123A]]", controlador.mostrar());
+        assertEquals("[Vehiculos [marca=Ford, matricula=123A]]",
+        controlador.mostrar(),"Debe haber un solo registro");
     }
 
     /**
@@ -69,6 +68,6 @@ public class VehiculosTest {
      */
     @Test
     public void validarTest(){
-        assertEquals("El vehiculo existe", true, controlador.existe(vehiculo));
+        assertEquals(true, controlador.existe(vehiculo),"El vehiculo existe");
     }
 }
