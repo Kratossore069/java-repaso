@@ -1,3 +1,6 @@
+es/iesptocruz/victor/excepciones/FicheroException.class
+es/iesptocruz/victor/modelo/Fichero.class
 es/iesptocruz/victor/excepciones/VehiculosException.class
 es/iesptocruz/victor/modelo/Vehiculos.class
 es/iesptocruz/victor/controlador/VehiculosController.class
+es/iesptocruz/victor/vista/VehiculosApp.class

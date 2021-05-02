@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import es.iesptocruz.victor.controlador.VehiculosController;
+import es.iesptocruz.victor.excepciones.FicheroException;
 import es.iesptocruz.victor.excepciones.VehiculosException;
 import es.iesptocruz.victor.modelo.Vehiculos;
 
@@ -20,7 +21,7 @@ public class VehiculosTest {
     Vehiculos vehiculo;
 
     @BeforeEach
-    public void setUp() throws VehiculosException{
+    public void setUp() throws VehiculosException, FicheroException{
         if(controlador==null){
             controlador=new VehiculosController();
             vehiculo=new Vehiculos("123A", "Ford");
@@ -61,6 +62,47 @@ public class VehiculosTest {
     public void mostrarTodoTest(){
         assertEquals("[Vehiculos [marca=Ford, matricula=123A]]",
         controlador.mostrar(),"Debe haber un solo registro");
+    }
+
+    /**
+     * Test que muestra que se busca por matricula un vehiculo
+     */
+    @Test
+    public void mostrarTest(){
+        assertEquals("Vehiculos [marca=Ford, matricula=123A]",
+        controlador.mostrar("123A"),"Debe haber un item");
+    }
+
+    /**
+     * Test que falla si no encuentra la matricula de un vehiculo
+     */
+    @Test
+    public void noMostrarTest(){
+        assertEquals("Matricula no encontrada",
+        controlador.mostrar("123B"),"Debe haber un item");
+    }
+
+    /**
+     * Test que modifica el vehiculo si lo encuentra
+     */
+    @Test
+    public void modificarTest(){
+        assertEquals("Su vehiculo ahora es un tanque",
+        controlador.modificar(vehiculo),"Debe encontrarse");
+    }
+
+    /**
+     * Test que no modifica el vehiculo si no lo encuentra
+     */
+    @Test
+    public void noModificarTest(){
+        try{
+            controlador.eliminar(vehiculo);
+            assertEquals("Su vehiculo no se encuentra",
+            controlador.modificar(vehiculo),"No debe encontrarse");
+        }catch(Exception ex){
+            fail("Error al encontrar el vehiculo");
+        }
     }
 
     /**

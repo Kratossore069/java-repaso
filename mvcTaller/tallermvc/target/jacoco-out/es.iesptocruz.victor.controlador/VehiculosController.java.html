@@ -2,32 +2,40 @@
 
 import java.util.ArrayList;
 
+import es.iesptocruz.victor.excepciones.FicheroException;
 import es.iesptocruz.victor.excepciones.VehiculosException;
+import es.iesptocruz.victor.modelo.Fichero;
 import es.iesptocruz.victor.modelo.Vehiculos;
 
 public class VehiculosController {
 
     Vehiculos vehiculos;
+    Fichero fichero;
     ArrayList&lt;String&gt; lista;
 
     /**
      * Constructor por defecto
+     * @throws FicheroException
      */
-<span class="fc" id="L16">    public VehiculosController() {</span>
-<span class="fc" id="L17">        vehiculos = new Vehiculos();</span>
-<span class="fc" id="L18">        lista = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L19">    }</span>
+<span class="fc" id="L20">    public VehiculosController() throws FicheroException {</span>
+<span class="fc" id="L21">        vehiculos = new Vehiculos();</span>
+<span class="fc" id="L22">        fichero=new Fichero();</span>
+<span class="fc" id="L23">        fichero.crear(&quot;inventarioVehiculos.txt&quot;, &quot;Inventario creado&quot;);</span>
+<span class="fc" id="L24">        lista = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L25">    }</span>
 
     /**
      * Metodo que aniade vehiculos a una lista
      * 
      * @param vehiculo a insertar
      * @throws VehiculosException controlado
+     * @throws FicheroException
      */
-    public void insertar(Vehiculos vehiculo) throws VehiculosException {
-<span class="fc" id="L28">        validar(vehiculo);</span>
-<span class="fc" id="L29">        lista.add(vehiculo.toString());</span>
-<span class="fc" id="L30">    }</span>
+    public void insertar(Vehiculos vehiculo) throws VehiculosException, FicheroException {
+<span class="fc" id="L35">        validar(vehiculo);</span>
+<span class="fc" id="L36">        lista.add(vehiculo.toString());</span>
+<span class="fc" id="L37">        fichero.crear(&quot;inventarioVehiculos.txt&quot;, vehiculo.toString());</span>
+<span class="fc" id="L38">    }</span>
 
     /**
      * Metodo que elimina un coche de la lista
@@ -36,33 +44,48 @@ public class VehiculosController {
      * @throws VehiculosException controlada
      */
     public void eliminar(Vehiculos vehiculo) throws VehiculosException {
-<span class="fc" id="L39">        validar(vehiculo);</span>
-<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (existe(vehiculo))</span>
-<span class="fc" id="L41">            lista.remove(vehiculo.toString());</span>
-<span class="fc" id="L42">    }</span>
+<span class="fc" id="L47">        validar(vehiculo);</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (existe(vehiculo)){</span>
+<span class="fc" id="L49">            lista.remove(vehiculo.toString());</span>
+        }
+<span class="fc" id="L51">    }</span>
 
     /**
      * Funcion que muestra en una lista todos los vehiculos
      */
     public String mostrar() {
-<span class="fc" id="L48">        return lista.toString();</span>
+<span class="fc" id="L57">        return lista.toString();</span>
     }
 
     /**
-     * Funcion que muestra un vehiculo a partir de una matricula
+     * Funcion que busca un vehiculo por su matricula
      * @param matricula a buscar
-     * @return vehiculo en formato String
+     * @return si encuentra o no el vehiculo
      */
     public String mostrar(String matricula) {
-        // No sé cómo mostrar un solo objeto a partir de la matricula
-<span class="nc" id="L58">        return &quot;&quot;;</span>
+<span class="fc" id="L66">        String vehiculoEncontrado=&quot;Matricula no encontrada&quot;;</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        for(int i=0; i&lt;lista.size(); i++){</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">            if(lista.get(i).contains(matricula))</span>
+<span class="fc" id="L69">                vehiculoEncontrado=lista.get(i);</span>
+        }
+<span class="fc" id="L71">        return vehiculoEncontrado;</span>
+    }
+
+    /**
+     * Funcion que modifica el vehiculo aniadido
+     * @param vehiculo a buscar
+     * @return modificado o no
+     */
+    public String modificar(Vehiculos vehiculo){
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        return (existe(vehiculo)) ? &quot;Su vehiculo ahora es un tanque&quot;:</span>
+<span class="fc" id="L81">        &quot;Su vehiculo no se encuentra&quot;;</span>
     }
 
     /**
      * Funcion que valora si el vehiculo existe o no en la lista
      */
     public boolean existe(Vehiculos vehiculo) {
-<span class="fc bfc" id="L65" title="All 2 branches covered.">        return (lista.contains(vehiculo.toString())) ? true : false;</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        return (lista.contains(vehiculo.toString())) ? true : false;</span>
     }
 
     /**
@@ -72,20 +95,20 @@ public class VehiculosController {
      * @throws VehiculosException controlado
      */
     public void validar(Vehiculos vehiculos) throws VehiculosException {
-<span class="pc bpc" id="L75" title="1 of 2 branches missed.">        if (vehiculos.getMarca() == null) {</span>
-<span class="nc" id="L76">            throw new VehiculosException(&quot;La marca no puede estar vacia o nula&quot;);</span>
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">        if (vehiculos.getMarca() == null) {</span>
+<span class="nc" id="L99">            throw new VehiculosException(&quot;La marca no puede estar vacia o nula&quot;);</span>
         }
-<span class="pc bpc" id="L78" title="1 of 2 branches missed.">        if (vehiculos.getMatricula() == null) {</span>
-<span class="nc" id="L79">            throw new VehiculosException(&quot;La matricula no puede estar vacia o nula&quot;);</span>
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">        if (vehiculos.getMatricula() == null) {</span>
+<span class="nc" id="L102">            throw new VehiculosException(&quot;La matricula no puede estar vacia o nula&quot;);</span>
         }
-<span class="fc" id="L81">    }</span>
+<span class="fc" id="L104">    }</span>
 
     /**
      * Funcion que retorna el numero de items de la lista
      * @return numero de items en la lista
      */
     public int inventario(){
-<span class="fc" id="L88">        return lista.size();</span>
+<span class="fc" id="L111">        return lista.size();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

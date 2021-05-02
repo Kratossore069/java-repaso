@@ -2,19 +2,25 @@ package es.iesptocruz.victor.controlador;
 
 import java.util.ArrayList;
 
+import es.iesptocruz.victor.excepciones.FicheroException;
 import es.iesptocruz.victor.excepciones.VehiculosException;
+import es.iesptocruz.victor.modelo.Fichero;
 import es.iesptocruz.victor.modelo.Vehiculos;
 
 public class VehiculosController {
 
     Vehiculos vehiculos;
+    Fichero fichero;
     ArrayList<String> lista;
 
     /**
      * Constructor por defecto
+     * @throws FicheroException
      */
-    public VehiculosController() {
+    public VehiculosController() throws FicheroException {
         vehiculos = new Vehiculos();
+        fichero=new Fichero();
+        fichero.crear("inventarioVehiculos.txt", "Inventario creado");
         lista = new ArrayList<>();
     }
 
@@ -23,10 +29,12 @@ public class VehiculosController {
      * 
      * @param vehiculo a insertar
      * @throws VehiculosException controlado
+     * @throws FicheroException
      */
-    public void insertar(Vehiculos vehiculo) throws VehiculosException {
+    public void insertar(Vehiculos vehiculo) throws VehiculosException, FicheroException {
         validar(vehiculo);
         lista.add(vehiculo.toString());
+        fichero.crear("inventarioVehiculos.txt", vehiculo.toString());
     }
 
     /**
@@ -37,8 +45,9 @@ public class VehiculosController {
      */
     public void eliminar(Vehiculos vehiculo) throws VehiculosException {
         validar(vehiculo);
-        if (existe(vehiculo))
+        if (existe(vehiculo)){
             lista.remove(vehiculo.toString());
+        }
     }
 
     /**
@@ -49,13 +58,27 @@ public class VehiculosController {
     }
 
     /**
-     * Funcion que muestra un vehiculo a partir de una matricula
+     * Funcion que busca un vehiculo por su matricula
      * @param matricula a buscar
-     * @return vehiculo en formato String
+     * @return si encuentra o no el vehiculo
      */
     public String mostrar(String matricula) {
-        // No sé cómo mostrar un solo objeto a partir de la matricula
-        return "";
+        String vehiculoEncontrado="Matricula no encontrada";
+        for(int i=0; i<lista.size(); i++){
+            if(lista.get(i).contains(matricula))
+                vehiculoEncontrado=lista.get(i);
+        }
+        return vehiculoEncontrado;
+    }
+
+    /**
+     * Funcion que modifica el vehiculo aniadido
+     * @param vehiculo a buscar
+     * @return modificado o no
+     */
+    public String modificar(Vehiculos vehiculo){
+        return (existe(vehiculo)) ? "Su vehiculo ahora es un tanque":
+        "Su vehiculo no se encuentra";
     }
 
     /**
