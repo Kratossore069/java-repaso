@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BDDException.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">arraylist</a> &gt; <a href="index.source.html" class="el_package">es.iesptocruz.victor.excepciones</a> &gt; <span class="el_source">BDDException.java</span></div><h1>BDDException.java</h1><pre class="source lang-java linenums">package es.iesptocruz.victor.excepciones;
+
+public class BDDException extends Exception{
+    /**
+     * Excepcion personalizada
+     * @param mensaje de error
+     */
+    public BDDException(String mensaje){
+<span class="nc" id="L9">        super(mensaje);</span>
+<span class="nc" id="L10">    }</span>
+
+    /**
+     * Excepcion con mensaje
+     * @param mensaje de error
+     * @param e excepcion
+     */
+    public BDDException(String mensaje, Exception e){
+<span class="nc" id="L18">        super(mensaje+e);</span>
+<span class="nc" id="L19">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

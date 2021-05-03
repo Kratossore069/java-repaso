@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BaseDatos.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">arraylist</a> &gt; <a href="index.source.html" class="el_package">es.iesptocruz.victor.modelo</a> &gt; <span class="el_source">BaseDatos.java</span></div><h1>BaseDatos.java</h1><pre class="source lang-java linenums">package es.iesptocruz.victor.modelo;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import es.iesptocruz.victor.excepciones.BDDException;
+
+import java.sql.ResultSetMetaData;
+
+public class BaseDatos {
+
+    private String dbURL;
+    private String tableName;
+<span class="fc" id="L17">    private Connection conn = null;</span>
+<span class="fc" id="L18">    private Statement stmt = null;</span>
+
+    /**
+     * Constructor por defecto
+     */
+<span class="fc" id="L23">    public BaseDatos() {</span>
+<span class="fc" id="L24">        dbURL = &quot;jdbc:sqlite:/home/victor/jdbc/test.db&quot;;</span>
+<span class="fc" id="L25">        tableName = &quot;restaurants&quot;;</span>
+<span class="fc" id="L26">    }</span>
+
+    /**
+     * Funcion que conecta con la base de datos
+     * 
+     * @return conectado o no
+     * @throws BDDException controlado
+     */
+    public String connect() throws BDDException {
+<span class="fc" id="L35">        String resultado=null;</span>
+        try {
+<span class="fc" id="L37">            conn = DriverManager.getConnection(dbURL);</span>
+<span class="fc" id="L38">            resultado=&quot;Conectado&quot;;</span>
+<span class="nc" id="L39">        } catch (SQLException e) {</span>
+<span class="nc" id="L40">            throw new BDDException(&quot;Error al conectar&quot;, e);</span>
+        } finally {
+            try {
+<span class="pc bpc" id="L43" title="1 of 2 branches missed.">                if (conn != null) {</span>
+<span class="fc" id="L44">                    conn.close();</span>
+                }
+<span class="nc" id="L46">            } catch (SQLException ex) {</span>
+<span class="nc" id="L47">                throw new BDDException(&quot;Error al cerrar&quot;, ex);</span>
+<span class="fc" id="L48">            }</span>
+        }
+<span class="fc" id="L50">        return resultado;</span>
+    }
+
+    public String crearTabla() throws BDDException {
+<span class="fc" id="L54">        String sql = &quot;CREATE TABLE IF NOT EXISTS employees (\n&quot; +</span>
+             &quot; id integer PRIMARY KEY,\n&quot;
+             + &quot; name text NOT NULL,\n&quot; + &quot; capacity real\n&quot; + &quot;);&quot;;
+<span class="fc" id="L57">        String res=null;</span>
+        try {
+<span class="fc" id="L59">            conn = DriverManager.getConnection(dbURL);</span>
+<span class="fc" id="L60">            stmt = conn.createStatement();</span>
+<span class="fc" id="L61">            stmt.execute(sql);</span>
+<span class="fc" id="L62">            res=&quot;Exito&quot;;</span>
+<span class="nc" id="L63">        } catch (Exception e) {</span>
+<span class="nc" id="L64">            throw new BDDException(&quot;Error&quot;, e);</span>
+<span class="fc" id="L65">        }</span>
+<span class="fc" id="L66">        return res;</span>
+    }
+
+    public String eliminarTabla() throws BDDException {
+<span class="fc" id="L70">        String sql = &quot;drop table if exists employees&quot;;</span>
+<span class="fc" id="L71">        String res=null;</span>
+        try {
+<span class="fc" id="L73">            conn = DriverManager.getConnection(dbURL);</span>
+<span class="fc" id="L74">            stmt = conn.createStatement();</span>
+<span class="fc" id="L75">            stmt.execute(sql);</span>
+<span class="fc" id="L76">            res=&quot;Exito&quot;;</span>
+<span class="nc" id="L77">        } catch (Exception e) {</span>
+<span class="nc" id="L78">            throw new BDDException(&quot;Error&quot;, e);</span>
+<span class="fc" id="L79">        }</span>
+<span class="fc" id="L80">        return res;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
