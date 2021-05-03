@@ -2,18 +2,14 @@ package es.iesptocruz.victor.modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import es.iesptocruz.victor.excepciones.BDDException;
 
-import java.sql.ResultSetMetaData;
-
 public class BaseDatos {
 
     private String dbURL;
-    private String tableName;
     private Connection conn = null;
     private Statement stmt = null;
 
@@ -21,8 +17,7 @@ public class BaseDatos {
      * Constructor por defecto
      */
     public BaseDatos() {
-        dbURL = "jdbc:sqlite:/home/victor/jdbc/test.db";
-        tableName = "restaurants";
+        dbURL = "jdbc:sqlite:test.db";
     }
 
     /**

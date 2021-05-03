@@ -1,4 +1,4 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-arraylist,es.iesptocruz.victor.modelo,BaseDatos,28,81,1,1,8,29,1,4,0,4
-arraylist,es.iesptocruz.victor.vista,Api,3,0,0,0,1,0,1,0,1,0
+arraylist,es.iesptocruz.victor.modelo,BaseDatos,28,78,1,1,8,28,1,4,0,4
 arraylist,es.iesptocruz.victor.excepciones,BDDException,10,0,0,0,4,0,2,0,2,0
+arraylist,es.iesptocruz.victor.controlador,BaseDatosController,3,0,0,0,1,0,1,0,1,0
