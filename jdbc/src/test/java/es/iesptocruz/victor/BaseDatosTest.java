@@ -2,6 +2,7 @@ package es.iesptocruz.victor;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -37,7 +38,7 @@ public class BaseDatosTest{
     @Test
     public void tablaTest(){
         try {
-            assertEquals("Exito",bdd.crearTabla(),"Debe crear la tabla");    
+            assertEquals("Exito",bdd.crearTabla(),"Debe eliminar la tabla");   
         } catch (Exception e) {
             fail("Error");
         }        

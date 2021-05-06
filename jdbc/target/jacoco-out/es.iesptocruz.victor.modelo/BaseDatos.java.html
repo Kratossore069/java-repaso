@@ -53,36 +53,37 @@ public class BaseDatos {
     public String crearTabla() throws BDDException {
 <span class="fc" id="L54">        String sql = &quot;CREATE TABLE IF NOT EXISTS employees (\n&quot; +</span>
              &quot; id integer PRIMARY KEY,\n&quot;
-             + &quot; name text NOT NULL,\n&quot; + &quot; capacity real\n&quot; + &quot;);&quot;;
-<span class="fc" id="L57">        String res=null;</span>
-        try {
-<span class="fc" id="L59">            conn = DriverManager.getConnection(dbURL);</span>
-<span class="fc" id="L60">            stmt = conn.createStatement();</span>
-<span class="fc" id="L61">            stmt.execute(sql);</span>
-<span class="fc" id="L62">            res=&quot;Exito&quot;;</span>
-<span class="nc" id="L63">        } catch (Exception e) {</span>
-<span class="nc" id="L64">            throw new BDDException(&quot;Error&quot;, e);</span>
-<span class="fc" id="L65">        }</span>
-<span class="fc" id="L66">        return res;</span>
+             + &quot; name text NOT NULL\n&quot; + &quot;);&quot;;
+<span class="fc" id="L57">        return ejecutarCodigo(sql);</span>
     }
 
     /**
      * Funcion que elimina una tabla de la bdd
-     * @return exito o no
+     * @return mensaje de exito
      * @throws BDDException controlado
      */
-    public String eliminarTabla() throws BDDException {
-<span class="fc" id="L75">        String sql = &quot;drop table if exists employees&quot;;</span>
-<span class="fc" id="L76">        String res=null;</span>
+    public String eliminarTabla() throws BDDException{
+<span class="fc" id="L66">        String sql = &quot;drop table if exists employees&quot;;</span>
+<span class="fc" id="L67">        return ejecutarCodigo(sql);</span>
+    }
+
+    /**
+     * Metodo que se encarga de ejecutar las sentencias sql
+     * @param sql sentencia a ejecutar
+     * @return mensaje de exito o no
+     * @throws BDDException controlado
+     */
+    public String ejecutarCodigo(String sql) throws BDDException{
+<span class="fc" id="L77">        String res=null;</span>
         try {
-<span class="fc" id="L78">            conn = DriverManager.getConnection(dbURL);</span>
-<span class="fc" id="L79">            stmt = conn.createStatement();</span>
-<span class="fc" id="L80">            stmt.execute(sql);</span>
-<span class="fc" id="L81">            res=&quot;Exito&quot;;</span>
-<span class="nc" id="L82">        } catch (Exception e) {</span>
-<span class="nc" id="L83">            throw new BDDException(&quot;Error&quot;, e);</span>
-<span class="fc" id="L84">        }</span>
-<span class="fc" id="L85">        return res;</span>
+<span class="fc" id="L79">            conn = DriverManager.getConnection(dbURL);</span>
+<span class="fc" id="L80">            stmt = conn.createStatement();</span>
+<span class="fc" id="L81">            stmt.executeUpdate(sql);</span>
+<span class="fc" id="L82">            res=&quot;Exito&quot;;</span>
+<span class="nc" id="L83">        } catch (Exception e) {</span>
+<span class="nc" id="L84">            throw new BDDException(&quot;Error&quot;, e);</span>
+<span class="fc" id="L85">        }</span>
+<span class="fc" id="L86">        return res;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

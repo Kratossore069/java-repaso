@@ -53,31 +53,32 @@ public class BaseDatos {
     public String crearTabla() throws BDDException {
         String sql = "CREATE TABLE IF NOT EXISTS employees (\n" +
              " id integer PRIMARY KEY,\n"
-             + " name text NOT NULL,\n" + " capacity real\n" + ");";
-        String res=null;
-        try {
-            conn = DriverManager.getConnection(dbURL);
-            stmt = conn.createStatement();
-            stmt.execute(sql);
-            res="Exito";
-        } catch (Exception e) {
-            throw new BDDException("Error", e);
-        }
-        return res;
+             + " name text NOT NULL\n" + ");";
+        return ejecutarCodigo(sql);
     }
 
     /**
      * Funcion que elimina una tabla de la bdd
-     * @return exito o no
+     * @return mensaje de exito
      * @throws BDDException controlado
      */
-    public String eliminarTabla() throws BDDException {
+    public String eliminarTabla() throws BDDException{
         String sql = "drop table if exists employees";
+        return ejecutarCodigo(sql);
+    }
+
+    /**
+     * Metodo que se encarga de ejecutar las sentencias sql
+     * @param sql sentencia a ejecutar
+     * @return mensaje de exito o no
+     * @throws BDDException controlado
+     */
+    public String ejecutarCodigo(String sql) throws BDDException{
         String res=null;
         try {
             conn = DriverManager.getConnection(dbURL);
             stmt = conn.createStatement();
-            stmt.execute(sql);
+            stmt.executeUpdate(sql);
             res="Exito";
         } catch (Exception e) {
             throw new BDDException("Error", e);
