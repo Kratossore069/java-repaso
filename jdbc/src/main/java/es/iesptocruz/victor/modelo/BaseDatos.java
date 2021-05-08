@@ -10,18 +10,31 @@ import es.iesptocruz.victor.excepciones.BDDException;
 public class BaseDatos {
 
     private String dbURL;
+    private String usuario=null;
+    private String password=null;
     private Connection conn = null;
     private Statement stmt = null;
 
     /**
-     * Constructor por defecto
+     * Constructor por defecto de sqlite
      */
     public BaseDatos() {
         dbURL = "jdbc:sqlite:test.db";
     }
 
     /**
-     * Funcion que conecta con la base de datos
+     * Constructor de MySQL
+     * @param usuario de MySQL
+     * @param password de MySQL
+     */
+    public BaseDatos(String usuario,String password){
+        dbURL="jdbc:mysql://localhost:3306/ved_project";
+        this.usuario=usuario;
+        this.password=password;
+    }
+
+    /**
+     * Funcion que conecta con la base de datos SQLite
      * 
      * @return conectado o no
      * @throws BDDException controlado
@@ -40,6 +53,32 @@ public class BaseDatos {
                 }
             } catch (SQLException ex) {
                 throw new BDDException("Error al cerrar", ex);
+            }
+        }
+        return resultado;
+    }
+
+    /**
+     * Conectar a BDD de MySQL
+     * @param usuario de MySQL
+     * @param password de MySQL
+     * @return mensaje de exito o no 
+     * @throws BDDException error controlado
+     */
+    public String connect(String usuario,String password) throws BDDException {
+        String resultado=null;
+        try {
+            conn = DriverManager.getConnection(dbURL, usuario, password);
+            resultado="Conectado";
+        } catch (SQLException e) {
+            throw new BDDException("Error al conectar a MySQL", e);
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                throw new BDDException("Error al cerrar MySQL", ex);
             }
         }
         return resultado;
