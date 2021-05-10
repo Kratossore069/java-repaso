@@ -2,22 +2,23 @@ package es.iesptocruz.victor;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import es.iesptocruz.victor.modelo.BaseDatos;
+import es.iesptocruz.victor.modelo.BDDSqlite;
 
-public class BaseDatosTest{
 
-    BaseDatos bdd;
+
+public class SQliteTest{
+
+    BDDSqlite bdd;
     
     @BeforeEach
     public void setUp(){
         if(bdd==null)
-            bdd=new BaseDatos();
+            bdd=new BDDSqlite();
     }
 
     /**

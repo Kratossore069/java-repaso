@@ -1,3 +1,4 @@
 es/iesptocruz/victor/controlador/BaseDatosController.class
-es/iesptocruz/victor/modelo/BaseDatos.class
+es/iesptocruz/victor/modelo/BDDMySql.class
 es/iesptocruz/victor/excepciones/BDDException.class
+es/iesptocruz/victor/modelo/BDDSqlite.class

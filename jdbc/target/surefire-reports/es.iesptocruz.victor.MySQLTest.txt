@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: es.iesptocruz.victor.BaseDatosTest
+Test set: es.iesptocruz.victor.MySQLTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.151 s - in es.iesptocruz.victor.BaseDatosTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.838 s - in es.iesptocruz.victor.MySQLTest

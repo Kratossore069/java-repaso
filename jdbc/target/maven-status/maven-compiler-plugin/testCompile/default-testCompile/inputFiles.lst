@@ -1,1 +1,2 @@
-/home/victor/java-repaso/jdbc/src/test/java/es/iesptocruz/victor/BaseDatosTest.java
+/home/victor/java-repaso/jdbc/src/test/java/es/iesptocruz/victor/SQliteTest.java
+/home/victor/java-repaso/jdbc/src/test/java/es/iesptocruz/victor/MySQLTest.java
