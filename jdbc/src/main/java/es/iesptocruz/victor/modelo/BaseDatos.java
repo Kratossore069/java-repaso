@@ -68,6 +68,7 @@ public class BaseDatos {
     public String connect(String usuario,String password) throws BDDException {
         String resultado=null;
         try {
+            Class.forName(driver);
             conn = DriverManager.getConnection(dbURL, usuario, password);
             resultado="Conectado";
         } catch (SQLException e) {
