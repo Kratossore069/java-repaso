@@ -20,8 +20,27 @@ public class MySQLTest {
             mysql=new BDDMySql();
     }
 
+    /**
+     * Test que conecta con la bdd de MySql
+     */
     @Test
-    public void conectarTest() throws BDDException, SQLException{
-        assertEquals("Conectado",mysql.connect(),"Debe conectar a la bdd");
+    public void conectarTest(){
+        try {
+            assertEquals("Conectado",mysql.connect(),"Debe conectar a la bdd");
+        } catch (Exception e) {
+            fail("Error al conectar a la BDD de MYSQL");
+        } 
+    }
+
+    /**
+     * Test que crea una tabla de prueba
+     */
+    @Test
+    public void crearTablaTest(){
+        try{
+            assertEquals("Exito",mysql.createTable(),"Debe conectar a la bdd");
+        }catch(Exception ex){
+            fail("Error al crear la tabla de prueba");
+        }
     }
 }

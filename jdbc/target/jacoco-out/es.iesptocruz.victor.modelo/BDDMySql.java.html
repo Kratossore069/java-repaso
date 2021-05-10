@@ -12,16 +12,15 @@ public class BDDMySql {
 <span class="fc" id="L12">    private String usuario = null;</span>
 <span class="fc" id="L13">    private String password = null;</span>
 <span class="fc" id="L14">    private Connection conn = null;</span>
-<span class="fc" id="L15">    private Statement stmt = null;</span>
 
     /**
      * Constructor de MySQL
      */
-<span class="fc" id="L20">    public BDDMySql() {</span>
-<span class="fc" id="L21">        dbURL = &quot;jdbc:mysql://localhost/pruebas?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&quot;;</span>
-<span class="fc" id="L22">        usuario = &quot;admin&quot;;</span>
-<span class="fc" id="L23">        password = &quot;admin&quot;;</span>
-<span class="fc" id="L24">    }</span>
+<span class="fc" id="L19">    public BDDMySql() {</span>
+<span class="fc" id="L20">        dbURL = &quot;jdbc:mysql://localhost/pruebas?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&quot;;</span>
+<span class="fc" id="L21">        usuario = &quot;admin&quot;;</span>
+<span class="fc" id="L22">        password = &quot;admin&quot;;</span>
+<span class="fc" id="L23">    }</span>
 
     /**
      * Conectar a BDD de MySQL
@@ -30,19 +29,54 @@ public class BDDMySql {
      * @throws BDDException error controlado
      */
     public String connect() throws BDDException, SQLException {
-<span class="fc" id="L33">        String resultado = null;</span>
+<span class="fc" id="L32">        String resultado = null;</span>
         try {
-<span class="fc" id="L35">            Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);</span>
-<span class="fc" id="L36">            conn = DriverManager.getConnection(dbURL, usuario, password);</span>
-<span class="fc" id="L37">            resultado = &quot;Conectado&quot;;</span>
-<span class="nc" id="L38">        } catch (SQLException | ClassNotFoundException e) {</span>
-<span class="nc" id="L39">            throw new BDDException(&quot;Error al conectar a MySQL&quot;, e);</span>
+<span class="fc" id="L34">            Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);</span>
+<span class="fc" id="L35">            conn = DriverManager.getConnection(dbURL, usuario, password);</span>
+<span class="fc" id="L36">            resultado = &quot;Conectado&quot;;</span>
+<span class="nc" id="L37">        } catch (SQLException | ClassNotFoundException e) {</span>
+<span class="nc" id="L38">            throw new BDDException(&quot;Error al conectar a MySQL&quot;, e);</span>
         } finally {
-<span class="pc bpc" id="L41" title="1 of 2 branches missed.">            if (conn != null) {</span>
-<span class="fc" id="L42">                conn.close();</span>
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">            if (conn != null) {</span>
+<span class="fc" id="L41">                conn.close();</span>
             }
         }
-<span class="fc" id="L45">        return resultado;</span>
+<span class="fc" id="L44">        return resultado;</span>
+    }
+
+    /**
+     * Funcion que crea una tabla de prueba
+     * @return exito o no
+     * @throws BDDException controlado
+     */
+    public String createTable() throws BDDException{
+<span class="fc" id="L53">        String sql=&quot;CREATE TABLE IF NOT EXISTS REGISTRATION &quot; +</span>
+        &quot;(id INTEGER not NULL, &quot; +
+        &quot; first VARCHAR(255), &quot; + 
+        &quot; last VARCHAR(255), &quot; + 
+        &quot; age INTEGER, &quot; + 
+        &quot; PRIMARY KEY ( id ))&quot;;
+<span class="fc" id="L59">        return ejecutarSentencia(sql);</span>
+    }
+
+    /**
+     * Funcion que ejecuta la sentencia que se le envie
+     * 
+     * @param sql sentencia que ejecutar
+     * @return exito o no al ejecutar la consulta
+     * @throws BDDException controlado
+     */
+    public String ejecutarSentencia(String sql) throws BDDException {
+<span class="fc" id="L70">        String res = null;</span>
+        try {
+<span class="fc" id="L72">            conn = DriverManager.getConnection(dbURL,usuario,password);</span>
+<span class="fc" id="L73">            Statement stmt = conn.createStatement();</span>
+<span class="fc" id="L74">            stmt.executeUpdate(sql);</span>
+<span class="fc" id="L75">            res = &quot;Exito&quot;;</span>
+<span class="nc" id="L76">        } catch (Exception e) {</span>
+<span class="nc" id="L77">            throw new BDDException(&quot;Error&quot;, e);</span>
+<span class="fc" id="L78">        }</span>
+<span class="fc" id="L79">        return res;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
