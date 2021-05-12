@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: es.iesptocruz.victor.MySQLTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.95 s - in es.iesptocruz.victor.MySQLTest
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.644 s <<< FAILURE! - in es.iesptocruz.victor.MySQLTest
+crearTablaTest  Time elapsed: 0.464 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Error al crear la tabla de prueba
+	at es.iesptocruz.victor.MySQLTest.crearTablaTest(MySQLTest.java:43)
+
+conectarTest  Time elapsed: 0.103 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Error al conectar a la BDD de MYSQL
+	at es.iesptocruz.victor.MySQLTest.conectarTest(MySQLTest.java:31)
+

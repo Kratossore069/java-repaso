@@ -1,4 +1,16 @@
 -------------------------------------------------------------------------------
 Test set: es.iesptocruz.victor.SQliteTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.705 s - in es.iesptocruz.victor.SQliteTest
+Tests run: 3, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.019 s <<< FAILURE! - in es.iesptocruz.victor.SQliteTest
+tablaTest  Time elapsed: 0.007 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Error
+	at es.iesptocruz.victor.SQliteTest.tablaTest(SQliteTest.java:44)
+
+conectarTest  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Error al conectar
+	at es.iesptocruz.victor.SQliteTest.conectarTest(SQliteTest.java:32)
+
+eliminarTest  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Error
+	at es.iesptocruz.victor.SQliteTest.eliminarTest(SQliteTest.java:56)
+

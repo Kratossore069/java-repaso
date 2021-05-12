@@ -12,12 +12,12 @@ import es.iesptocruz.victor.excepciones.BDDException;
 import es.iesptocruz.victor.modelo.BDDMySql;
 
 public class MySQLTest {
-    BDDMySql mysql;
+    BDDMySql dbMysql;
 
     @BeforeEach
     public void setUp(){
-        if(mysql==null)
-            mysql=new BDDMySql();
+        if(dbMysql==null)
+            dbMysql=new BDDMySql("admin","admin");
     }
 
     /**
@@ -26,7 +26,7 @@ public class MySQLTest {
     @Test
     public void conectarTest(){
         try {
-            assertEquals("Conectado",mysql.connect(),"Debe conectar a la bdd");
+            assertEquals("Conectado",dbMysql.connect(),"Debe conectar a la bdd");
         } catch (Exception e) {
             fail("Error al conectar a la BDD de MYSQL");
         } 
@@ -38,7 +38,7 @@ public class MySQLTest {
     @Test
     public void crearTablaTest(){
         try{
-            assertEquals("Exito",mysql.createTable(),"Debe conectar a la bdd");
+            assertEquals("Exito",dbMysql.createTable(),"Debe conectar a la bdd");
         }catch(Exception ex){
             fail("Error al crear la tabla de prueba");
         }

@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 import es.iesptocruz.victor.excepciones.BDDException;
 
-public class BDDMySql {
+public class BDDMySql extends BDD{
     private String dbURL;
     private String usuario = null;
     private String password = null;
@@ -16,10 +16,8 @@ public class BDDMySql {
     /**
      * Constructor de MySQL
      */
-    public BDDMySql() {
-        dbURL = "jdbc:mysql://localhost/pruebas?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-        usuario = "admin";
-        password = "admin";
+    public BDDMySql(String usuario,String password) {
+        super(usuario,password);
     }
 
     /**

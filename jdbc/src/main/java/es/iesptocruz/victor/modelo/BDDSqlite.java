@@ -1,5 +1,7 @@
 package es.iesptocruz.victor.modelo;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -7,7 +9,7 @@ import java.sql.Statement;
 
 import es.iesptocruz.victor.excepciones.BDDException;
 
-public class BDDSqlite {
+public class BDDSqlite extends BDD{
 
     private String dbURL;
     private Connection conn = null;
@@ -16,7 +18,7 @@ public class BDDSqlite {
      * Constructor por defecto de sqlite
      */
     public BDDSqlite() {
-        dbURL = "jdbc:sqlite:test.db";
+        super(null, null);
     }
 
     /**
@@ -38,6 +40,17 @@ public class BDDSqlite {
             }
         }
         return resultado;
+    }
+
+    /**
+     * Metodo para crear la base de datos
+     * @throws IOException controlado
+     */
+    public void crearDB() throws IOException{
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        processBuilder.directory(new File("db.sh"));
+        Process process = processBuilder.start();
+        process.destroy();
     }
 
     /**

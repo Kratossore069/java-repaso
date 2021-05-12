@@ -10,7 +10,7 @@ public class MySQLController {
      * Constructor por defecto
      */
     public MySQLController() {
-        mysqlModelo = new BDDMySql();
+        mysqlModelo = new BDDMySql("admin","admin");
     }
 
     /**
