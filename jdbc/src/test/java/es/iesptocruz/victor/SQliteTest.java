@@ -7,27 +7,27 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import es.iesptocruz.victor.modelo.BDDSqlite;
+import es.iesptocruz.victor.modelo.BbddSqlite;
 
 
 
 public class SQliteTest{
 
-    BDDSqlite bdd;
+    BbddSqlite Bbdd;
     
     @BeforeEach
     public void setUp(){
-        if(bdd==null)
-            bdd=new BDDSqlite();
+        if(Bbdd==null)
+            Bbdd=new BbddSqlite();
     }
 
     /**
-     * Test que conecta a la bdd
+     * Test que conecta a la Bbdd
      */
     @Test
     public void conectarTest(){
         try{
-            assertEquals("Conectado",bdd.connectSQlite(),"Debe conectar a la bdd");
+            assertEquals("Conectado",Bbdd.connectSQlite(),"Debe conectar a la Bbdd");
         }catch(Exception ex){
             fail("Error al conectar");
         }
@@ -39,7 +39,7 @@ public class SQliteTest{
     @Test
     public void tablaTest(){
         try {
-            assertEquals("Exito",bdd.crearTabla(),"Debe eliminar la tabla");   
+            assertEquals("Exito",Bbdd.crearTabla(),"Debe eliminar la tabla");   
         } catch (Exception e) {
             fail("Error");
         }        
@@ -51,7 +51,7 @@ public class SQliteTest{
     @Test
     public void eliminarTest(){
         try {
-            assertEquals("Exito",bdd.eliminarTabla(),"Debe eliminar la tabla");    
+            assertEquals("Exito",Bbdd.eliminarTabla(),"Debe eliminar la tabla");    
         } catch (Exception e) {
             fail("Error");
         }        

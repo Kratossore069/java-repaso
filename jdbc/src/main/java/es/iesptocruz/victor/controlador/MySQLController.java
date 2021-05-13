@@ -1,25 +1,25 @@
 package es.iesptocruz.victor.controlador;
 
-import es.iesptocruz.victor.excepciones.BDDException;
-import es.iesptocruz.victor.modelo.BDDMySql;
+import es.iesptocruz.victor.excepciones.BbddException;
+import es.iesptocruz.victor.modelo.BbddMySql;
 
 public class MySQLController {
-    BDDMySql mysqlModelo;
+    BbddMySql mysqlModelo;
 
     /**
      * Constructor por defecto
      */
     public MySQLController() {
-        mysqlModelo = new BDDMySql("admin","admin");
+        mysqlModelo = new BbddMySql("admin","admin");
     }
 
     /**
      * Funcion que ejecuta una sentencia sql en MySql
      * @param sql sentencia
      * @return exito o no
-     * @throws BDDException controlado
+     * @throws BbddException controlado
      */
-    public String ejecutarCodigo(String sql) throws BDDException {
+    public String ejecutarCodigo(String sql) throws BbddException {
         String respuesta = null;
         if (sql != null || sql != "")
             respuesta = mysqlModelo.ejecutarSentencia(sql);

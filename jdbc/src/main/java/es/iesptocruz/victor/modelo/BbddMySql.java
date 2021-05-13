@@ -2,12 +2,12 @@ package es.iesptocruz.victor.modelo;
 
 import java.sql.Connection;
 
-public class BDDMySql extends BDD {
+public class BbddMySql extends Bbdd {
 
     /**
      * Constructor de MySQL
      */
-    public BDDMySql(String usuario, String password) {
+    public BbddMySql(String usuario, String password) {
         super(usuario, password);
     }
 }

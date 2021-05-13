@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Bbdd.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tallermvc</a> &gt; <a href="index.source.html" class="el_package">es.iesptocruz.victor.modelo</a> &gt; <span class="el_source">Bbdd.java</span></div><h1>Bbdd.java</h1><pre class="source lang-java linenums">package es.iesptocruz.victor.modelo;
+
+import java.io.File;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import es.iesptocruz.victor.excepciones.BbddException;
+
+public class Bbdd {
+<span class="nc" id="L15">    private String dbURLSQlite=null;</span>
+<span class="nc" id="L16">    private String dbURLMySql=null;</span>
+<span class="nc" id="L17">    private Connection conn = null;</span>
+<span class="nc" id="L18">    private String usuario = null;</span>
+<span class="nc" id="L19">    private String password = null;</span>
+<span class="nc" id="L20">    private String driver=null;</span>
+
+    /**
+     * Constructor generico para las conexiones
+     * @param usuario de la Bbdd
+     * @param password de la Bbdd
+     * @param driver de la Bbdd
+     */
+<span class="nc" id="L28">    public Bbdd(String driver,String usuario,String password){ //Cuatro parametros</span>
+<span class="nc" id="L29">        dbURLSQlite=&quot;jdbc:sqlite:test.db&quot;;</span>
+<span class="nc" id="L30">        dbURLMySql=&quot;jdbc:mysql://localhost/pruebas?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&quot;;</span>
+<span class="nc" id="L31">        this.driver=driver;</span>
+<span class="nc" id="L32">        this.usuario=usuario;</span>
+<span class="nc" id="L33">        this.password=password;</span>
+<span class="nc" id="L34">    }</span>
+
+    /**
+     * Funcion que conecta a auna Bbdd
+     * @param usuario a ingresar, si no hay colocar null
+     * @param password a ingresar, si no hay colocar null
+     * @return exito o no
+     * @throws BbddException controlado
+     * @throws SQLException controlado
+     */
+    public String conectarBbdd(String usuario,String password) throws BbddException, SQLException{
+<span class="nc" id="L45">        String resultado=null;</span>
+<span class="nc bnc" id="L46" title="All 4 branches missed.">        if(usuario==null &amp;&amp; password==null){</span>
+<span class="nc" id="L47">            resultado=connectSQlite();</span>
+        }else{
+<span class="nc" id="L49">            resultado=connectMySql(usuario, password);</span>
+        }
+<span class="nc" id="L51">        return resultado;</span>
+    }
+
+    /**
+     * Metodo para crear la base de datos
+     * @throws IOException controlado
+     */
+    public void crearDB() throws IOException{
+<span class="nc" id="L59">        ProcessBuilder processBuilder = new ProcessBuilder();</span>
+<span class="nc" id="L60">        processBuilder.directory(new File(&quot;db.sh&quot;));</span>
+<span class="nc" id="L61">        Process process = processBuilder.start();</span>
+<span class="nc" id="L62">        process.destroy();</span>
+<span class="nc" id="L63">    }</span>
+
+    /**
+     * Funcion que crea una tabla en la Bbdd
+     * 
+     * @return mensaje de exito
+     * @throws BbddException controlado
+     */
+    public String crearTabla() throws BbddException {
+<span class="nc" id="L72">        String sql = &quot;CREATE TABLE IF NOT EXISTS employees (\n&quot; + &quot; id integer PRIMARY KEY,\n&quot; + &quot; name text NOT NULL\n&quot;</span>
+                + &quot;);&quot;;
+<span class="nc" id="L74">        return ejecutarCodigo(sql);</span>
+    }
+
+    /**
+     * Funcion que elimina una tabla de la Bbdd
+     * 
+     * @return mensaje de exito
+     * @throws BbddException controlado
+     */
+    public String eliminarTabla() throws BbddException {
+<span class="nc" id="L84">        String sql = &quot;drop table if exists employees&quot;;</span>
+<span class="nc" id="L85">        return ejecutarCodigo(sql);</span>
+    }
+
+    /**
+     * Metodo que se encarga de ejecutar las sentencias sql
+     * 
+     * @param sql sentencia a ejecutar
+     * @return mensaje de exito o no
+     * @throws BbddException controlado
+     */
+    public String ejecutarCodigo(String sql) throws BbddException {
+<span class="nc" id="L96">        String res = null;</span>
+        try {
+<span class="nc" id="L98">            conn = DriverManager.getConnection(dbURLSQlite);</span>
+<span class="nc" id="L99">            Statement stmt = conn.createStatement();</span>
+<span class="nc" id="L100">            stmt.executeUpdate(sql);</span>
+<span class="nc" id="L101">            res = &quot;Exito&quot;;</span>
+<span class="nc" id="L102">        } catch (Exception e) {</span>
+<span class="nc" id="L103">            throw new BbddException(&quot;Error&quot;, e);</span>
+<span class="nc" id="L104">        }</span>
+<span class="nc" id="L105">        return res;</span>
+    }
+
+    /**
+     * Funcion que conecta con Mysql
+     * @param usuario del sistema
+     * @param password del sistema
+     * @return exito o no
+     * @throws BbddException controlado
+     * @throws SQLException controlado
+     */
+    public String connectMySql(String usuario,String password) throws BbddException, SQLException {
+<span class="nc" id="L117">        String resultado = null;</span>
+        try {
+<span class="nc" id="L119">            Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);</span>
+<span class="nc" id="L120">            conn = DriverManager.getConnection(dbURLMySql, usuario, password);</span>
+<span class="nc" id="L121">            resultado = &quot;Conectado&quot;;</span>
+<span class="nc" id="L122">        } catch (SQLException | ClassNotFoundException e) {</span>
+<span class="nc" id="L123">            throw new BbddException(&quot;Error al conectar a MySQL&quot;, e);</span>
+        } finally {
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            if (conn != null) {</span>
+<span class="nc" id="L126">                conn.close();</span>
+            }
+        }
+<span class="nc" id="L129">        return resultado;</span>
+    }
+
+    /**
+     * Funcion que conecta con la base de datos SQLite
+     * @return conectado o no
+     * @throws BbddException controlado
+     */
+    public String connectSQlite() throws BbddException, SQLException {
+<span class="nc" id="L138">        String resultado = null;</span>
+        try {
+<span class="nc" id="L140">            conn = DriverManager.getConnection(dbURLSQlite);</span>
+<span class="nc" id="L141">            resultado = &quot;Conectado&quot;;</span>
+<span class="nc" id="L142">        } catch (SQLException e) {</span>
+<span class="nc" id="L143">            throw new BbddException(&quot;Error al conectar&quot;, e);</span>
+        } finally {
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (conn != null) {</span>
+<span class="nc" id="L146">                conn.close();</span>
+            }
+        }
+<span class="nc" id="L149">        return resultado;</span>
+    }
+
+    /**
+     * Funcion que resuelve si existe o no una tabla
+     * @param connection con la Bbdd
+     * @param tableName nombre de la tabla
+     * @return true or false
+     * @throws SQLException controlado
+     */
+    public boolean tableExists(Connection connection, String tableName) throws SQLException {
+<span class="nc" id="L160">        DatabaseMetaData meta = connection.getMetaData();</span>
+<span class="nc" id="L161">        ResultSet resultSet = meta.getTables(null, null, tableName, new String[] { &quot;TABLE&quot; });</span>
+<span class="nc" id="L162">        return resultSet.next();</span>
+    }
+
+    /**
+     * Funcion que crea una tabla de prueba
+     * 
+     * @return exito o no
+     * @throws BbddException controlado
+     */
+    public String createTable() throws BbddException {
+<span class="nc" id="L172">        String sql = &quot;CREATE TABLE IF NOT EXISTS REGISTRATION &quot; + &quot;(id INTEGER not NULL, &quot; + &quot; first VARCHAR(255), &quot;</span>
+                + &quot; last VARCHAR(255), &quot; + &quot; age INTEGER, &quot; + &quot; PRIMARY KEY ( id ))&quot;;
+<span class="nc" id="L174">        return ejecutarSentencia(sql);</span>
+    }
+
+    /**
+     * Funcion que ejecuta la sentencia que se le envie
+     * 
+     * @param sql sentencia que ejecutar
+     * @return exito o no al ejecutar la consulta
+     * @throws BbddException controlado
+     */
+    public String ejecutarSentencia(String sql) throws BbddException {
+<span class="nc" id="L185">        String res = null;</span>
+        try {
+<span class="nc" id="L187">            conn = DriverManager.getConnection(dbURLMySql, usuario, password);</span>
+<span class="nc" id="L188">            Statement stmt = conn.createStatement();</span>
+<span class="nc" id="L189">            stmt.executeUpdate(sql);</span>
+<span class="nc" id="L190">            res = &quot;Exito&quot;;</span>
+<span class="nc" id="L191">        } catch (Exception e) {</span>
+<span class="nc" id="L192">            throw new BbddException(&quot;Error&quot;, e);</span>
+<span class="nc" id="L193">        }</span>
+<span class="nc" id="L194">        return res;</span>
+    }
+
+    /**
+     * Metodo para crear la base de datos
+     * @throws IOException controlado
+     */
+    public void crearDBSqlite() throws IOException{
+<span class="nc" id="L202">        ProcessBuilder processBuilder = new ProcessBuilder();</span>
+<span class="nc" id="L203">        processBuilder.directory(new File(&quot;db.sh&quot;));</span>
+<span class="nc" id="L204">        Process process = processBuilder.start();</span>
+<span class="nc" id="L205">        process.destroy();</span>
+<span class="nc" id="L206">    }</span>
+
+    /**
+     * Funcion que crea una tabla en la Bbdd
+     * 
+     * @return mensaje de exito
+     * @throws BbddException controlado
+     */
+    public String crearTablaSqlite() throws BbddException {
+<span class="nc" id="L215">        String sql = &quot;CREATE TABLE IF NOT EXISTS employees (\n&quot; + &quot; id integer PRIMARY KEY,\n&quot; + &quot; name text NOT NULL\n&quot;</span>
+                + &quot;);&quot;;
+<span class="nc" id="L217">        return ejecutarCodigo(sql);</span>
+    }
+
+    /**
+     * Funcion que elimina una tabla de la Bbdd
+     * 
+     * @return mensaje de exito
+     * @throws BbddException controlado
+     */
+    public String eliminarTablaSqlite() throws BbddException {
+<span class="nc" id="L227">        String sql = &quot;drop table if exists employees&quot;;</span>
+<span class="nc" id="L228">        return ejecutarCodigo(sql);</span>
+    }
+
+    /**
+     * Metodo que se encarga de ejecutar las sentencias sql
+     * 
+     * @param sql sentencia a ejecutar
+     * @return mensaje de exito o no
+     * @throws BbddException controlado
+     */
+    public String ejecutarCodigoSqlite(String sql) throws BbddException {
+<span class="nc" id="L239">        String res = null;</span>
+        try {
+<span class="nc" id="L241">            conn = DriverManager.getConnection(dbURLSQlite);</span>
+<span class="nc" id="L242">            Statement stmt = conn.createStatement();</span>
+<span class="nc" id="L243">            stmt.executeUpdate(sql);</span>
+<span class="nc" id="L244">            res = &quot;Exito&quot;;</span>
+<span class="nc" id="L245">        } catch (Exception e) {</span>
+<span class="nc" id="L246">            throw new BbddException(&quot;Error&quot;, e);</span>
+<span class="nc" id="L247">        }</span>
+<span class="nc" id="L248">        return res;</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

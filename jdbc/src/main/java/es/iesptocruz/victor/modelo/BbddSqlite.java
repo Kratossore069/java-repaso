@@ -1,11 +1,11 @@
 package es.iesptocruz.victor.modelo;
 
-public class BDDSqlite extends BDD{
+public class BbddSqlite extends Bbdd{
 
     /**
      * Constructor por defecto de sqlite
      */
-    public BDDSqlite() {
+    public BbddSqlite() {
         super(null, null);
     }
 }

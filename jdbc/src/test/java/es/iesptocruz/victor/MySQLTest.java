@@ -7,27 +7,27 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import es.iesptocruz.victor.modelo.BDDMySql;
+import es.iesptocruz.victor.modelo.BbddMySql;
 
 public class MySQLTest {
-    BDDMySql dbMysql;
+    BbddMySql dbMysql;
 
     @BeforeEach
     public void setUp(){
         if(dbMysql==null)
-            dbMysql=new BDDMySql("admin","admin");
+            dbMysql=new BbddMySql("admin","admin");
     }
 
     /**
-     * Test que conecta con la bdd de MySql
+     * Test que conecta con la Bbdd de MySql
      */
     @Test
     public void conectarTest(){
         try {
             assertEquals("Conectado",dbMysql.connectMySql("admin", "admin"),
-            "Debe conectar a la bdd");
+            "Debe conectar a la Bbdd");
         } catch (Exception e) {
-            fail("Error al conectar a la BDD de MYSQL");
+            fail("Error al conectar a la Bbdd de MYSQL");
         } 
     }
 
@@ -37,7 +37,7 @@ public class MySQLTest {
     @Test
     public void crearTablaTest(){
         try{
-            assertEquals("Exito",dbMysql.createTable(),"Debe conectar a la bdd");
+            assertEquals("Exito",dbMysql.createTable(),"Debe conectar a la Bbdd");
         }catch(Exception ex){
             fail("Error al crear la tabla de prueba");
         }

@@ -1,7 +1,7 @@
-es/iesptocruz/victor/modelo/BDDMySql.class
+es/iesptocruz/victor/modelo/Bbdd.class
 es/iesptocruz/victor/vista/Run.class
-es/iesptocruz/victor/modelo/BDD.class
+es/iesptocruz/victor/modelo/BbddMySql.class
 es/iesptocruz/victor/controlador/MySQLController.class
 es/iesptocruz/victor/controlador/SQliteController.class
-es/iesptocruz/victor/excepciones/BDDException.class
-es/iesptocruz/victor/modelo/BDDSqlite.class
+es/iesptocruz/victor/excepciones/BbddException.class
+es/iesptocruz/victor/modelo/BbddSqlite.class

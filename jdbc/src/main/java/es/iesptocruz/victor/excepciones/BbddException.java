@@ -1,11 +1,11 @@
 package es.iesptocruz.victor.excepciones;
 
-public class BDDException extends Exception{
+public class BbddException extends Exception{
     /**
      * Excepcion personalizada
      * @param mensaje de error
      */
-    public BDDException(String mensaje){
+    public BbddException(String mensaje){
         super(mensaje);
     }
 
@@ -14,7 +14,7 @@ public class BDDException extends Exception{
      * @param mensaje de error
      * @param e excepcion
      */
-    public BDDException(String mensaje, Exception e){
+    public BbddException(String mensaje, Exception e){
         super(mensaje+e);
     }
 }
