@@ -23,12 +23,8 @@ public class Bbdd {
      * Constructor generico para las conexiones
      * @param usuario de la Bbdd
      * @param password de la Bbdd
-     * @param driver de la Bbdd
      */
-    public Bbdd(String driver,String usuario,String password){ //Cuatro parametros
-        dbURLSQlite="jdbc:sqlite:test.db";
-        dbURLMySql="jdbc:mysql://localhost/pruebas?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-        this.driver=driver;
+    public Bbdd(String usuario,String password){
         this.usuario=usuario;
         this.password=password;
     }
@@ -44,9 +40,11 @@ public class Bbdd {
     public String conectarBbdd(String usuario,String password) throws BbddException, SQLException{
         String resultado=null;
         if(usuario==null && password==null){
-            resultado=connectSQlite();
+            conn = DriverManager.getConnection("jdbc:sqlite:test.db");
+            resultado="Exito al conectar";
         }else{
-            resultado=connectMySql(usuario, password);
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/pruebas?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",usuario,password);
+            resultado="Exito al conectar";
         }
         return resultado;
     }
@@ -103,50 +101,6 @@ public class Bbdd {
             throw new BbddException("Error", e);
         }
         return res;
-    }
-
-    /**
-     * Funcion que conecta con Mysql
-     * @param usuario del sistema
-     * @param password del sistema
-     * @return exito o no
-     * @throws BbddException controlado
-     * @throws SQLException controlado
-     */
-    public String connectMySql(String usuario,String password) throws BbddException, SQLException {
-        String resultado = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(dbURLMySql, usuario, password);
-            resultado = "Conectado";
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new BbddException("Error al conectar a MySQL", e);
-        } finally {
-            if (conn != null) {
-                conn.close();
-            }
-        }
-        return resultado;
-    }
-
-    /**
-     * Funcion que conecta con la base de datos SQLite
-     * @return conectado o no
-     * @throws BbddException controlado
-     */
-    public String connectSQlite() throws BbddException, SQLException {
-        String resultado = null;
-        try {
-            conn = DriverManager.getConnection(dbURLSQlite);
-            resultado = "Conectado";
-        } catch (SQLException e) {
-            throw new BbddException("Error al conectar", e);
-        } finally {
-            if (conn != null) {
-                conn.close();
-            }
-        }
-        return resultado;
     }
 
     /**
