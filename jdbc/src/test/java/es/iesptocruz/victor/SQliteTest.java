@@ -27,7 +27,7 @@ public class SQliteTest{
     @Test
     public void conectarTest(){
         try{
-            assertEquals("Conectado",bdd.connect(),"Debe conectar a la bdd");
+            assertEquals("Conectado",bdd.connectSQlite(),"Debe conectar a la bdd");
         }catch(Exception ex){
             fail("Error al conectar");
         }

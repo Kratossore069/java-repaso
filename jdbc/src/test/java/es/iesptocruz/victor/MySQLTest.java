@@ -3,12 +3,10 @@ package es.iesptocruz.victor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.sql.SQLException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import es.iesptocruz.victor.excepciones.BDDException;
 import es.iesptocruz.victor.modelo.BDDMySql;
 
 public class MySQLTest {
@@ -26,7 +24,8 @@ public class MySQLTest {
     @Test
     public void conectarTest(){
         try {
-            assertEquals("Conectado",dbMysql.connect(),"Debe conectar a la bdd");
+            assertEquals("Conectado",dbMysql.connectMySql("admin", "admin"),
+            "Debe conectar a la bdd");
         } catch (Exception e) {
             fail("Error al conectar a la BDD de MYSQL");
         } 
