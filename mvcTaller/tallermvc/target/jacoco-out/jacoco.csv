@@ -1,5 +1,5 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-tallermvc,es.iesptocruz.victor.api,Vehiculos,93,24,22,0,27,8,15,5,4,5
+tallermvc,es.iesptocruz.victor.api,Vehiculos,96,21,22,0,28,7,16,4,5,4
 tallermvc,es.iesptocruz.victor.modelo,Fichero,101,20,9,1,31,8,9,2,4,2
 tallermvc,es.iesptocruz.victor.modelo,VehiculosModelo,5,0,0,0,2,0,1,0,1,0
 tallermvc,es.iesptocruz.victor.modelo,Bbdd,221,0,4,0,67,0,15,0,13,0
@@ -7,4 +7,4 @@ tallermvc,es.iesptocruz.victor.vista,VehiculosApp,4,0,0,0,2,0,2,0,2,0
 tallermvc,es.iesptocruz.victor.excepciones,BbddException,10,0,0,0,4,0,2,0,2,0
 tallermvc,es.iesptocruz.victor.excepciones,FicheroException,9,0,0,0,4,0,2,0,2,0
 tallermvc,es.iesptocruz.victor.excepciones,VehiculosException,4,0,0,0,2,0,1,0,1,0
-tallermvc,es.iesptocruz.victor.controlador,VehiculosController,10,113,2,12,2,27,2,14,0,9
+tallermvc,es.iesptocruz.victor.controlador,VehiculosController,10,108,2,12,2,26,2,14,0,9

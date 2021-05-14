@@ -8,198 +8,130 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
-import es.iesptocruz.victor.excepciones.BbddException;
+import es.iesptocruz.victor.api.Vehiculo;
+import es.iesptocruz.victor.excepciones.PersistenciaException;
 
-public class Bbdd {
-    private String dbURLSQlite=null;
-    private String dbURLMySql=null;
-    private Connection conn = null;
-    private String usuario = null;
+public abstract class Bbdd {
+    private String url = null;
+    private Connection connection = null;
+    private String vehiculo = null;
     private String password = null;
-    private String driver=null;
+    private String driver = null;
 
     /**
-     * Constructor generico para las conexiones
-     * @param usuario de la Bbdd
-     * @param password de la Bbdd
+     * Constructor por defecto
+     * 
+     * @param url      de la bbdd
+     * @param usuario  de la bbdd
+     * @param password de la bbdd
+     * @param driver   de la bbdd
      */
-    public Bbdd(String usuario,String password){
-        this.usuario=usuario;
-        this.password=password;
+    public Bbdd(String url, String usuario, String password, String driver) {
+        this.url = url;
+        this.vehiculo = usuario;
+        this.password = password;
+        this.driver = driver;
     }
 
     /**
-     * Funcion que conecta a auna Bbdd
-     * @param usuario a ingresar, si no hay colocar null
-     * @param password a ingresar, si no hay colocar null
-     * @return exito o no
-     * @throws BbddException controlado
-     * @throws SQLException controlado
+     * Funcion encargada de realizar la conexion con la BBDD
+     * 
+     * @return conexion abierta
+     * @throws PersistenciaException
      */
-    public String conectarBbdd(String usuario,String password) throws BbddException, SQLException{
-        String resultado=null;
-        if(usuario==null && password==null){
-            conn = DriverManager.getConnection("jdbc:sqlite:test.db");
-            resultado="Exito al conectar";
-        }else{
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/pruebas?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",usuario,password);
-            resultado="Exito al conectar";
+    private Connection getConnection() throws PersistenciaException {
+        if (connection == null) {
+            try {
+                Class.forName(driver);
+                if (vehiculo != null && password != null) {
+                    connection = DriverManager.getConnection(url, vehiculo, password);
+                } else {
+                    connection = DriverManager.getConnection(url);
+                }
+            } catch (ClassNotFoundException | SQLException exception) {
+                throw new PersistenciaException("No se ha podido estabalecer la conexion", exception);
+            }
         }
-        return resultado;
+        return connection;
     }
 
     /**
-     * Metodo para crear la base de datos
-     * @throws IOException controlado
-     */
-    public void crearDB() throws IOException{
-        ProcessBuilder processBuilder = new ProcessBuilder();
-        processBuilder.directory(new File("db.sh"));
-        Process process = processBuilder.start();
-        process.destroy();
-    }
-
-    /**
-     * Funcion que crea una tabla en la Bbdd
+     * Funcion que realiza una consulta sobre una sentencia sql dada
      * 
-     * @return mensaje de exito
-     * @throws BbddException controlado
+     * @param sql de la consulta
+     * @return lista resultados (0..n) Usuasios
+     * @throws PersistenciaException error controlado
      */
-    public String crearTabla() throws BbddException {
-        String sql = "CREATE TABLE IF NOT EXISTS employees (\n" + " id integer PRIMARY KEY,\n" + " name text NOT NULL\n"
-                + ");";
-        return ejecutarCodigo(sql);
-    }
+    private ArrayList<Vehiculo> buscar(String sql) throws PersistenciaException {
+        ArrayList<Vehiculo> lista = new ArrayList<>();
+        Statement statement = null;
+        ResultSet resultSet = null;
 
-    /**
-     * Funcion que elimina una tabla de la Bbdd
-     * 
-     * @return mensaje de exito
-     * @throws BbddException controlado
-     */
-    public String eliminarTabla() throws BbddException {
-        String sql = "drop table if exists employees";
-        return ejecutarCodigo(sql);
-    }
-
-    /**
-     * Metodo que se encarga de ejecutar las sentencias sql
-     * 
-     * @param sql sentencia a ejecutar
-     * @return mensaje de exito o no
-     * @throws BbddException controlado
-     */
-    public String ejecutarCodigo(String sql) throws BbddException {
-        String res = null;
         try {
-            conn = DriverManager.getConnection(dbURLSQlite);
-            Statement stmt = conn.createStatement();
-            stmt.executeUpdate(sql);
-            res = "Exito";
-        } catch (Exception e) {
-            throw new BbddException("Error", e);
+            connection = getConnection();
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                Vehiculo vehiculo = new Vehiculo();
+                vehiculo.setIdentificador(resultSet.getString("identificador"));
+                vehiculo.setNombre(resultSet.getString("nombre"));
+                vehiculo.setApellidos(resultSet.getString("apellidos"));
+                vehiculo.setEdad(resultSet.getInt("edad"));
+                lista.add(vehiculo);
+            }
+        } catch (SQLException exception) {
+            throw new PersistenciaException("Se ha producido un error en la busqueda", exception);
+        } finally {
+            closeConecction(connection, statement, resultSet);
         }
-        return res;
+        return lista;
     }
 
     /**
-     * Funcion que resuelve si existe o no una tabla
-     * @param connection con la Bbdd
-     * @param tableName nombre de la tabla
-     * @return true or false
-     * @throws SQLException controlado
-     */
-    public boolean tableExists(Connection connection, String tableName) throws SQLException {
-        DatabaseMetaData meta = connection.getMetaData();
-        ResultSet resultSet = meta.getTables(null, null, tableName, new String[] { "TABLE" });
-        return resultSet.next();
-    }
-
-    /**
-     * Funcion que crea una tabla de prueba
+     * Metodo encargado de realizar las inserciones/modificaciones/eliminacion de la
+     * BBDD
      * 
-     * @return exito o no
-     * @throws BbddException controlado
+     * @param sql con la sentencia
+     * @throws PersistenciaException error controlado
      */
-    public String createTable() throws BbddException {
-        String sql = "CREATE TABLE IF NOT EXISTS REGISTRATION " + "(id INTEGER not NULL, " + " first VARCHAR(255), "
-                + " last VARCHAR(255), " + " age INTEGER, " + " PRIMARY KEY ( id ))";
-        return ejecutarSentencia(sql);
-    }
-
-    /**
-     * Funcion que ejecuta la sentencia que se le envie
-     * 
-     * @param sql sentencia que ejecutar
-     * @return exito o no al ejecutar la consulta
-     * @throws BbddException controlado
-     */
-    public String ejecutarSentencia(String sql) throws BbddException {
-        String res = null;
+    public void update(String sql) throws PersistenciaException {
+        Statement statement = null;
         try {
-            conn = DriverManager.getConnection(dbURLMySql, usuario, password);
-            Statement stmt = conn.createStatement();
-            stmt.executeUpdate(sql);
-            res = "Exito";
-        } catch (Exception e) {
-            throw new BbddException("Error", e);
+            connection = getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.executeUpdate(sql);
+        } catch (SQLException exception) {
+            throw new PersistenciaException("Se ha producido un error en la busqueda", exception);
+        } finally {
+            closeConecction(connection, statement, null);
         }
-        return res;
     }
 
     /**
-     * Metodo para crear la base de datos
-     * @throws IOException controlado
-     */
-    public void crearDBSqlite() throws IOException{
-        ProcessBuilder processBuilder = new ProcessBuilder();
-        processBuilder.directory(new File("db.sh"));
-        Process process = processBuilder.start();
-        process.destroy();
+    * Metodo encargado de realizar el cierre de la conexion con la BBDD
+    * 
+    * @param connection contra la BBDD
+    * @param statement  de la operacion
+    * @param resultSet  resultado
+    * @throws PersistenciaException error controlado
+    */
+   private void closeConecction(Connection connection, Statement statement, ResultSet resultSet) throws PersistenciaException {
+    try {
+       if (resultSet != null) {
+          resultSet.close();
+       }
+       if (statement != null) {
+          statement.close();
+       }
+       if (connection != null) {
+          connection.close();
+       }
+    } catch (Exception e) {
+       throw new PersistenciaException("Se ha producido un error cerrando la sesion con la BBDD");
     }
 
-    /**
-     * Funcion que crea una tabla en la Bbdd
-     * 
-     * @return mensaje de exito
-     * @throws BbddException controlado
-     */
-    public String crearTablaSqlite() throws BbddException {
-        String sql = "CREATE TABLE IF NOT EXISTS employees (\n" + " id integer PRIMARY KEY,\n" + " name text NOT NULL\n"
-                + ");";
-        return ejecutarCodigo(sql);
-    }
-
-    /**
-     * Funcion que elimina una tabla de la Bbdd
-     * 
-     * @return mensaje de exito
-     * @throws BbddException controlado
-     */
-    public String eliminarTablaSqlite() throws BbddException {
-        String sql = "drop table if exists employees";
-        return ejecutarCodigo(sql);
-    }
-
-    /**
-     * Metodo que se encarga de ejecutar las sentencias sql
-     * 
-     * @param sql sentencia a ejecutar
-     * @return mensaje de exito o no
-     * @throws BbddException controlado
-     */
-    public String ejecutarCodigoSqlite(String sql) throws BbddException {
-        String res = null;
-        try {
-            conn = DriverManager.getConnection(dbURLSQlite);
-            Statement stmt = conn.createStatement();
-            stmt.executeUpdate(sql);
-            res = "Exito";
-        } catch (Exception e) {
-            throw new BbddException("Error", e);
-        }
-        return res;
-    }
+ }
 }
-

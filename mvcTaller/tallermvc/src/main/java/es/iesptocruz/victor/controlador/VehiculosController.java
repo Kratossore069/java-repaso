@@ -2,46 +2,42 @@ package es.iesptocruz.victor.controlador;
 
 import java.util.ArrayList;
 
-import es.iesptocruz.victor.api.Vehiculos;
+import es.iesptocruz.victor.api.Vehiculo;
 import es.iesptocruz.victor.excepciones.FicheroException;
-import es.iesptocruz.victor.excepciones.VehiculosException;
+import es.iesptocruz.victor.excepciones.VehiculoException;
 import es.iesptocruz.victor.modelo.Fichero;
+import es.iesptocruz.victor.modelo.VehiculosModelo;
 
 public class VehiculosController {
 
-    Fichero fichero;
-    ArrayList<String> lista;
+    VehiculosModelo vehiculoModelo;
 
     /**
      * Constructor por defecto
-     * @throws FicheroException
      */
-    public VehiculosController() throws FicheroException {
-        fichero=new Fichero();
-        fichero.crear("inventarioVehiculos.txt", "Inventario creado");
-        lista = new ArrayList<>();
+    public VehiculosController(){
+        vehiculoModelo=new VehiculosModelo();
     }
 
     /**
      * Metodo que aniade vehiculos a una lista
      * 
      * @param vehiculo a insertar
-     * @throws VehiculosException controlado
+     * @throws VehiculoException controlado
      * @throws FicheroException
      */
-    public void insertar(Vehiculos vehiculo) throws VehiculosException, FicheroException {
+    public void insertar(Vehiculo vehiculo) throws VehiculoException, FicheroException {
         validar(vehiculo);
-        lista.add(vehiculo.toString());
-        fichero.crear("inventarioVehiculos.txt", vehiculo.toString());
+        existe(vehiculo)
     }
 
     /**
      * Metodo que elimina un coche de la lista
      * 
      * @param vehiculo a eliminar
-     * @throws VehiculosException controlada
+     * @throws VehiculoException controlada
      */
-    public void eliminar(Vehiculos vehiculo) throws VehiculosException {
+    public void eliminar(Vehiculo vehiculo) throws VehiculoException {
         validar(vehiculo);
         if (existe(vehiculo)){
             lista.remove(vehiculo.toString());
@@ -74,7 +70,7 @@ public class VehiculosController {
      * @param vehiculo a buscar
      * @return modificado o no
      */
-    public String modificar(Vehiculos vehiculo){
+    public String modificar(Vehiculo vehiculo){
         return (existe(vehiculo)) ? "Su vehiculo ahora es un tanque":
         "Su vehiculo no se encuentra";
     }
@@ -82,7 +78,7 @@ public class VehiculosController {
     /**
      * Funcion que valora si el vehiculo existe o no en la lista
      */
-    public boolean existe(Vehiculos vehiculo) {
+    public boolean existe(Vehiculo vehiculo) {
         return (lista.contains(vehiculo.toString())) ? true : false;
     }
 
@@ -90,14 +86,14 @@ public class VehiculosController {
      * Metodo que se encarga de validar los datos introducidos
      * 
      * @param vehiculos es un objeto que debe validar
-     * @throws VehiculosException controlado
+     * @throws VehiculoException controlado
      */
-    public void validar(Vehiculos vehiculos) throws VehiculosException {
+    public void validar(Vehiculo vehiculos) throws VehiculoException {
         if (vehiculos.getMarca() == null) {
-            throw new VehiculosException("La marca no puede estar vacia o nula");
+            throw new VehiculoException("La marca no puede estar vacia o nula");
         }
         if (vehiculos.getMatricula() == null) {
-            throw new VehiculosException("La matricula no puede estar vacia o nula");
+            throw new VehiculoException("La matricula no puede estar vacia o nula");
         }
     }
 

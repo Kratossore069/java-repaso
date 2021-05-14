@@ -1,14 +1,18 @@
 package es.iesptocruz.victor.api;
 
-public class Vehiculos {
+public class Vehiculo {
 
     private String matricula;
     private String marca;
+    private String identificador;
+    private String nombre;
+    private String apellidos;
+    private String edad;
 
     /**
      * Constructor por defecto
      */
-    public Vehiculos(String matricula, String marca) {
+    public Vehiculo(String matricula, String marca) {
         this.matricula = matricula;
         this.marca = marca;
     }
@@ -16,10 +20,42 @@ public class Vehiculos {
     /**
      * Constructor vacio
      */
-    public Vehiculos(){}
+    public Vehiculo(){}
 
     public String getMatricula() {
         return matricula;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getEdad() {
+        return edad;
+    }
+
+    public void setEdad(String edad) {
+        this.edad = edad;
     }
 
     public void setMatricula(String matricula) {
@@ -56,7 +92,7 @@ public class Vehiculos {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Vehiculos other = (Vehiculos) obj;
+        Vehiculo other = (Vehiculo) obj;
         if (marca == null) {
             if (other.marca != null)
                 return false;
