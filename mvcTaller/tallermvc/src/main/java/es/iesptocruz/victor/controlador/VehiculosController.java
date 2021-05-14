@@ -2,14 +2,13 @@ package es.iesptocruz.victor.controlador;
 
 import java.util.ArrayList;
 
+import es.iesptocruz.victor.api.Vehiculos;
 import es.iesptocruz.victor.excepciones.FicheroException;
 import es.iesptocruz.victor.excepciones.VehiculosException;
 import es.iesptocruz.victor.modelo.Fichero;
-import es.iesptocruz.victor.modelo.Vehiculos;
 
 public class VehiculosController {
 
-    Vehiculos vehiculos;
     Fichero fichero;
     ArrayList<String> lista;
 
@@ -18,7 +17,6 @@ public class VehiculosController {
      * @throws FicheroException
      */
     public VehiculosController() throws FicheroException {
-        vehiculos = new Vehiculos();
         fichero=new Fichero();
         fichero.crear("inventarioVehiculos.txt", "Inventario creado");
         lista = new ArrayList<>();

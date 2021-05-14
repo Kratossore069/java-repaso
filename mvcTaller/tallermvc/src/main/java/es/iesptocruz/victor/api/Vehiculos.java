@@ -1,4 +1,4 @@
-package es.iesptocruz.victor.modelo;
+package es.iesptocruz.victor.api;
 
 public class Vehiculos {
 

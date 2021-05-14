@@ -7,10 +7,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import es.iesptocruz.victor.api.Vehiculos;
 import es.iesptocruz.victor.controlador.VehiculosController;
 import es.iesptocruz.victor.excepciones.FicheroException;
 import es.iesptocruz.victor.excepciones.VehiculosException;
-import es.iesptocruz.victor.modelo.Vehiculos;
 
 /**
  * Unit test for simple App.
@@ -30,8 +30,12 @@ public class VehiculosTest {
     }
 
     @AfterEach
-    public void setDown() throws VehiculosException{
-        controlador.eliminar(vehiculo);
+    public void setDown(){
+        try {
+            controlador.eliminar(vehiculo);
+        } catch (VehiculosException e) {
+            fail("Error al eliminar los vehiculos "+e);
+        }
     }
 
     /**
