@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AlumnoModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">alumnosclase</a> &gt; <a href="index.source.html" class="el_package">es.iesptocruz.victor.modelo</a> &gt; <span class="el_source">AlumnoModelo.java</span></div><h1>AlumnoModelo.java</h1><pre class="source lang-java linenums">package es.iesptocruz.victor.modelo;
+
+import java.util.ArrayList;
+
+import es.iesptocruz.victor.api.Alumno;
+import es.iesptocruz.victor.excepciones.FicheroException;
+
+public class AlumnoModelo {
+
+    ArrayList&lt;Alumno&gt; lista;
+    Fichero fichero;
+<span class="fc" id="L12">    private String destino=&quot;listaAlumnos.txt&quot;;</span>
+
+    /**
+     * Constructor por defecto
+     * @throws FicheroException controlado
+     */
+<span class="fc" id="L18">    public AlumnoModelo() throws FicheroException{</span>
+<span class="fc" id="L19">        lista=new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L20">        fichero=new Fichero();</span>
+<span class="fc" id="L21">        fichero.crear(destino, &quot;&quot;);</span>
+<span class="fc" id="L22">    }</span>
+
+    /**
+     * Metodo para aniadir un alumno a la lista
+     * @param alumno a insertar
+     * @throws FicheroException controlado
+     */
+    public void aniadir(Alumno alumno) throws FicheroException{
+<span class="fc" id="L30">        lista.add(alumno);</span>
+<span class="fc" id="L31">        fichero.crear(destino, alumno.toString());</span>
+<span class="fc" id="L32">    }</span>
+
+    /**
+     * Metodo para eliminar un alumno de la lista
+     * @param alumno a eliminar
+     */
+    public void eliminar(Alumno alumno){
+<span class="nc" id="L39">        lista.remove(alumno);</span>
+<span class="nc" id="L40">    }</span>
+
+    /**
+     * Recuento de los alumnos inscritos
+     * @return numero de alumnos
+     */
+    public int recuento(){
+<span class="fc" id="L47">        return lista.size();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

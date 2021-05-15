@@ -1,0 +1,7 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+alumnosclase,es.iesptocruz.victor.api,Alumno,120,20,24,0,35,6,20,2,8,2
+alumnosclase,es.iesptocruz.victor.modelo,Fichero,101,20,9,1,31,8,9,2,4,2
+alumnosclase,es.iesptocruz.victor.modelo,AlumnoModelo,6,39,0,0,2,10,1,3,1,3
+alumnosclase,es.iesptocruz.victor.excepciones,AlumnoException,9,0,0,0,4,0,2,0,2,0
+alumnosclase,es.iesptocruz.victor.excepciones,FicheroException,9,0,0,0,4,0,2,0,2,0
+alumnosclase,es.iesptocruz.victor.controlador,AlumnoController,82,8,20,0,16,3,13,1,3,1
