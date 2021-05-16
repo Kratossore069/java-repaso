@@ -25,9 +25,9 @@ public class AlumnoController {
      * @throws FicheroException controlado
      */
     public void aniadirAlumno(Alumno alumno) throws AlumnoException, FicheroException {
-<span class="nc" id="L28">        validar(alumno);</span>
-<span class="nc" id="L29">        alumnoModelo.aniadir(alumno);</span>
-<span class="nc" id="L30">    }</span>
+<span class="fc" id="L28">        validar(alumno);</span>
+<span class="fc" id="L29">        alumnoModelo.aniadir(alumno);</span>
+<span class="fc" id="L30">    }</span>
 
     /**
      * Metodo para eliminar de la lista a un alumno
@@ -35,9 +35,38 @@ public class AlumnoController {
      * @throws AlumnoException controlado
      */
     public void eliminarAlumno(Alumno alumno) throws AlumnoException{
-<span class="nc" id="L38">        validar(alumno);</span>
-<span class="nc" id="L39">        alumnoModelo.eliminar(alumno);</span>
-<span class="nc" id="L40">    }</span>
+<span class="fc" id="L38">        validar(alumno);</span>
+<span class="fc" id="L39">        alumnoModelo.eliminar(alumno);</span>
+<span class="fc" id="L40">    }</span>
+
+    /**
+     * Metodo para modificar a un alumno
+     * @param alumno a modificar
+     * @throws AlumnoException controlado
+     */
+    public void modificarAlumno(Alumno alumno) throws AlumnoException{
+<span class="fc" id="L48">        validar(alumno);</span>
+<span class="fc" id="L49">        alumnoModelo.modificar(alumno);</span>
+<span class="fc" id="L50">    }</span>
+
+    /**
+     * Funcion que busca un alumno
+     * @param alumno a buscar
+     * @return datos o no del alumno
+     * @throws AlumnoException controlado
+     */
+    public String buscarAlumno(Alumno alumno) throws AlumnoException{
+<span class="fc" id="L59">        validar(alumno);</span>
+<span class="fc" id="L60">        return alumnoModelo.buscar(alumno);</span>
+    }
+
+    /**
+     * Funcion que lista cuantos alumnos estan registrados
+     * @return numero de alumnos en lista
+     */
+    public int listarAlumno(){
+<span class="fc" id="L68">        return alumnoModelo.recuento();</span>
+    }
 
     /**
      * Funcion que valida si se insertan bien los datos
@@ -47,20 +76,20 @@ public class AlumnoController {
      * @throws AlumnoException controlado
      */
     public String validar(Alumno alumno) throws AlumnoException {
-<span class="nc" id="L50">        String respuesta = &quot;&quot;;</span>
-<span class="nc bnc" id="L51" title="All 6 branches missed.">        if (alumno.getNombre() == &quot;&quot; | alumno.getNombre() == null) {</span>
-<span class="nc" id="L52">            respuesta = &quot;El nombre no puede estar vacio o nulo&quot;;</span>
+<span class="fc" id="L79">        String respuesta = &quot;&quot;;</span>
+<span class="pc bpc" id="L80" title="3 of 6 branches missed.">        if (alumno.getNombre() == &quot;&quot; | alumno.getNombre() == null) {</span>
+<span class="nc" id="L81">            respuesta = &quot;El nombre no puede estar vacio o nulo&quot;;</span>
         }
-<span class="nc bnc" id="L54" title="All 6 branches missed.">        if (alumno.getApellido() == &quot;&quot; | alumno.getApellido() == null) {</span>
-<span class="nc" id="L55">            respuesta += &quot;El apellido no puede estar vacio o nulo&quot;;</span>
+<span class="pc bpc" id="L83" title="3 of 6 branches missed.">        if (alumno.getApellido() == &quot;&quot; | alumno.getApellido() == null) {</span>
+<span class="nc" id="L84">            respuesta += &quot;El apellido no puede estar vacio o nulo&quot;;</span>
         }
-<span class="nc bnc" id="L57" title="All 6 branches missed.">        if (alumno.getNombre() == null | alumno.getNumero() == 0) {</span>
-<span class="nc" id="L58">            respuesta += &quot;El numero no puede ser nulo o estar vacio&quot;;</span>
+<span class="pc bpc" id="L86" title="3 of 6 branches missed.">        if (alumno.getNombre() == null | alumno.getNumero() == 0) {</span>
+<span class="nc" id="L87">            respuesta += &quot;El numero no puede ser nulo o estar vacio&quot;;</span>
         }
-<span class="nc bnc" id="L60" title="All 2 branches missed.">        if (!respuesta.isEmpty()) {</span>
-<span class="nc" id="L61">            throw new AlumnoException(respuesta);</span>
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">        if (!respuesta.isEmpty()) {</span>
+<span class="nc" id="L90">            throw new AlumnoException(respuesta);</span>
         }
-<span class="nc" id="L63">        return respuesta;</span>
+<span class="fc" id="L92">        return respuesta;</span>
     }
 
     // public void existeAlumno(Alumno alumno){

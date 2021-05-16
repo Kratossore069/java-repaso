@@ -40,6 +40,35 @@ public class AlumnoController {
     }
 
     /**
+     * Metodo para modificar a un alumno
+     * @param alumno a modificar
+     * @throws AlumnoException controlado
+     */
+    public void modificarAlumno(Alumno alumno) throws AlumnoException{
+        validar(alumno);
+        alumnoModelo.modificar(alumno);
+    }
+
+    /**
+     * Funcion que busca un alumno
+     * @param alumno a buscar
+     * @return datos o no del alumno
+     * @throws AlumnoException controlado
+     */
+    public String buscarAlumno(Alumno alumno) throws AlumnoException{
+        validar(alumno);
+        return alumnoModelo.buscar(alumno);
+    }
+
+    /**
+     * Funcion que lista cuantos alumnos estan registrados
+     * @return numero de alumnos en lista
+     */
+    public int listarAlumno(){
+        return alumnoModelo.recuento();
+    }
+
+    /**
      * Funcion que valida si se insertan bien los datos
      * 
      * @param alumno a manipular

@@ -36,15 +36,38 @@ public class AlumnoModelo {
      * @param alumno a eliminar
      */
     public void eliminar(Alumno alumno){
-<span class="nc" id="L39">        lista.remove(alumno);</span>
-<span class="nc" id="L40">    }</span>
+<span class="fc" id="L39">        lista.remove(alumno);</span>
+<span class="fc" id="L40">    }</span>
+
+    /**
+     * Metodo que modifica al alumno buscado
+     * @param alumno a buscar y modificar
+     */
+    public void modificar(Alumno alumno){
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">        if(lista.contains(alumno))</span>
+<span class="fc" id="L48">            alumno.setNombre(&quot;Cambiado&quot;);</span>
+<span class="fc" id="L49">    }</span>
+
+    /**
+     * Funcion para buscar y mostrar un usuario
+     * @param alumno a buscar
+     * @return resultado o no
+     */
+    public String buscar(Alumno alumno){
+<span class="fc" id="L57">        String resultado=null;</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        for(int i=0; i&lt;lista.size();i++){</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">            if(lista.contains(alumno))</span>
+<span class="fc" id="L60">                resultado=lista.get(i).toString();</span>
+        }
+<span class="fc" id="L62">        return resultado;</span>
+    }
 
     /**
      * Recuento de los alumnos inscritos
      * @return numero de alumnos
      */
     public int recuento(){
-<span class="fc" id="L47">        return lista.size();</span>
+<span class="fc" id="L70">        return lista.size();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

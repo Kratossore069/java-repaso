@@ -40,6 +40,29 @@ public class AlumnoModelo {
     }
 
     /**
+     * Metodo que modifica al alumno buscado
+     * @param alumno a buscar y modificar
+     */
+    public void modificar(Alumno alumno){
+        if(lista.contains(alumno))
+            alumno.setNombre("Cambiado");
+    }
+
+    /**
+     * Funcion para buscar y mostrar un usuario
+     * @param alumno a buscar
+     * @return resultado o no
+     */
+    public String buscar(Alumno alumno){
+        String resultado=null;
+        for(int i=0; i<lista.size();i++){
+            if(lista.contains(alumno))
+                resultado=lista.get(i).toString();
+        }
+        return resultado;
+    }
+
+    /**
      * Recuento de los alumnos inscritos
      * @return numero de alumnos
      */
