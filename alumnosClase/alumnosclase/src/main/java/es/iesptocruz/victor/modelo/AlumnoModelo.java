@@ -63,6 +63,14 @@ public class AlumnoModelo {
     }
 
     /**
+     * Funcion que muestra todos los alumnos
+     * @return lista en texto
+     */
+    public String listarTodo(){
+        return lista.toString();
+    }
+
+    /**
      * Recuento de los alumnos inscritos
      * @return numero de alumnos
      */

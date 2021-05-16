@@ -61,10 +61,18 @@ public class AlumnoController {
     }
 
     /**
+     * Funcion que muestra todos los alumnos
+     * @return lista completa de alumnos
+     */
+    public String listaAlumno(){
+        return alumnoModelo.listarTodo();
+    }
+
+    /**
      * Funcion que lista cuantos alumnos estan registrados
      * @return numero de alumnos en lista
      */
-    public int listarAlumno(){
+    public int numeroAlumno(){
         return alumnoModelo.recuento();
     }
 

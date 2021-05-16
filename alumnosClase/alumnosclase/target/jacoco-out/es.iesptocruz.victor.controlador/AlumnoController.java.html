@@ -61,11 +61,19 @@ public class AlumnoController {
     }
 
     /**
+     * Funcion que muestra todos los alumnos
+     * @return lista completa de alumnos
+     */
+    public String listaAlumno(){
+<span class="nc" id="L68">        return alumnoModelo.listarTodo();</span>
+    }
+
+    /**
      * Funcion que lista cuantos alumnos estan registrados
      * @return numero de alumnos en lista
      */
-    public int listarAlumno(){
-<span class="fc" id="L68">        return alumnoModelo.recuento();</span>
+    public int numeroAlumno(){
+<span class="fc" id="L76">        return alumnoModelo.recuento();</span>
     }
 
     /**
@@ -76,20 +84,20 @@ public class AlumnoController {
      * @throws AlumnoException controlado
      */
     public String validar(Alumno alumno) throws AlumnoException {
-<span class="fc" id="L79">        String respuesta = &quot;&quot;;</span>
-<span class="pc bpc" id="L80" title="3 of 6 branches missed.">        if (alumno.getNombre() == &quot;&quot; | alumno.getNombre() == null) {</span>
-<span class="nc" id="L81">            respuesta = &quot;El nombre no puede estar vacio o nulo&quot;;</span>
+<span class="fc" id="L87">        String respuesta = &quot;&quot;;</span>
+<span class="pc bpc" id="L88" title="3 of 6 branches missed.">        if (alumno.getNombre() == &quot;&quot; | alumno.getNombre() == null) {</span>
+<span class="nc" id="L89">            respuesta = &quot;El nombre no puede estar vacio o nulo&quot;;</span>
         }
-<span class="pc bpc" id="L83" title="3 of 6 branches missed.">        if (alumno.getApellido() == &quot;&quot; | alumno.getApellido() == null) {</span>
-<span class="nc" id="L84">            respuesta += &quot;El apellido no puede estar vacio o nulo&quot;;</span>
+<span class="pc bpc" id="L91" title="3 of 6 branches missed.">        if (alumno.getApellido() == &quot;&quot; | alumno.getApellido() == null) {</span>
+<span class="nc" id="L92">            respuesta += &quot;El apellido no puede estar vacio o nulo&quot;;</span>
         }
-<span class="pc bpc" id="L86" title="3 of 6 branches missed.">        if (alumno.getNombre() == null | alumno.getNumero() == 0) {</span>
-<span class="nc" id="L87">            respuesta += &quot;El numero no puede ser nulo o estar vacio&quot;;</span>
+<span class="pc bpc" id="L94" title="3 of 6 branches missed.">        if (alumno.getNombre() == null | alumno.getNumero() == 0) {</span>
+<span class="nc" id="L95">            respuesta += &quot;El numero no puede ser nulo o estar vacio&quot;;</span>
         }
-<span class="pc bpc" id="L89" title="1 of 2 branches missed.">        if (!respuesta.isEmpty()) {</span>
-<span class="nc" id="L90">            throw new AlumnoException(respuesta);</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">        if (!respuesta.isEmpty()) {</span>
+<span class="nc" id="L98">            throw new AlumnoException(respuesta);</span>
         }
-<span class="fc" id="L92">        return respuesta;</span>
+<span class="fc" id="L100">        return respuesta;</span>
     }
 
     // public void existeAlumno(Alumno alumno){

@@ -17,6 +17,7 @@ import es.iesptocruz.victor.excepciones.FicheroException;
 public class AlumnoTest {
     AlumnoController alumnoController;
     Alumno alumno;
+    String esperado="Alumno [apellido=Pérez, nombre=Cambiado, numero=1]";
 
     @BeforeEach
     public void setUp() throws FicheroException, AlumnoException {
@@ -33,7 +34,7 @@ public class AlumnoTest {
     @Test
     public void aniadirTest() {
         try {
-            assertEquals(1, alumnoController.listarAlumno(), "Debe haber un alumno");
+            assertEquals(1, alumnoController.numeroAlumno(), "Debe haber un alumno");
         } catch (Exception ex) {
             fail("Algo ha fallado");
         }
@@ -46,7 +47,7 @@ public class AlumnoTest {
     public void eliminarTest() {
         try {
             alumnoController.eliminarAlumno(alumno);
-            assertEquals(0, alumnoController.listarAlumno(), "No debe haber alumnos");
+            assertEquals(0, alumnoController.numeroAlumno(), "No debe haber alumnos");
         } catch (Exception ex) {
             fail("Algo ha fallado");
         }
@@ -59,11 +60,17 @@ public class AlumnoTest {
     public void modificarTest() {
         try {
             alumnoController.modificarAlumno(alumno);
-            String esperado="Alumno [apellido=Pérez, nombre=Cambiado, numero=1]";
             assertEquals(esperado, alumnoController.buscarAlumno(alumno),
             "No debe haber alumnos");
         } catch (Exception ex) {
             fail("Algo ha fallado");
         }
+    }
+
+    /**
+     * Test que muestra que listar los alumnos funciona
+     */
+    public void listarTest() {
+        assertEquals(esperado, alumnoController.listaAlumno(),"Debe salir la lista");
     }
 }
