@@ -19,13 +19,8 @@ public abstract class Bbdd {
     private String vehiculo = null;
     private String password = null;
     private String driver = null;
-    private static final String CREATE_TABLE_ALUMNOS="CREATE TABLE if not exists Alumno ("+
-        " PersonID int,"+
-        " LastName varchar(255),"+
-        " FirstName varchar(255),"+
-        " Address varchar(255),"+
-        " City varchar(255)"+
-    ");";
+    private static final String CREATE_TABLE_ALUMNOS = "CREATE TABLE if not exists Alumno (" + " nombre varchar(255),"
+            + " apellido varchar(255)," + " numero int" + ");";
 
     /**
      * Constructor por defecto
@@ -85,10 +80,9 @@ public abstract class Bbdd {
 
             while (resultSet.next()) {
                 Alumno alumno = new Alumno();
-                alumno.setIdentificador(resultSet.getString("identificador"));
                 alumno.setNombre(resultSet.getString("nombre"));
-                alumno.setApellidos(resultSet.getString("apellidos"));
-                alumno.setEdad(resultSet.getInt("edad"));
+                alumno.setApellido(resultSet.getString("apellido"));
+                alumno.setNumero(resultSet.getInt("numero"));
                 lista.add(alumno);
             }
         } catch (SQLException exception) {
@@ -144,16 +138,38 @@ public abstract class Bbdd {
         }
     }
 
-    public void add(Alumno alumno) {
+    /**
+     * Metodo para aniadir un alumno a la bbdd
+     * @param alumno a insertar
+     * @throws PersistenciaException controlado
+     */
+    public void add(Alumno alumno) throws PersistenciaException {
+        String sql="insert into Alumno values("+alumno.getNombre()+
+        ","+alumno.getApellido()+""+alumno.getNumero()+");";
+        update(sql);
     }
 
-    public void remove(Alumno alumno) {
+    /**
+     * Metodo para eliminar un registro de la bbdd
+     * @param alumno a eliminar
+     * @throws PersistenciaException controlado
+     */
+    public void remove(Alumno alumno) throws PersistenciaException {
+        String sql="delete from Alumno where nombre like '%"+alumno.getNombre()+"%';";
+        update(sql);
     }
 
+    /**
+     * Funcion que busca si existe en alumno
+     * @param alumno a buscar
+     * @return true or false
+     */
     public boolean existe(Alumno alumno) {
+        String sql="select * from Alumno where nombre like '%"+alumno.getNombre()+"%';";
         return false;
     }
 
     public void actualizar(Alumno alumno) {
+        
     }
 }
