@@ -1,6 +1,10 @@
 /home/victor/java-repaso/alumnosClase/alumnosclase/src/main/java/es/iesptocruz/victor/controlador/AlumnoController.java
+/home/victor/java-repaso/alumnosClase/alumnosclase/src/main/java/es/iesptocruz/victor/excepciones/PersistenciaException.java
+/home/victor/java-repaso/alumnosClase/alumnosclase/src/main/java/es/iesptocruz/victor/modelo/SqliteDB.java
 /home/victor/java-repaso/alumnosClase/alumnosclase/src/main/java/es/iesptocruz/victor/excepciones/AlumnoException.java
 /home/victor/java-repaso/alumnosClase/alumnosclase/src/main/java/es/iesptocruz/victor/excepciones/FicheroException.java
+/home/victor/java-repaso/alumnosClase/alumnosclase/src/main/java/es/iesptocruz/victor/modelo/Bbdd.java
 /home/victor/java-repaso/alumnosClase/alumnosclase/src/main/java/es/iesptocruz/victor/modelo/AlumnoModelo.java
+/home/victor/java-repaso/alumnosClase/alumnosclase/src/main/java/es/iesptocruz/victor/vista/App.java
 /home/victor/java-repaso/alumnosClase/alumnosclase/src/main/java/es/iesptocruz/victor/api/Alumno.java
 /home/victor/java-repaso/alumnosClase/alumnosclase/src/main/java/es/iesptocruz/victor/modelo/Fichero.java

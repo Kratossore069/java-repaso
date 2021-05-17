@@ -13,13 +13,19 @@ import java.util.ArrayList;
 import es.iesptocruz.victor.api.Alumno;
 import es.iesptocruz.victor.excepciones.PersistenciaException;
 
-
 public abstract class Bbdd {
     private String url = null;
     private Connection connection = null;
     private String vehiculo = null;
     private String password = null;
     private String driver = null;
+    private static final String CREATE_TABLE_ALUMNOS="CREATE TABLE if not exists Alumno ("+
+        " PersonID int,"+
+        " LastName varchar(255),"+
+        " FirstName varchar(255),"+
+        " Address varchar(255),"+
+        " City varchar(255)"+
+    ");";
 
     /**
      * Constructor por defecto
@@ -28,12 +34,14 @@ public abstract class Bbdd {
      * @param usuario  de la bbdd
      * @param password de la bbdd
      * @param driver   de la bbdd
+     * @throws PersistenciaException
      */
-    public Bbdd(String url, String usuario, String password, String driver) {
+    public Bbdd(String url, String usuario, String password, String driver) throws PersistenciaException {
         this.url = url;
         this.vehiculo = usuario;
         this.password = password;
         this.driver = driver;
+        update(CREATE_TABLE_ALUMNOS);
     }
 
     /**
@@ -112,27 +120,40 @@ public abstract class Bbdd {
     }
 
     /**
-    * Metodo encargado de realizar el cierre de la conexion con la BBDD
-    * 
-    * @param connection contra la BBDD
-    * @param statement  de la operacion
-    * @param resultSet  resultado
-    * @throws PersistenciaException error controlado
-    */
-   private void closeConecction(Connection connection, Statement statement, ResultSet resultSet) throws PersistenciaException {
-    try {
-       if (resultSet != null) {
-          resultSet.close();
-       }
-       if (statement != null) {
-          statement.close();
-       }
-       if (connection != null) {
-          connection.close();
-       }
-    } catch (Exception e) {
-       throw new PersistenciaException("Se ha producido un error cerrando la sesion con la BBDD");
+     * Metodo encargado de realizar el cierre de la conexion con la BBDD
+     * 
+     * @param connection contra la BBDD
+     * @param statement  de la operacion
+     * @param resultSet  resultado
+     * @throws PersistenciaException error controlado
+     */
+    private void closeConecction(Connection connection, Statement statement, ResultSet resultSet)
+            throws PersistenciaException {
+        try {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (Exception e) {
+            throw new PersistenciaException("Se ha producido un error cerrando la sesion con la BBDD");
+        }
     }
 
- }
+    public void add(Alumno alumno) {
+    }
+
+    public void remove(Alumno alumno) {
+    }
+
+    public boolean existe(Alumno alumno) {
+        return false;
+    }
+
+    public void actualizar(Alumno alumno) {
+    }
 }

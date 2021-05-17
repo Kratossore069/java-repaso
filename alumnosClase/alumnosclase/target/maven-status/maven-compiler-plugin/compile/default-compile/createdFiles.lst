@@ -1,6 +1,1 @@
-es/iesptocruz/victor/excepciones/FicheroException.class
-es/iesptocruz/victor/controlador/AlumnoController.class
-es/iesptocruz/victor/modelo/Fichero.class
-es/iesptocruz/victor/api/Alumno.class
-es/iesptocruz/victor/excepciones/AlumnoException.class
-es/iesptocruz/victor/modelo/AlumnoModelo.class
+es/iesptocruz/victor/excepciones/PersistenciaException.class

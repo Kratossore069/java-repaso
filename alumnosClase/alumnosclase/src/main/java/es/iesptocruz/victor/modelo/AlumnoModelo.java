@@ -7,18 +7,13 @@ import es.iesptocruz.victor.excepciones.FicheroException;
 
 public class AlumnoModelo {
 
-    ArrayList<Alumno> lista;
-    Fichero fichero;
-    private String destino="listaAlumnos.txt";
+    SqliteDB persistencia;
 
     /**
      * Constructor por defecto
-     * @throws FicheroException controlado
      */
-    public AlumnoModelo() throws FicheroException{
-        lista=new ArrayList<>();
-        fichero=new Fichero();
-        fichero.crear(destino, "");
+    public AlumnoModelo(){
+        persistencia=new SqliteDB("jdbc:sqlite:usuario.db", null, null, "org.sqlite.JDBC");
     }
 
     /**
@@ -27,8 +22,7 @@ public class AlumnoModelo {
      * @throws FicheroException controlado
      */
     public void aniadir(Alumno alumno) throws FicheroException{
-        lista.add(alumno);
-        fichero.crear(destino, alumno.toString());
+        persistencia.add(alumno);
     }
 
     /**
@@ -36,7 +30,7 @@ public class AlumnoModelo {
      * @param alumno a eliminar
      */
     public void eliminar(Alumno alumno){
-        lista.remove(alumno);
+        persistencia.remove(alumno);
     }
 
     /**
@@ -44,8 +38,8 @@ public class AlumnoModelo {
      * @param alumno a buscar y modificar
      */
     public void modificar(Alumno alumno){
-        if(lista.contains(alumno))
-            alumno.setNombre("Cambiado");
+        if(persistencia.existe(alumno))
+            persistencia.actualizar(alumno);
     }
 
     /**
@@ -53,28 +47,8 @@ public class AlumnoModelo {
      * @param alumno a buscar
      * @return resultado o no
      */
-    public String buscar(Alumno alumno){
-        String resultado=null;
-        for(int i=0; i<lista.size();i++){
-            if(lista.contains(alumno))
-                resultado=lista.get(i).toString();
-        }
-        return resultado;
-    }
-
-    /**
-     * Funcion que muestra todos los alumnos
-     * @return lista en texto
-     */
-    public String listarTodo(){
-        return lista.toString();
-    }
-
-    /**
-     * Recuento de los alumnos inscritos
-     * @return numero de alumnos
-     */
-    public int recuento(){
-        return lista.size();
+    public Alumno buscar(String identificador){
+        Alumno alumno=null;
+        return alumno;
     }
 }
