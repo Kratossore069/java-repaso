@@ -162,14 +162,22 @@ public abstract class Bbdd {
     /**
      * Funcion que busca si existe en alumno
      * @param alumno a buscar
-     * @return true or false
+     * @throws PersistenciaException controlado
      */
-    public boolean existe(Alumno alumno) {
+    public void existe(Alumno alumno) throws PersistenciaException {
         String sql="select * from Alumno where nombre like '%"+alumno.getNombre()+"%';";
-        return false;
+        update(sql);
     }
 
-    public void actualizar(Alumno alumno) {
-        
+    /**
+     * Metodo que actualiza el numero de un alumno
+     * @param alumno a buscar
+     * @param numero que cambiar
+     * @throws PersistenciaException controlado
+     */
+    public void actualizar(Alumno alumno,int numero) throws PersistenciaException {
+        String sql="update Alumno set numero="+numero+
+        " where nombre like %"+alumno.getNombre()+"%;";
+        update(sql);
     }
 }
