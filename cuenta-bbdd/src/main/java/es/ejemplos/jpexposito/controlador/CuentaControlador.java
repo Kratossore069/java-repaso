@@ -10,4 +10,5 @@ public class CuentaControlador {
    public CuentaControlador() throws PersistenciaException {
       cuentaModelo = new CuentaModelo();
    }
+   
 }
