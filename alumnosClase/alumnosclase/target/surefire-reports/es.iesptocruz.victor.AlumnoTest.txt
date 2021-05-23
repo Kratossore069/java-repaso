@@ -1,0 +1,22 @@
+-------------------------------------------------------------------------------
+Test set: es.iesptocruz.victor.AlumnoTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.328 s <<< FAILURE! - in es.iesptocruz.victor.AlumnoTest
+aniadirTest  Time elapsed: 0.218 s  <<< ERROR!
+es.iesptocruz.victor.excepciones.PersistenciaException: No se ha podido estabalecer la conexion
+	at es.iesptocruz.victor.AlumnoTest.setUp(AlumnoTest.java:29)
+Caused by: java.lang.ClassNotFoundException: org.sqlite.JDBC
+	at es.iesptocruz.victor.AlumnoTest.setUp(AlumnoTest.java:29)
+
+modificarTest  Time elapsed: 0.018 s  <<< ERROR!
+es.iesptocruz.victor.excepciones.PersistenciaException: No se ha podido estabalecer la conexion
+	at es.iesptocruz.victor.AlumnoTest.setUp(AlumnoTest.java:29)
+Caused by: java.lang.ClassNotFoundException: org.sqlite.JDBC
+	at es.iesptocruz.victor.AlumnoTest.setUp(AlumnoTest.java:29)
+
+eliminarTest  Time elapsed: 0.009 s  <<< ERROR!
+es.iesptocruz.victor.excepciones.PersistenciaException: No se ha podido estabalecer la conexion
+	at es.iesptocruz.victor.AlumnoTest.setUp(AlumnoTest.java:29)
+Caused by: java.lang.ClassNotFoundException: org.sqlite.JDBC
+	at es.iesptocruz.victor.AlumnoTest.setUp(AlumnoTest.java:29)
+

@@ -114,6 +114,32 @@ public abstract class Bbdd {
     }
 
     /**
+     * Funcion que muestra datos por pantalla
+     * @param sql sentencia a crear
+     * @return resultados en String
+     * @throws PersistenciaException
+     * @throws SQLException
+     */
+    public String updateSelect(String sql) throws PersistenciaException, SQLException{
+        Statement statement = null;
+        ResultSet resultSet=null;
+        String resultado=null;
+
+        connection = getConnection();
+        statement = connection.prepareStatement(sql);
+        resultSet = statement.executeQuery(sql);
+
+            if(resultSet.next()){
+                while (resultSet.next()) {
+                    resultado=resultSet.getString("nombre");
+                    resultado+=resultSet.getString("apellido");
+                    resultado+=resultSet.getInt("numero");
+                }
+            }
+        return resultado;
+    }
+
+    /**
      * Metodo encargado de realizar el cierre de la conexion con la BBDD
      * 
      * @param connection contra la BBDD
@@ -185,11 +211,24 @@ public abstract class Bbdd {
     }
 
     /**
-     * Metodo para listar todo lo de la bbdd
+     * Funcion que retorna lo agregado en la bbdd
+     * @return String con lso datos de la bbdd
+     * @throws SQLException controlado
      * @throws PersistenciaException controlado
      */
-    public void mostrarTodo() throws PersistenciaException{
-        String sql="select * from Alumno";
-        update(sql);
+    public String mostrarTodo() throws PersistenciaException, SQLException{
+        String sql = "select * from Alumno";
+        return updateSelect(sql);
+    }
+
+    /**
+     * Funcion que retorna el numero de registros
+     * @return numero de registros
+     * @throws PersistenciaException controlado
+     * @throws SQLException controlado
+     */
+    public String numeroRegistros() throws PersistenciaException, SQLException{
+        String sql="select count(*) from Alumno";
+        return updateSelect(sql);
     }
 }

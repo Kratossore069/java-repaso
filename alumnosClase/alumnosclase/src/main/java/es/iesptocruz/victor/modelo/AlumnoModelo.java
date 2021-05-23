@@ -1,5 +1,6 @@
 package es.iesptocruz.victor.modelo;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import es.iesptocruz.victor.api.Alumno;
@@ -57,11 +58,23 @@ public class AlumnoModelo {
         return persistencia.buscar(identificador);
     }
 
-    public String listarTodo() throws PersistenciaException {
+    /**
+     * Funcion que muestra todo lo de la lista
+     * @return String con los datos de la bbdd
+     * @throws PersistenciaException controlado
+     * @throws SQLException controlado
+     */
+    public String listarTodo() throws PersistenciaException, SQLException {
         return persistencia.mostrarTodo();
     }
 
-    public int recuento() {
-        return 0;
+    /**
+     * Funcion que cuenta el numero de registros dentro de la bbdd
+     * @return numero de registros
+     * @throws PersistenciaException controlado
+     * @throws SQLException controlado
+     */
+    public String recuento() throws PersistenciaException, SQLException {
+        return persistencia.numeroRegistros();
     }
 }
