@@ -68,7 +68,7 @@ public abstract class Bbdd {
      * @return lista resultados (0..n) Usuasios
      * @throws PersistenciaException error controlado
      */
-    private ArrayList<Alumno> buscar(String sql) throws PersistenciaException {
+    public ArrayList<Alumno> buscar(String sql) throws PersistenciaException {
         ArrayList<Alumno> lista = new ArrayList<>();
         Statement statement = null;
         ResultSet resultSet = null;
@@ -140,44 +140,56 @@ public abstract class Bbdd {
 
     /**
      * Metodo para aniadir un alumno a la bbdd
+     * 
      * @param alumno a insertar
      * @throws PersistenciaException controlado
      */
     public void add(Alumno alumno) throws PersistenciaException {
-        String sql="insert into Alumno values("+alumno.getNombre()+
-        ","+alumno.getApellido()+""+alumno.getNumero()+");";
+        String sql = "insert into Alumno values(" + alumno.getNombre() + "," + alumno.getApellido() + ""
+                + alumno.getNumero() + ");";
         update(sql);
     }
 
     /**
      * Metodo para eliminar un registro de la bbdd
+     * 
      * @param alumno a eliminar
      * @throws PersistenciaException controlado
      */
     public void remove(Alumno alumno) throws PersistenciaException {
-        String sql="delete from Alumno where nombre like '%"+alumno.getNombre()+"%';";
+        String sql = "delete from Alumno where nombre like '%" + alumno.getNombre() + "%';";
         update(sql);
     }
 
     /**
      * Funcion que busca si existe en alumno
+     * 
      * @param alumno a buscar
      * @throws PersistenciaException controlado
      */
     public void existe(Alumno alumno) throws PersistenciaException {
-        String sql="select * from Alumno where nombre like '%"+alumno.getNombre()+"%';";
+        String sql = "select * from Alumno where nombre like '%" + alumno.getNombre() + "%';";
         update(sql);
     }
 
     /**
      * Metodo que actualiza el numero de un alumno
+     * 
      * @param alumno a buscar
      * @param numero que cambiar
      * @throws PersistenciaException controlado
      */
-    public void actualizar(Alumno alumno,int numero) throws PersistenciaException {
-        String sql="update Alumno set numero="+numero+
-        " where nombre like %"+alumno.getNombre()+"%;";
+    public void actualizar(Alumno alumno, int numero) throws PersistenciaException {
+        String sql = "update Alumno set numero=" + numero + " where nombre like %" + alumno.getNombre() + "%;";
+        update(sql);
+    }
+
+    /**
+     * Metodo para listar todo lo de la bbdd
+     * @throws PersistenciaException controlado
+     */
+    public void mostrarTodo() throws PersistenciaException{
+        String sql="select * from Alumno";
         update(sql);
     }
 }

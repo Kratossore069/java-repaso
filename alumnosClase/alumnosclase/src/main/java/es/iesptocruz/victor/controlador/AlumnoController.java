@@ -1,8 +1,11 @@
 package es.iesptocruz.victor.controlador;
 
+import java.util.ArrayList;
+
 import es.iesptocruz.victor.api.Alumno;
 import es.iesptocruz.victor.excepciones.AlumnoException;
 import es.iesptocruz.victor.excepciones.FicheroException;
+import es.iesptocruz.victor.excepciones.PersistenciaException;
 import es.iesptocruz.victor.modelo.AlumnoModelo;
 
 public class AlumnoController {
@@ -54,10 +57,11 @@ public class AlumnoController {
      * @param alumno a buscar
      * @return datos o no del alumno
      * @throws AlumnoException controlado
+     * @throws PersistenciaException
      */
-    public String buscarAlumno(Alumno alumno) throws AlumnoException{
+    public ArrayList<Alumno> buscarAlumno(Alumno alumno) throws AlumnoException, PersistenciaException{
         validar(alumno);
-        return alumnoModelo.buscar(alumno);
+        return alumnoModelo.buscar(alumno.getNombre());
     }
 
     /**

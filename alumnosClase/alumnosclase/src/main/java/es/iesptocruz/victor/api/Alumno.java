@@ -17,6 +17,11 @@ public class Alumno {
         this.numero = numero;
     }
 
+    /**
+     * Constructor vacio
+     */
+    public Alumno(){}
+
     @Override
     public String toString() {
         return "Alumno [apellido=" + apellido + ", nombre=" + nombre + ", numero=" + numero + "]";

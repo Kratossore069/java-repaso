@@ -17,19 +17,19 @@ public class AppVista {
         int opcion = sc.nextInt();
         switch (opcion) {
             case 1:
-                Cuenta cuentaNueva=inserteDatos();
+                Cuenta cuentaNueva=pedirDatos();
                 controlador.aniadirCuenta(cuentaNueva);
                 break;
             case 2:
-                Cuenta cuentaEliminar=inserteDatos();
+                Cuenta cuentaEliminar=pedirDatos();
                 controlador.eliminarCuenta(cuentaEliminar);
                 break;
             case 3:
-                Cuenta cuentaBuscar=inserteDatos();
+                Cuenta cuentaBuscar=pedirDatos();
                 controlador.buscarCuenta(cuentaBuscar);
                 break;
             case 4:
-                Cuenta cuentaActualizar=inserteDatos();
+                Cuenta cuentaActualizar=pedirDatos();
                 controlador.actualizaCuenta(cuentaActualizar);
                 break;
             case 0:
@@ -42,7 +42,7 @@ public class AppVista {
      * 
      * @return los datos recibidos
      */
-    public static Cuenta inserteDatos() {
+    public static Cuenta pedirDatos() {
         System.out.println("Codigo: ");
         String codigo = sc.nextLine();
         System.out.println("Nombre del cliente: ");
@@ -52,5 +52,11 @@ public class AppVista {
         System.out.println("Saldo: ");
         double saldo = sc.nextDouble();
         return new Cuenta(codigo, nombre, email, saldo);
+    }
+
+    public static String buscarCodigo(){
+        System.out.println("Codigo: ");
+        String codigo = sc.nextLine();
+        return codigo;
     }
 }
