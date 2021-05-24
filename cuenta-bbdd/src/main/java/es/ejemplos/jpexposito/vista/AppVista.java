@@ -54,6 +54,10 @@ public class AppVista {
         return new Cuenta(codigo, nombre, email, saldo);
     }
 
+    /**
+     * Funcion que pide datos para eliminar
+     * @return codigo para eliminar de la bbdd
+     */
     public static String buscarCodigo(){
         System.out.println("Codigo: ");
         String codigo = sc.nextLine();

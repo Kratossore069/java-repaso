@@ -18,7 +18,7 @@ public class CuentaControlador {
     * @throws PersistenciaException controlado
     */
    public void aniadirCuenta(Cuenta cuenta) throws PersistenciaException{
-      validarTodo(cuenta);
+      validarCampos(cuenta);
       cuentaModelo.insertar(cuenta);
    }
 
@@ -28,7 +28,7 @@ public class CuentaControlador {
     * @throws PersistenciaException controlado
     */
    public void eliminarCuenta(Cuenta cuenta) throws PersistenciaException{
-      validarTodo(cuenta);
+      validarCampos(cuenta);
       cuentaModelo.eliminar(cuenta);
    }
 
@@ -39,7 +39,7 @@ public class CuentaControlador {
     * @throws PersistenciaException controlado
     */
    public Cuenta buscarCuenta(Cuenta cuenta) throws PersistenciaException{
-      validarTodo(cuenta);
+      validarCampos(cuenta);
       return cuentaModelo.buscar(cuenta.getCodigo());
    }
 
@@ -49,7 +49,7 @@ public class CuentaControlador {
     * @throws PersistenciaException controlado
     */
    public void actualizaCuenta(Cuenta cuenta) throws PersistenciaException{
-      validarTodo(cuenta);
+      validarCampos(cuenta);
       cuentaModelo.actualizar(cuenta);
    }
 
@@ -58,7 +58,7 @@ public class CuentaControlador {
     * @param cuenta a evaluar
     * @throws PersistenciaException controlado
     */
-   public void validarTodo(Cuenta cuenta) throws PersistenciaException{
+   public void validarCampos(Cuenta cuenta) throws PersistenciaException{
       if(cuenta==null || cuentaModelo.buscar(cuenta.getCodigo())==null)
          throw new PersistenciaException("Error");
    }

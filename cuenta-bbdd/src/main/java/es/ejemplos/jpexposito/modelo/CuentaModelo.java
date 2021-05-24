@@ -1,5 +1,7 @@
 package es.ejemplos.jpexposito.modelo;
 
+import java.sql.SQLException;
+
 import es.ejemplos.jpexposito.api.Cuenta;
 import es.ejemplos.jpexposito.exception.PersistenciaException;
 
@@ -37,6 +39,14 @@ public class CuentaModelo{
             persistencia.update(sql);
    }
 
-
+   /**
+    * Metodo que muestra todos los campos de la bbdd
+    * @throws PersistenciaException
+    * @throws SQLException
+    */
+   public void mostrar() throws PersistenciaException, SQLException {
+      String sql = "select * from "+TABLA;
+      persistencia.mostrar(sql);
+   }
    
 }

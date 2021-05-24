@@ -9,13 +9,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.mysql.cj.protocol.Resultset;
+
 import es.ejemplos.jpexposito.api.Cuenta;
 import es.ejemplos.jpexposito.exception.PersistenciaException;
 
 public abstract class DdBbRefactorizado {
 
    private static final String TABLE = "TABLE";
-   private static final String TABLE_NAME= "TABLE_NAME";
+   private static final String TABLE_NAME = "TABLE_NAME";
 
    protected String nombreTabla;
    protected String clave;
@@ -24,7 +26,8 @@ public abstract class DdBbRefactorizado {
    protected String usuario;
    protected String password;
 
-   public DdBbRefactorizado(String nombreTabla, String clave, String driver, String urlConexion, String usuario, String password) throws PersistenciaException {
+   public DdBbRefactorizado(String nombreTabla, String clave, String driver, String urlConexion, String usuario,
+         String password) throws PersistenciaException {
       this.nombreTabla = nombreTabla;
       this.clave = clave;
       this.driver = driver;
@@ -34,7 +37,6 @@ public abstract class DdBbRefactorizado {
       inicializarTabla(nombreTabla);
    }
 
-
    private void inicializarTabla(String tabla) throws PersistenciaException {
       DatabaseMetaData databaseMetaData;
       Connection connection = null;
@@ -43,23 +45,20 @@ public abstract class DdBbRefactorizado {
       try {
          connection = getConnection();
          databaseMetaData = connection.getMetaData();
-         resultSet = databaseMetaData.getTables(null, null, null, new String[] {TABLE});
+         resultSet = databaseMetaData.getTables(null, null, null, new String[] { TABLE });
          while (resultSet.next()) {
             listaTablas.add(resultSet.getString("TABLE_NAME"));
-        }
-        if (!listaTablas.contains(tabla)) {
-           //Crear tabla cuenta
-           String sqlCrearTabla = "CREATE TABLE IF NOT EXISTS CUENTA ("
-            + " codigo VARCHAR(50) PRIMARY KEY,"
-            + "cliente VARCHAR(9) NOT NULL,"
-            + "email VARCHAR(50) NOT NULL,"
-            + "saldo DOUBLE NOT NULL);";
-           update(sqlCrearTabla);
-           //Extraer de fichero las sentencias sql para insertar en la BBDD
-           //String sqlInsertarDatos = null;
-           //update(sqlInsertarDatos);
-           //Insertar datos
-        }
+         }
+         if (!listaTablas.contains(tabla)) {
+            // Crear tabla cuenta
+            String sqlCrearTabla = "CREATE TABLE IF NOT EXISTS CUENTA (" + " codigo VARCHAR(50) PRIMARY KEY,"
+                  + "cliente VARCHAR(9) NOT NULL," + "email VARCHAR(50) NOT NULL," + "saldo DOUBLE NOT NULL);";
+            update(sqlCrearTabla);
+            // Extraer de fichero las sentencias sql para insertar en la BBDD
+            // String sqlInsertarDatos = null;
+            // update(sqlInsertarDatos);
+            // Insertar datos
+         }
 
       } catch (Exception e) {
          throw new PersistenciaException("Se ha producido un error en la inicializacion de la BBDD", e);
@@ -71,6 +70,7 @@ public abstract class DdBbRefactorizado {
 
    /**
     * Funcion encargada de realizar la conexion con la BBDD
+    * 
     * @return conexion abierta
     * @throws PersistenciaException
     */
@@ -87,7 +87,7 @@ public abstract class DdBbRefactorizado {
       } catch (ClassNotFoundException | SQLException exception) {
          throw new PersistenciaException("No se ha podido estabalecer la conexion", exception);
       }
-      
+
       return connection;
    }
 
@@ -100,7 +100,7 @@ public abstract class DdBbRefactorizado {
     */
    public Object buscarElemento(String identificador) throws PersistenciaException {
       Object elemento = null;
-      String sql = "SELECT * FROM "+this.nombreTabla+" WHERE "+this.clave+"='"+identificador+"'";
+      String sql = "SELECT * FROM " + this.nombreTabla + " WHERE " + this.clave + "='" + identificador + "'";
       ArrayList<Object> lista = buscar(sql);
       if (!lista.isEmpty()) {
          elemento = lista.get(0);
@@ -110,15 +110,18 @@ public abstract class DdBbRefactorizado {
 
    /**
     * Funcion que obtiene todos los usuarios de la BBDD
+    * 
     * @return lista usuarios
     * @throws PersistenciaException error controlado
     */
-    public ArrayList<Object> buscarTodos() throws PersistenciaException {
+   public ArrayList<Object> buscarTodos() throws PersistenciaException {
       String sql = "SELECT * FROM " + this.nombreTabla;
       return buscar(sql);
    }
+
    /**
     * Funcion que realiza una consulta sobre una sentencia sql dada
+    * 
     * @param sql de la consulta
     * @return lista resultados (0..n) Usuasios
     * @throws PersistenciaException error controlado
@@ -133,7 +136,7 @@ public abstract class DdBbRefactorizado {
          statement = connection.prepareStatement(sql);
          resultSet = statement.executeQuery();
 
-         while(resultSet.next()) {
+         while (resultSet.next()) {
             Cuenta cuenta = new Cuenta();
             cuenta.setCodigo(resultSet.getString("codigo"));
             cuenta.setCliente(resultSet.getString("cliente"));
@@ -150,7 +153,9 @@ public abstract class DdBbRefactorizado {
    }
 
    /**
-    * Metodo encargado de realizar las inserciones/modificaciones/eliminacion de la BBDD
+    * Metodo encargado de realizar las inserciones/modificaciones/eliminacion de la
+    * BBDD
+    * 
     * @param sql con la sentencia
     * @throws PersistenciaException error controlado
     */
@@ -158,7 +163,7 @@ public abstract class DdBbRefactorizado {
       PreparedStatement statement = null;
       Connection connection = null;
       try {
-         connection= getConnection();
+         connection = getConnection();
          statement = connection.prepareStatement(sql);
          statement.executeUpdate();
       } catch (SQLException exception) {
@@ -176,7 +181,8 @@ public abstract class DdBbRefactorizado {
     * @param resultSet  resultado
     * @throws PersistenciaException error controlado
     */
-   private void closeConecction(Connection connection, Statement statement, ResultSet resultSet) throws PersistenciaException {
+   private void closeConecction(Connection connection, Statement statement, ResultSet resultSet)
+         throws PersistenciaException {
       try {
          if (resultSet != null) {
             resultSet.close();
@@ -193,5 +199,31 @@ public abstract class DdBbRefactorizado {
 
    }
 
+   /**
+    * Funcion que hace un select de todos los campos
+    * @param sql sentencia a buscar
+    * @return retorna un String con los datos de la bbdd
+    * @throws PersistenciaException controlado
+    * @throws SQLException controlado
+    */
+   public String mostrar(String sql) throws PersistenciaException, SQLException {
+      Statement statement = null;
+      ResultSet resultSet = null;
+      String resultado = null;
+
+      Connection connection = getConnection();
+      statement = connection.prepareStatement(sql);
+      resultSet = statement.executeQuery(sql);
+
+      if (resultSet.next()) {
+         while (resultSet.next()) {
+            resultado = resultSet.getString("codigo");
+            resultado += resultSet.getString("cliente");
+            resultado += resultSet.getInt("email");
+            resultado += resultSet.getInt("saldo");
+         }
+      }
+      return resultado;
+   }
 
 }
