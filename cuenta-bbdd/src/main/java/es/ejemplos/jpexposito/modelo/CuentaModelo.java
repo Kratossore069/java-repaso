@@ -14,7 +14,6 @@ public class CuentaModelo{
    
    public CuentaModelo() throws PersistenciaException {
       persistencia = new DdBbSqLite(TABLA, CLAVE, null, null);
-      
    }
 
    public void insertar(Cuenta cuenta) throws PersistenciaException {

@@ -1,5 +1,7 @@
 package es.ejemplos.jpexposito.controlador;
 
+import java.sql.SQLException;
+
 import es.ejemplos.jpexposito.api.Cuenta;
 import es.ejemplos.jpexposito.exception.PersistenciaException;
 import es.ejemplos.jpexposito.modelo.CuentaModelo;
@@ -30,6 +32,15 @@ public class CuentaControlador {
    public void eliminarCuenta(Cuenta cuenta) throws PersistenciaException{
       validarCampos(cuenta);
       cuentaModelo.eliminar(cuenta);
+   }
+
+   /**
+    * Metodo para mostrar los campos de la bbdd
+    * @throws PersistenciaException error
+    * @throws SQLException controlado
+    */
+   public void mostrarTodo() throws PersistenciaException, SQLException{
+      cuentaModelo.mostrar();
    }
 
    /**

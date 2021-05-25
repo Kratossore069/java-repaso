@@ -201,27 +201,34 @@ public abstract class DdBbRefactorizado {
 
    /**
     * Funcion que hace un select de todos los campos
+    * 
     * @param sql sentencia a buscar
     * @return retorna un String con los datos de la bbdd
     * @throws PersistenciaException controlado
-    * @throws SQLException controlado
+    * @throws SQLException          controlado
     */
    public String mostrar(String sql) throws PersistenciaException, SQLException {
       Statement statement = null;
       ResultSet resultSet = null;
       String resultado = null;
+      Connection connection = null;
+      try {
+         connection = getConnection();
+         statement = connection.prepareStatement(sql);
+         resultSet = statement.executeQuery(sql);
 
-      Connection connection = getConnection();
-      statement = connection.prepareStatement(sql);
-      resultSet = statement.executeQuery(sql);
-
-      if (resultSet.next()) {
-         while (resultSet.next()) {
-            resultado = resultSet.getString("codigo");
-            resultado += resultSet.getString("cliente");
-            resultado += resultSet.getInt("email");
-            resultado += resultSet.getInt("saldo");
+         if (resultSet.next()) {
+            while (resultSet.next()) {
+               resultado = resultSet.getString("codigo");
+               resultado += resultSet.getString("cliente");
+               resultado += resultSet.getInt("email");
+               resultado += resultSet.getInt("saldo");
+            }
          }
+      } catch (PersistenciaException ex) {
+         throw new PersistenciaException("Error al ejecutar " + ex.getMessage());
+      } finally {
+         statement.close();
       }
       return resultado;
    }

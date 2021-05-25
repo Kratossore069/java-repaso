@@ -2,7 +2,6 @@ package es.ejemplos.jpexposito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.AfterEach;
@@ -19,7 +18,7 @@ public class ModeloCuentaDdBbTest {
     static CuentaModelo cuentaModelo;
     Cuenta cuenta = null;
 
-    @BeforeAll 
+    @BeforeAll
     public static void beforeAll() {
         if (cuentaModelo == null) {
             try {
@@ -27,13 +26,13 @@ public class ModeloCuentaDdBbTest {
             } catch (Exception e) {
                 fail("Se ha producido un error en el indicio de la BBDD");
             }
-           
+
         }
     }
 
     @BeforeEach
     public void crearCuenta() {
-        cuenta = new Cuenta("1", "1", "aaa@gmail.com", 5.0);
+        cuenta = new Cuenta("1", "1", "aaa@gmail.com", 5.0000);
         try {
             cuentaModelo.insertar(cuenta);
         } catch (PersistenciaException e) {
@@ -56,13 +55,13 @@ public class ModeloCuentaDdBbTest {
      * Test que busca una cuenta
      */
     @Test
-    public void buscarCuentaTest(){
+    public void buscarCuentaTest() {
         try {
             Cuenta cuentaEncontrada = cuentaModelo.buscar(cuenta.getCodigo());
             assertNotNull(cuentaEncontrada, "No se debe de obtener un elemento nulo");
             assertEquals(cuenta, cuentaEncontrada, "No se ha encontrado lo esperado");
         } catch (PersistenciaException e) {
-           fail("Se ha producido un error en la consulta del la cuenta,e:"+e.getMessage());
+            fail("Se ha producido un error en la consulta del la cuenta,e:" + e.getMessage());
         }
     }
 
@@ -70,7 +69,7 @@ public class ModeloCuentaDdBbTest {
      * Test que actualiza una cuenta
      */
     @Test
-    public void actualizarCuentaTest(){
+    public void actualizarCuentaTest() {
         try {
             Cuenta cuentaEncontrada = cuentaModelo.buscar(cuenta.getCodigo());
             assertNotNull(cuentaEncontrada, "No se debe de obtener un elemento nulo");
@@ -79,7 +78,7 @@ public class ModeloCuentaDdBbTest {
             Cuenta cuentaActualziada = cuentaModelo.buscar(cuentaEncontrada.getCodigo());
             assertEquals(cuentaActualziada, cuentaEncontrada, "No se ha encontrado lo esperado");
         } catch (PersistenciaException e) {
-           fail("Se ha producido un error en la consulta del la cuenta,e:"+e.getMessage());
+            fail("Se ha producido un error en la consulta del la cuenta,e:" + e.getMessage());
         }
     }
 
@@ -87,15 +86,15 @@ public class ModeloCuentaDdBbTest {
      * Test que inserta una nueva cuenta en el registro
      */
     @Test
-    public void insertarCuentaTest(){
+    public void insertarCuentaTest() {
         try {
             Cuenta cuentaEncontrada = cuentaModelo.buscar(cuenta.getCodigo());
             assertNotNull(cuentaEncontrada, "No se debe de obtener un elemento nulo");
-            cuentaModelo.insertar(new Cuenta("2", "2", "aab@gmail.com", 6.0)); 
+            cuentaModelo.insertar(new Cuenta("2", "2", "aab@gmail.com", 6.000000));
             Cuenta cuentaActualziada = cuentaModelo.buscar(cuentaEncontrada.getCodigo());
             assertEquals(cuentaActualziada, cuentaEncontrada, "No se ha encontrado lo esperado");
         } catch (PersistenciaException e) {
-           fail("Se ha producido un error en la consulta del la cuenta,e:"+e.getMessage());
+            fail("Se ha producido un error en la consulta del la cuenta,e:" + e.getMessage());
         }
     }
 }

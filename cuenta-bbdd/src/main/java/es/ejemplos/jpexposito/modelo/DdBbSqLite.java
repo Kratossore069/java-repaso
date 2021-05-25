@@ -13,8 +13,4 @@ public class DdBbSqLite extends DdBbRefactorizado {
    public DdBbSqLite(String nombreTabla, String clave, String usuario, String password) throws PersistenciaException {
       super(nombreTabla, clave,DRIVER, URL, usuario, password);
    }
-
-  
-
-
 }

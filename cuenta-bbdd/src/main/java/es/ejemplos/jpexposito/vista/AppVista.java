@@ -1,5 +1,6 @@
 package es.ejemplos.jpexposito.vista;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import es.ejemplos.jpexposito.api.Cuenta;
@@ -10,31 +11,32 @@ public class AppVista {
     CuentaControlador cuentaControlador;
     static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) throws PersistenciaException {
+    public static void main(String[] args) throws PersistenciaException, SQLException {
         CuentaControlador controlador = new CuentaControlador();
-        System.out.println(
-                "Ingrese un número para operar:\n1- Añadir alumno\n2- Eliminar alumno\n3- Buscar alumno\n4- Actualizar alumno\n0- Salir de la aplicación");
-        int opcion = sc.nextInt();
-        switch (opcion) {
-            case 1:
-                Cuenta cuentaNueva=pedirDatos();
-                controlador.aniadirCuenta(cuentaNueva);
-                break;
-            case 2:
-                Cuenta cuentaEliminar=pedirDatos();
-                controlador.eliminarCuenta(cuentaEliminar);
-                break;
-            case 3:
-                Cuenta cuentaBuscar=pedirDatos();
-                controlador.buscarCuenta(cuentaBuscar);
-                break;
-            case 4:
-                Cuenta cuentaActualizar=pedirDatos();
-                controlador.actualizaCuenta(cuentaActualizar);
-                break;
-            case 0:
-                break;
-        }
+        controlador.mostrarTodo();
+        // System.out.println(
+        //         "Ingrese un número para operar:\n1- Añadir alumno\n2- Eliminar alumno\n3- Buscar alumno\n4- Actualizar alumno\n0- Salir de la aplicación");
+        // int opcion = sc.nextInt();
+        // switch (opcion) {
+        //     case 1:
+        //         Cuenta cuentaNueva=pedirDatos();
+        //         controlador.aniadirCuenta(cuentaNueva);
+        //         break;
+        //     case 2:
+        //         Cuenta cuentaEliminar=pedirDatos();
+        //         controlador.eliminarCuenta(cuentaEliminar);
+        //         break;
+        //     case 3:
+        //         Cuenta cuentaBuscar=pedirDatos();
+        //         controlador.buscarCuenta(cuentaBuscar);
+        //         break;
+        //     case 4:
+        //         Cuenta cuentaActualizar=pedirDatos();
+        //         controlador.actualizaCuenta(cuentaActualizar);
+        //         break;
+        //     case 0:
+        //         break;
+        // }
     }
 
     /**
