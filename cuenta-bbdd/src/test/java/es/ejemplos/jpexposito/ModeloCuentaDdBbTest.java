@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.sql.SQLException;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -87,14 +89,30 @@ public class ModeloCuentaDdBbTest {
      */
     @Test
     public void insertarCuentaTest() {
+        Cuenta cuenta2=new Cuenta("2", "2", "aab@gmail.com", 6.000000);
         try {
-            Cuenta cuentaEncontrada = cuentaModelo.buscar(cuenta.getCodigo());
-            assertNotNull(cuentaEncontrada, "No se debe de obtener un elemento nulo");
-            cuentaModelo.insertar(new Cuenta("2", "2", "aab@gmail.com", 6.000000));
-            Cuenta cuentaActualziada = cuentaModelo.buscar(cuentaEncontrada.getCodigo());
-            assertEquals(cuentaActualziada, cuentaEncontrada, "No se ha encontrado lo esperado");
+            cuentaModelo.insertar(cuenta2);
+            Cuenta cuentaEncontrada = cuentaModelo.buscar(cuenta2.getCodigo());
+            assertEquals(cuenta2, cuentaEncontrada, "No se ha encontrado lo esperado");
         } catch (PersistenciaException e) {
             fail("Se ha producido un error en la consulta del la cuenta,e:" + e.getMessage());
+        }finally{
+            if(cuenta2!=null){
+                try {
+                    cuentaModelo.eliminar(cuenta2);
+                } catch (PersistenciaException e) {
+                    fail("No ha sido posible eliminar la cuenta creada");
+                }
+            }
+        }
+    }
+
+    @Test
+    public void mostrarTest(){
+        try {
+            System.out.println(cuentaModelo.mostrar());
+        } catch (Exception e) {
+            fail("Error al mostrar");
         }
     }
 }

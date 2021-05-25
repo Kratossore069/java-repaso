@@ -167,7 +167,7 @@ public abstract class DdBbRefactorizado {
          statement = connection.prepareStatement(sql);
          statement.executeUpdate();
       } catch (SQLException exception) {
-         throw new PersistenciaException("Se ha producido un error en la busqueda", exception);
+         throw new PersistenciaException("Se ha producido un error en la modificacion/insercion", exception);
       } finally {
          closeConecction(connection, statement, null);
       }
@@ -208,14 +208,14 @@ public abstract class DdBbRefactorizado {
     * @throws SQLException          controlado
     */
    public String mostrar(String sql) throws PersistenciaException, SQLException {
-      Statement statement = null;
+      PreparedStatement statement = null;
       ResultSet resultSet = null;
-      String resultado = null;
       Connection connection = null;
+      String resultado = null;
       try {
          connection = getConnection();
          statement = connection.prepareStatement(sql);
-         resultSet = statement.executeQuery(sql);
+         resultSet = statement.executeQuery();
 
          if (resultSet.next()) {
             while (resultSet.next()) {

@@ -43,9 +43,9 @@ public class CuentaModelo{
     * @throws PersistenciaException
     * @throws SQLException
     */
-   public void mostrar() throws PersistenciaException, SQLException {
-      String sql = "select * from "+TABLA;
-      persistencia.mostrar(sql);
+   public String mostrar() throws PersistenciaException, SQLException {
+      String sql = "SELECT * FROM " + TABLA ;
+      return persistencia.mostrar(sql);
    }
    
 }
