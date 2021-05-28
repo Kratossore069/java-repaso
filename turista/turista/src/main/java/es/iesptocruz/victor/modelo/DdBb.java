@@ -9,13 +9,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import es.ejemplos.jpexposito.api.Cuenta;
-import es.ejemplos.jpexposito.exception.PersistenciaException;
+import es.iesptocruz.victor.api.Ruta;
+import es.iesptocruz.victor.excepciones.PersistenciaException;
+
+
 
 public abstract class DdBb {
 
    private static final String TABLE = "TABLE";
-   private static final String TABLE_NAME= "CUENTA";
+   private static final String TABLE_NAME= "RUTA";
 
    protected String driver;
    protected String urlConexion;
@@ -43,17 +45,13 @@ public abstract class DdBb {
             listaTablas.add(resultSet.getString("TABLE_NAME"));
         }
         if (!listaTablas.contains(TABLE_NAME)) {
-           //Crear tabla cuenta
-           String sqlCrearTabla = "CREATE TABLE IF NOT EXISTS CUENTA ("
-            + " codigo VARCHAR(50) PRIMARY KEY,"
-            + "cliente VARCHAR(9) NOT NULL,"
-            + "email VARCHAR(50) NOT NULL,"
-            + "saldo DOUBLE NOT NULL);";
+           String sqlCrearTabla = "CREATE TABLE IF NOT EXISTS Ruta (" 
+                  + " identificador VARCHAR(50) PRIMARY KEY,"
+                  + "nombre VARCHAR(50) NOT NULL," + "fecha DATE NOT NULL," 
+                  + "turistas int NOT NULL,"
+                  +" telefono int NOT NULL, "
+                  +" distancia int);";
            update(sqlCrearTabla);
-           //Extraer de fichero las sentencias sql para insertar en la BBDD
-           //String sqlInsertarDatos = null;
-           //update(sqlInsertarDatos);
-           //Insertar datos
         }
 
       } catch (Exception e) {
@@ -87,20 +85,20 @@ public abstract class DdBb {
    }
 
    /**
-    * Funcion encargada de obtener un cuenta
+    * Funcion encargada de obtener un Ruta
     * 
-    * @param identificador del cuenta
-    * @return Objeto cuenta
+    * @param identificador del Ruta
+    * @return Objeto Ruta
     * @throws PersistenciaException
     */
-   public Cuenta buscarCuenta(String identificador) throws PersistenciaException {
-      Cuenta cuenta = null;
-      String sql = "SELECT * FROM "+TABLE_NAME+" WHERE codigo='"+identificador+"'";
-      ArrayList<Cuenta> lista = buscar(sql);
+   public Ruta buscarRuta(String identificador) throws PersistenciaException {
+      Ruta ruta = null;
+      String sql = "SELECT * FROM "+TABLE_NAME+" WHERE identificador='"+identificador+"'";
+      ArrayList<Ruta> lista = buscar(sql);
       if (!lista.isEmpty()) {
-         cuenta = lista.get(0);
+         ruta = lista.get(0);
       }
-      return cuenta;
+      return ruta;
    }
 
    /**
@@ -108,7 +106,7 @@ public abstract class DdBb {
     * @return lista usuarios
     * @throws PersistenciaException error controlado
     */
-    public ArrayList<Cuenta> buscarTodos() throws PersistenciaException {
+    public ArrayList<Ruta> buscarTodos() throws PersistenciaException {
       String sql = "SELECT * FROM " + TABLE_NAME;
       return buscar(sql);
    }
@@ -118,8 +116,8 @@ public abstract class DdBb {
     * @return lista resultados (0..n) Usuasios
     * @throws PersistenciaException error controlado
     */
-   private ArrayList<Cuenta> buscar(String sql) throws PersistenciaException {
-      ArrayList<Cuenta> lista = new ArrayList<>();
+   private ArrayList<Ruta> buscar(String sql) throws PersistenciaException {
+      ArrayList<Ruta> lista = new ArrayList<>();
       PreparedStatement statement = null;
       ResultSet resultSet = null;
       Connection connection = null;
@@ -129,12 +127,14 @@ public abstract class DdBb {
          resultSet = statement.executeQuery();
 
          while(resultSet.next()) {
-            Cuenta cuenta = new Cuenta();
-            cuenta.setCodigo(resultSet.getString("codigo"));
-            cuenta.setCliente(resultSet.getString("cliente"));
-            cuenta.setEmail(resultSet.getString("email"));
-            cuenta.setSaldo(resultSet.getDouble("saldo"));
-            lista.add(cuenta);
+            Ruta ruta = new Ruta();
+            ruta.setDistancia(resultSet.getInt("distancia"));
+            ruta.setFecha(resultSet.getDate("fecha"));
+            ruta.setIdentificador(resultSet.getString("identificador"));
+            ruta.setNombre(resultSet.getString("nombre"));
+            ruta.setTelefono(resultSet.getInt("telefono"));
+            ruta.setTuristas(resultSet.getInt("turistas"));
+            lista.add(ruta);
          }
       } catch (SQLException exception) {
          throw new PersistenciaException("Se ha producido un error en la busqueda", exception);
@@ -151,31 +151,32 @@ public abstract class DdBb {
     * @param usuario a insertar
     * @throws PersistenciaException
     */
-   public void insertar(Cuenta cuenta) throws PersistenciaException {
-      String sql = "INSERT INTO cuenta (codigo, cliente, email, saldo)"+
-      " VALUES ('"+cuenta.getCodigo()+"','"+cuenta.getCliente()+"','"
-      +cuenta.getEmail()+"',"+cuenta.getSaldo()+");";
+   public void insertar(Ruta ruta) throws PersistenciaException {
+      String sql="insert into "+TABLE+"(identificador, nombre, fecha, turistas, telefono, distancia)"
+      +" values ('"+ruta.getIdentificador()
+      +"','"+ruta.getNombre()+"',"+ruta.getFecha()+","+ruta.getTuristas()
+      +","+ruta.getTelefono()+","+ruta.getDistancia()+")";
       update(sql);
    }
 
    /**
-    * Metodo encargado de realizar la actualizacion de un cuenta
-    * @param cuenta a actualizar
+    * Metodo encargado de realizar la actualizacion de un Ruta
+    * @param Ruta a actualizar
     * @throws PersistenciaException error controlado
     */
-   public void update(Cuenta cuenta) throws PersistenciaException {
-      String sql = "UPDATE cuenta set cliente = '" + cuenta.getCliente() + "',  email = '" + cuenta.getEmail()
-            + "',  saldo = '" + cuenta.getSaldo() +"' " + " WHERE codigo = '" + cuenta.getCodigo()+"'";
+   public void update(Ruta ruta) throws PersistenciaException {
+      String sql="update "+TABLE+" set identificador = "+ruta.getIdentificador()
+      +" where identificador like '%"+ruta.getIdentificador()+"%'";
       update(sql);
    }
    /**
     * Metodo encargado de realizar la actualizacion en la BBDD
     * 
-    * @param cuenta a actualizar
+    * @param Ruta a actualizar
     * @throws PersistenciaException
     */
    public void eliminar(String identificador) throws PersistenciaException {
-      String sql = "DELETE FROM cuenta WHERE codigo = '" + identificador + "'";
+      String sql = "DELETE FROM Ruta WHERE identificador = '" + identificador + "'";
       update(sql);
    }
 

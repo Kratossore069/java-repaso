@@ -59,11 +59,11 @@ public abstract class DdBbRefactorizado {
             listaTablas.add(resultSet.getString("TABLE_NAME"));
          }
          if (!listaTablas.contains(tabla)) {
-            String sqlCrearTabla = "CREATE TABLE IF NOT EXISTS RUTA (" 
+            String sqlCrearTabla = "CREATE TABLE IF NOT EXISTS Ruta (" 
                   + " identificador VARCHAR(50) PRIMARY KEY,"
                   + "nombre VARCHAR(50) NOT NULL," + "fecha DATE NOT NULL," 
-                  + "turistas integer NOT NULL,"
-                  +" telefono int NOT NULL "
+                  + "turistas int NOT NULL,"
+                  +" telefono int NOT NULL, "
                   +" distancia int);";
             update(sqlCrearTabla);
          }
@@ -100,10 +100,10 @@ public abstract class DdBbRefactorizado {
    }
 
    /**
-    * Funcion encargada de obtener un cuenta
+    * Funcion encargada de obtener un Ruta
     * 
-    * @param identificador del cuenta
-    * @return Objeto cuenta
+    * @param identificador del Ruta
+    * @return Objeto Ruta
     * @throws PersistenciaException controlado
     */
    public Object buscarElemento(String identificador) throws PersistenciaException {
@@ -209,38 +209,31 @@ public abstract class DdBbRefactorizado {
 
    }
 
-   /**
-    * Funcion que hace un select de todos los campos
-    * 
-    * @param sql sentencia a buscar
-    * @return retorna un String con los datos de la bbdd
-    * @throws PersistenciaException controlado
-    * @throws SQLException          controlado
-    */
-   public String mostrar(String sql) throws PersistenciaException, SQLException {
-      PreparedStatement statement = null;
-      ResultSet resultSet = null;
-      Connection connection = null;
-      String resultado = null;
-      try {
-         connection = getConnection();
-         statement = connection.prepareStatement(sql);
-         resultSet = statement.executeQuery();
+   
+   // public String mostrar(String sql) throws PersistenciaException, SQLException {
+   //    PreparedStatement statement = null;
+   //    ResultSet resultSet = null;
+   //    Connection connection = null;
+   //    String resultado = null;
+   //    try {
+   //       connection = getConnection();
+   //       statement = connection.prepareStatement(sql);
+   //       resultSet = statement.executeQuery();
 
-         if (resultSet.next()) {
-            while (resultSet.next()) {
-               resultado = resultSet.getString("codigo");
-               resultado += resultSet.getString("cliente");
-               resultado += resultSet.getInt("email");
-               resultado += resultSet.getInt("saldo");
-            }
-         }
-      } catch (PersistenciaException ex) {
-         throw new PersistenciaException("Error al ejecutar " + ex.getMessage());
-      } finally {
-         statement.close();
-      }
-      return resultado;
-   }
+   //       if (resultSet.next()) {
+   //          while (resultSet.next()) {
+   //             resultado = resultSet.getString("codigo");
+   //             resultado += resultSet.getString("cliente");
+   //             resultado += resultSet.getInt("email");
+   //             resultado += resultSet.getInt("saldo");
+   //          }
+   //       }
+   //    } catch (PersistenciaException ex) {
+   //       throw new PersistenciaException("Error al ejecutar " + ex.getMessage());
+   //    } finally {
+   //       statement.close();
+   //    }
+   //    return resultado;
+   // }
 
 }
