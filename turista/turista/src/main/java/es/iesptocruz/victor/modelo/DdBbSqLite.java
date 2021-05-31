@@ -2,7 +2,7 @@ package es.iesptocruz.victor.modelo;
 
 import es.iesptocruz.victor.excepciones.PersistenciaException;
 
-public class DdBbSqLite extends DdBbRefactorizado {
+public class DdBbSqLite extends DdBb {
    private static final String DRIVER = "org.sqlite.JDBC";
    private static final String URL = "jdbc:sqlite:turistas.db";
 

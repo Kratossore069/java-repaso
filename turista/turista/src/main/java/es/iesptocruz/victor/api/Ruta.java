@@ -1,5 +1,6 @@
 package es.iesptocruz.victor.api;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Ruta {
@@ -19,10 +20,13 @@ public class Ruta {
         this.distancia = distancia;
     }
 
+    
+
     /**
      * Constrcutor por defecto
      */
-    public Ruta(){}
+    public Ruta() {
+    }
 
     @Override
     public String toString() {
