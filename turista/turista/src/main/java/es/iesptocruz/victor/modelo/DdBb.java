@@ -47,7 +47,7 @@ public abstract class DdBb {
         if (!listaTablas.contains(TABLE_NAME)) {
            String sqlCrearTabla = "CREATE TABLE IF NOT EXISTS Ruta (" 
                   + " identificador VARCHAR(50) PRIMARY KEY,"
-                  + "nombre VARCHAR(50) NOT NULL," + "fecha DATE NOT NULL," 
+                  + "nombre VARCHAR(50) NOT NULL," + "fecha DATE," 
                   + "turistas int NOT NULL,"
                   +" telefono int NOT NULL, "
                   +" distancia int);";
