@@ -9,10 +9,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import es.iesptocruz.victor.api.Usuario;
 import es.iesptocruz.victor.exception.PersistenciaException;
 
-
-public abstract class Bbdd {
+public class Bbdd {
 
    private static final String TABLE = "TABLE";
 
@@ -23,8 +23,8 @@ public abstract class Bbdd {
    protected String usuario;
    protected String password;
 
-   public Bbdd(String nombreTabla, String clave, String driver, String urlConexion, String usuario,
-         String password) throws PersistenciaException {
+   public Bbdd(String nombreTabla, String clave, String driver, String urlConexion, String usuario, String password)
+         throws PersistenciaException {
       this.nombreTabla = nombreTabla;
       this.clave = clave;
       this.driver = driver;
@@ -34,6 +34,11 @@ public abstract class Bbdd {
       inicializarTabla(nombreTabla);
    }
 
+   /**
+    * Crear la tabla de la bbdd
+    * @param tabla a crear
+    * @throws PersistenciaException controlado
+    */
    private void inicializarTabla(String tabla) throws PersistenciaException {
       DatabaseMetaData databaseMetaData;
       Connection connection = null;
@@ -47,8 +52,11 @@ public abstract class Bbdd {
             listaTablas.add(resultSet.getString("TABLE_NAME"));
          }
          if (!listaTablas.contains(tabla)) {
-            String sqlCrearTabla = "CREATE TABLE IF NOT EXISTS CUENTA (" + " codigo VARCHAR(50) PRIMARY KEY,"
-                  + "cliente VARCHAR(9) NOT NULL," + "email VARCHAR(50) NOT NULL," + "saldo DOUBLE NOT NULL);";
+            
+            String sqlCrearTabla = "CREATE TABLE if not exists Usuarios ("
+               +"nombre varchar(50),"
+               +"password varchar(50)"
+               +");";
             update(sqlCrearTabla);
          }
 
@@ -88,7 +96,7 @@ public abstract class Bbdd {
     * 
     * @param identificador del cuenta
     * @return Objeto cuenta
-    * @throws PersistenciaException
+    * @throws PersistenciaException controlado
     */
    public Object buscarElemento(String identificador) throws PersistenciaException {
       Object elemento = null;
@@ -129,11 +137,9 @@ public abstract class Bbdd {
          resultSet = statement.executeQuery();
 
          while (resultSet.next()) {
-            Cuenta cuenta = new Cuenta();
-            cuenta.setCodigo(resultSet.getString("codigo"));
-            cuenta.setCliente(resultSet.getString("cliente"));
-            cuenta.setEmail(resultSet.getString("email"));
-            cuenta.setSaldo(resultSet.getDouble("saldo"));
+            Usuario cuenta = new Usuario();
+            cuenta.setUser(resultSet.getString("nombre"));
+            cuenta.setPass(resultSet.getString("password"));
             lista.add(cuenta);
          }
       } catch (SQLException exception) {

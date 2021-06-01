@@ -12,7 +12,7 @@
         <%-- Include the ValidateUser.java class whose method boolean validate(String, String) we will be using --%>
             <%-- Create and instantiate a bean and assign an id to uniquely identify the action element throughout the
                 jsp --%>
-                <jsp:useBean id="snr" class="src.main.java.es.iesptocruz.victor.api.Usuario" />
+                <jsp:useBean id="snr" class="../java.es.iesptocruz.victor.api.Usuario" />
 
                 <%-- Set the value of the created bean using form data --%>
                     <jsp:setProperty name="snr" property="user" />
@@ -27,12 +27,11 @@
                             <jsp:getProperty name="snr" property="pass" />
                         </p>
 
-                        <%-- Validate the user using the validate() of ValidateUser.java class --%>
-                            <%if(snr.validate("GeeksforGeeks", "GfG" )){%>
-                                Welcome! You are a VALID USER<br />
-                                <%}else{%>
-                                    Error! You are an INVALID USER<br />
-                                    <%}%>
+                        <%if(snr.validate("GeeksforGeeks", "GfG" )){%>
+                            Welcome! You are a VALID USER<br />
+                        <%}else{%>
+                            Error! You are an INVALID USER<br />
+                        <%}%>
     </body>
 
     </html>
