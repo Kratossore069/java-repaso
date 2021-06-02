@@ -9,7 +9,7 @@
 
     <body>
         <h1>Detalles del usuario</h1>
-            <form method="post" action="acceptuser.jsp">
+            <form method="post" action="resultado.jsp">
                 Nombre usuario : <input type="text" name="user"><br /><br />
                 Password del usuario : <input type="password" name="pass"><br />
                 <input type="submit" value="Enviar">
