@@ -1,1 +1,3 @@
-/home/victor/java-repaso/validardnijsp/src/main/java/es/iesptocruz/victor/ValidarDni.java
+/home/victor/java-repaso/validardnijsp/src/main/java/es/iesptocruz/victor/modelo/ValidarDni.java
+/home/victor/java-repaso/validardnijsp/src/main/java/es/iesptocruz/victor/excepciones/PersistenciaException.java
+/home/victor/java-repaso/validardnijsp/src/main/java/es/iesptocruz/victor/modelo/Bbdd.java

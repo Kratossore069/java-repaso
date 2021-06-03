@@ -3,28 +3,23 @@
 <html>
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Accept User Page</title>
+	<title>Registro del usuario</title>
 	</head>
 	<body>
-		<h1>Verifying Details</h1>
-		<%-- Include the ValidateUser.java class whose method
-			boolean validate(String, String) we will be using
-		--%>
-		<%-- Create and instantiate a bean and assign an id to
-			uniquely identify the action element throughout the jsp
-		--%>
-		<jsp:useBean id="snr" class="es.iesptocruz.victor.ValidarDni"/>
+		<h1>Verificar detalles</h1>
+		<jsp:useBean id="validarCuenta" class="es.iesptocruz.victor.ValidarDni"/>
+		<jsp:useBean id="crearBbdd" class="es.iesptocruz.victor.modelo.Bbdd"/>
 		
-		<%-- Set the value of the created bean using form data --%>
-		<jsp:setProperty name="snr" property="dni"/>
-		
-		
-		<%-- Display the form data --%>
-		The Details Entered Are as Under<br/>
-		<p>Username : <jsp:getProperty name="snr" property="dni"/></p>
+		Información recibida<br/>
+		<%String dniRecibido=request.getParameter("dni");%>
+		<p>DNI : <%= dniRecibido%></p>
+
+		<% 
+			crearBbdd.crear();
+		%>
 		
 		
-		<%if(snr.validar()){%>
+		<%if(validarCuenta.validar(dniRecibido)){%>
             Correcto<br/>
         <%}else{%>
             Error<br/>

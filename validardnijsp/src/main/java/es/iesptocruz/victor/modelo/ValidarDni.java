@@ -14,13 +14,15 @@ public class ValidarDni {
         this.dni = dni;
     }
 
-    public boolean validar() {
+    /**
+     * Funcion que valida el dni que se introduce
+     * @param id dni que se introduce
+     * @return verificado o no
+     */
+    public boolean validar(String id) {
         boolean correcto = false;
-
         Pattern pattern = Pattern.compile("(\\d{1,8})([TRWAGMYFPDXBNJZSQVHLCKEtrwagmyfpdxbnjzsqvhlcke])");
-
-        Matcher matcher = pattern.matcher("43484563G");
-
+        Matcher matcher = pattern.matcher(id);
         if (matcher.matches()) {
 
             String letra = matcher.group(2);

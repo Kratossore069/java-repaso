@@ -1,1 +1,3 @@
 es/iesptocruz/victor/ValidarDni.class
+es/iesptocruz/victor/modelo/Bbdd.class
+es/iesptocruz/victor/excepciones/PersistenciaException.class

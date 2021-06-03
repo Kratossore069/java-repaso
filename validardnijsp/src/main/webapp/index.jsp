@@ -3,17 +3,15 @@
 <html>
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Login Page</title>
+	<title>Registro con JSP</title>
 	</head>
 	<body>
-		<h1>User Details</h1>
-		<%-- The form data will be passed to acceptuser.jsp
-			for validation on clicking submit
-		--%>
+		<h1>Introduzca su DNI</h1>
+		
 		<form method ="get" action="validador.jsp">
-			Enter Username : <input type="text" name="dni"><br/><br/>
+			DNI del cliente : <input type="text" name="dni"><br/><br/>
 			<!-- Enter Password : <input type="password" name ="pass"><br/> -->
-				<input type ="submit" value="SUBMIT">	
+				<input type ="submit" value="Validar">	
 		</form>
 	</body>
 </html>
