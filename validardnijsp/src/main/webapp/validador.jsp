@@ -8,22 +8,17 @@
 	<body>
 		<h1>Verificar detalles</h1>
 		<jsp:useBean id="validarCuenta" class="es.iesptocruz.victor.ValidarDni"/>
-		<jsp:useBean id="crearBbdd" class="es.iesptocruz.victor.modelo.Bbdd"/>
 		
 		Información recibida<br/>
 		<%String dniRecibido=request.getParameter("dni");%>
 		<p>DNI : <%= dniRecibido%></p>
-
-		<% 
-			crearBbdd.crear();
-		%>
 		
 		
 		<%if(validarCuenta.validar(dniRecibido)){%>
-            Correcto<br/>
+            DNI correcto<br/>
         <%}else{%>
-            Error<br/>
+            Error con el DNI insertado<br/>
         <%}%>  
-		
+		<a href="index.jsp">Volver atrás</a>
 	</body>
 </html>
