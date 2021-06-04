@@ -1,7 +1,6 @@
 package es.iesptocruz.victor.modelo;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -9,10 +8,15 @@ import es.iesptocruz.victor.excepciones.PersistenciaException;
 
 public class Bbdd {  
 
+    String url;
+    Connection connection;
+
     /**
      * Constructor por defecto
      */
-    public Bbdd(){}
+    public Bbdd(){
+        url="jdbc:sqlite:usuarios.db";
+    }
   
     /**
      * Metodo que crea una nueva bbdd con SQLite
@@ -20,18 +24,10 @@ public class Bbdd {
      */
     public void crear() throws PersistenciaException {  
    
-        String url = "jdbc:sqlite:usuarios.db";  
-   
         try {  
-            Connection conn = DriverManager.getConnection(url);  
-            if (conn != null) {  
-                DatabaseMetaData meta = conn.getMetaData();  
-                System.out.println("The driver name is " + meta.getDriverName());  
-                System.out.println("A new database has been created.");  
-            }  
-   
+            connection = DriverManager.getConnection(url);  
         } catch (SQLException e) {  
             throw new PersistenciaException("Error al crear la bbdd", e);
-        }  
+        } 
     }  
 }  

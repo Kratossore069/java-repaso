@@ -15,12 +15,13 @@
 
         <% 
         String resultado=null;
-        if(controladorPersona.verificarDni(dni)){
+        if(controladorPersona.validar(dni)){
             resultado="Este DNI es óptimo";
         }else{
             resultado="Este DNI no sirve para trabajar";
         }
         %>
         <h4><%= resultado%></h4>
+        <%@ include file="pie.jsp"%>
     </body>
 </html>
