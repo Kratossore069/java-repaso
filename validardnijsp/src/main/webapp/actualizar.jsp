@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Registrar un DNI</title>
-</head>
-<body>
-    <%String updateDNI=request.getParameter("update");%>
-    <h3>Usted quiere actualizar <%= updateDNI%></h3>
-    <a href="index.jsp">Volver atrás</a>
-</body>
-</html>
+<form method="post" action="resultadoBusqueda.jsp">
+    DNI a actualizar: <input type="text" name="dni"><br /><br />
+    <input type="submit" value="DNI para actualizar">
+</form>

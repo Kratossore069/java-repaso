@@ -8,7 +8,7 @@
     <%String ingresarDNI=request.getParameter("insertar");%>
     <h3>Usted quiere insertar <%= ingresarDNI%></h3>
 
-    <jsp:useBean id="validarCuenta" class="es.iesptocruz.victor.modelo.ValidarDni"/>
+    <jsp:useBean id="validarCuenta" class="es.iesptocruz.victor.ValidarDni"/>
 		
 		<%if(validarCuenta.validar(ingresarDNI)){%>
             DNI correcto para ingresar<br/>

@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Registrar un DNI</title>
-</head>
-<body>
-    <%String eliminarDNI=request.getParameter("eliminar");%>
-    <h3>Usted quiere eliminar <%= eliminarDNI%></h3>
-    <a href="index.jsp">Volver atrás</a>
-</body>
-</html>
+<form method="post" action="resultadoBusqueda.jsp">
+    Introduzca un DNI de la persona a eliminar: <input type="text" name="dni"><br /><br />
+    <input type="submit" value="Eliminar DNI">
+</form>
