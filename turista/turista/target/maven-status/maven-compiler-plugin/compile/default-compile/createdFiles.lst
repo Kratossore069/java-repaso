@@ -1,6 +1,0 @@
-es/iesptocruz/victor/modelo/DdBb.class
-es/iesptocruz/victor/modelo/DdBbSqLite.class
-es/iesptocruz/victor/api/Ruta.class
-es/iesptocruz/victor/modelo/RutaModelo.class
-es/iesptocruz/victor/controlador/RutaControlador.class
-es/iesptocruz/victor/excepciones/PersistenciaException.class

@@ -20,5 +20,4 @@ public class PersistenciaException extends Exception{
    public PersistenciaException (String mensaje, Exception exception) {
       super(mensaje, exception);
    }
-   
 }

@@ -1,14 +1,16 @@
 package es.iesptocruz.victor.controlador;
 
 import es.iesptocruz.victor.excepciones.DniException;
+import es.iesptocruz.victor.excepciones.PersistenciaException;
 import es.iesptocruz.victor.modelo.PersonaModelo;
 
 public class ControladorPersona {
     PersonaModelo modeloPersona;
     /**
      * Constructor por defecto
+     * @throws PersistenciaException controlado
      */
-    public ControladorPersona(){
+    public ControladorPersona() throws PersistenciaException{
         modeloPersona=new PersonaModelo();
     }
 

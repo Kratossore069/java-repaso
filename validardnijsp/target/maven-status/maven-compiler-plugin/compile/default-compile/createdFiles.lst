@@ -1,5 +1,6 @@
-es/iesptocruz/victor/modelo/PersonaModelo.class
 es/iesptocruz/victor/controlador/ControladorPersona.class
-es/iesptocruz/victor/modelo/Bbdd.class
-es/iesptocruz/victor/excepciones/PersistenciaException.class
+es/iesptocruz/victor/modelo/PersonaModelo.class
+es/iesptocruz/victor/modelo/DdBb.class
+es/iesptocruz/victor/modelo/DdBbSqLite.class
 es/iesptocruz/victor/excepciones/DniException.class
+es/iesptocruz/victor/excepciones/PersistenciaException.class
