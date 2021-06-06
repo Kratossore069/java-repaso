@@ -1,0 +1,6 @@
+/home/victor/java-repaso/copiaTurista/src/main/java/es/iesptocruz/victor/api/Usuario.java
+/home/victor/java-repaso/copiaTurista/src/main/java/es/iesptocruz/victor/excepciones/PersistenciaException.java
+/home/victor/java-repaso/copiaTurista/src/main/java/es/iesptocruz/victor/modelo/UsuarioModelo.java
+/home/victor/java-repaso/copiaTurista/src/main/java/es/iesptocruz/victor/controlador/UsuarioControlador.java
+/home/victor/java-repaso/copiaTurista/src/main/java/es/iesptocruz/victor/modelo/DdBbSqLite.java
+/home/victor/java-repaso/copiaTurista/src/main/java/es/iesptocruz/victor/modelo/DdBb.java
