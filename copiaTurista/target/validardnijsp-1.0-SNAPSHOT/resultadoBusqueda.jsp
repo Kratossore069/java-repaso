@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="es.iesptocruz.victor.controlador.UsuarioControlador" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,15 +8,19 @@
     </head>
     <body>
         <h1>Dni a consultar</h1>
-        <jsp:useBean id="usuarioControlador" class="es.iesptocruz.victor.controlador.UsuarioControlador"/>
         
         <% String dni=request.getParameter("dni");%>
           
         <p>Dni a encontrado: <%= dni%></p>
 
         <% 
+        try{
+            UsuarioControlador userController=new UsuarioControlador();
+        }catch(Exception ex){
+            out.println(ex);
+        }
         String resultado=null;
-        if(usuarioControlador.validarDNI(dni)){
+        if(userController.validarDNI(dni)){
             resultado="Este DNI es óptimo";
         }else{
             resultado="Este DNI no sirve para trabajar";

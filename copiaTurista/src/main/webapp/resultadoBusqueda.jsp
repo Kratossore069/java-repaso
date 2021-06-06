@@ -1,5 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page errorPage="errores.jsp" %>
 <%@ page import="es.iesptocruz.victor.controlador.UsuarioControlador" %>
+<%@ page import="es.iesptocruz.victor.excepciones.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,10 +16,12 @@
         <p>Dni a encontrado: <%= dni%></p>
 
         <% 
+        UsuarioControlador userController;
         try{
-            UsuarioControlador userController=new UsuarioControlador();
-        }catch(Exception ex){
-            out.println(ex);
+            userController=new UsuarioControlador();
+            userController.connectSqlite();
+        }catch(PersistenciaException ex){
+            throw new PersistenciaException("Algo no ha salido bien \n"+ex);
         }
         String resultado=null;
         if(userController.validarDNI(dni)){
