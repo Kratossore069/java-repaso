@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: es.iesptocruz.victor.SqliteTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.46 s <<< FAILURE! - in es.iesptocruz.victor.SqliteTest
+crearTest  Time elapsed: 0.375 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: No se conecta ==> expected: <Creado con exito> but was: <Error al crear la bbdd No suitable driver found for jdbc:sqlite:usuario.sqlite>
+	at es.iesptocruz.victor.SqliteTest.crearTest(SqliteTest.java:21)
+

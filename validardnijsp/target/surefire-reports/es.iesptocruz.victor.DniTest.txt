@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: es.iesptocruz.victor.DniTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.325 s <<< FAILURE! - in es.iesptocruz.victor.DniTest
-BbddTest  Time elapsed: 0.295 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: Error al crear la bbdd es.iesptocruz.victor.excepciones.PersistenciaException: Se ha producido un error en la inicializacion de la BBDD
-	at es.iesptocruz.victor.DniTest.setUp(DniTest.java:27)
-

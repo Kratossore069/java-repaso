@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="es.iesptocruz.victor.modelo.DdBbSqLite" %>
+<%@ page import="es.iesptocruz.victor.modelo.Sqlite" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,14 +8,11 @@
 	<%@include file="cabecera.jsp"%>
 	</head>
 	<body>
-		<%--
-		DdBbSqLite bbdd=new DdBbSqLite();
-		try{
-			bbdd.crear();
-		}catch(Exception ex){
-			out.println(ex);
-		}
-		--%>
+		<%
+			Sqlite bdd=new Sqlite();
+			String mensaje=bdd.conectar();
+		%>
+		<%= mensaje%>
 		<%@include file="menu.jsp"%>
 		<%@include file="pie.jsp"%>
 	</body>
