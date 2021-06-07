@@ -1,78 +1,35 @@
 package es.iesptocruz.victor.modelo;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
+import es.iesptocruz.victor.excepciones.PersistenciaException;
 
 public class Sqlite {
-    Connection connection = null;
-    String url = null;
-
-    public Sqlite() {
-        url = "jdbc:sqlite:usuario.sqlite";
-    }
 
     /**
-     * Funcion que crea la bbdd
+     * Metodo que crea una bbdd y una tabla
      * 
-     * @return mensaje de exito o no
+     * @throws PersistenciaException controlado
      */
-    public String crear() {
-        DatabaseMetaData databaseMetaData;
-        Connection connection = null;
-        ResultSet resultSet = null;
-        ArrayList<String> listaTablas = new ArrayList<>();
-        try {
-            connection = getConnection();
-            databaseMetaData = connection.getMetaData();
-            resultSet = databaseMetaData.getTables(null, null, null, new String[] { TABLE });
-            while (resultSet.next()) {
-                listaTablas.add(resultSet.getString("TABLE_NAME"));
-            }
-            if (!listaTablas.contains(TABLE_NAME)) {
-                // Crear tabla cuenta
-                String sqlCrearTabla = "CREATE TABLE IF NOT EXISTS CUENTA (" + " codigo VARCHAR(50) PRIMARY KEY,"
-                        + "cliente VARCHAR(9) NOT NULL," + "email VARCHAR(50) NOT NULL," + "saldo DOUBLE NOT NULL);";
-                update(sqlCrearTabla);
-            }
+    public String crearTabla() throws PersistenciaException {
+        String respuesta = null;
+        String url = "jdbc:sqlite:tests.db";
 
-        } catch (Exception e) {
-            throw new PersistenciaException("Se ha producido un error en la inicializacion de la BBDD", e);
-        } finally {
-            closeConecction(connection, null, resultSet);
+        String sql = "CREATE TABLE IF NOT EXISTS usuarios (\n" 
+        + "nombre varchar(50)," 
+        + "dni varchar(50)" 
+        + ");";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            stmt.execute(sql);
+            respuesta = "Todo correcto";
+        } catch (SQLException e) {
+            throw new PersistenciaException(e.getMessage());
         }
+        return respuesta;
     }
-
-    public void update(String sql) throws PersistenciaException {
-        PreparedStatement statement = null;
-        Connection connection = null;
-        try {
-           connection= getConnection();
-           statement = connection.prepareStatement(sql);
-           statement.executeUpdate();
-        } catch (SQLException exception) {
-           throw new PersistenciaException("Se ha producido un error en la busqueda", exception);
-        } finally {
-           closeConecction(connection, statement, null);
-        }
-     }
-
-    public Connection getConnection() throws PersistenciaException {
-        Connection connection = null;
-  
-        try {
-           Class.forName(driver);
-           if (usuario != null && password != null) {
-              connection = DriverManager.getConnection(urlConexion, usuario, password);
-           } else {
-              connection = DriverManager.getConnection(urlConexion);
-           }
-        } catch (ClassNotFoundException | SQLException exception) {
-           throw new PersistenciaException("No se ha podido estabalecer la conexion", exception);
-        }
-        
-        return connection;
-     }
 }
