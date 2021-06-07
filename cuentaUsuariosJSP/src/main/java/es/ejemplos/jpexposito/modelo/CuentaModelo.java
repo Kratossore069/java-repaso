@@ -10,7 +10,6 @@ public class CuentaModelo{
    DdBbSqLite persistencia;
    private static final String TABLA  = "CUENTA";
    private static final String CLAVE  = "CODIGO";
-   //ModeloCliente
    
    public CuentaModelo() throws PersistenciaException {
       persistencia = new DdBbSqLite(TABLA, CLAVE, null, null);

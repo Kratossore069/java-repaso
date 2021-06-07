@@ -26,7 +26,7 @@ public class ModeloCuentaDdBbTest {
             try {
                 cuentaModelo = new CuentaModelo();
             } catch (Exception e) {
-                fail("Se ha producido un error en el indicio de la BBDD");
+                fail(e.getMessage());
             }
 
         }

@@ -9,8 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.mysql.cj.protocol.Resultset;
-
 import es.ejemplos.jpexposito.api.Cuenta;
 import es.ejemplos.jpexposito.exception.PersistenciaException;
 
@@ -50,18 +48,16 @@ public abstract class DdBbRefactorizado {
             listaTablas.add(resultSet.getString("TABLE_NAME"));
          }
          if (!listaTablas.contains(tabla)) {
-            // Crear tabla cuenta
-            String sqlCrearTabla = "CREATE TABLE IF NOT EXISTS CUENTA (" + " codigo VARCHAR(50) PRIMARY KEY,"
-                  + "cliente VARCHAR(9) NOT NULL," + "email VARCHAR(50) NOT NULL," + "saldo DOUBLE NOT NULL);";
+            String sqlCrearTabla = "CREATE TABLE IF NOT EXISTS CUENTA (" 
+            + " codigo VARCHAR(50) PRIMARY KEY,"
+            + "cliente VARCHAR(9) NOT NULL," 
+            + "email VARCHAR(50) NOT NULL," 
+            + "saldo DOUBLE NOT NULL);";
             update(sqlCrearTabla);
-            // Extraer de fichero las sentencias sql para insertar en la BBDD
-            // String sqlInsertarDatos = null;
-            // update(sqlInsertarDatos);
-            // Insertar datos
          }
 
       } catch (Exception e) {
-         throw new PersistenciaException("Se ha producido un error en la inicializacion de la BBDD", e);
+         throw new PersistenciaException(e.getMessage());
       } finally {
          closeConecction(connection, null, resultSet);
       }
@@ -85,7 +81,7 @@ public abstract class DdBbRefactorizado {
             connection = DriverManager.getConnection(urlConexion);
          }
       } catch (ClassNotFoundException | SQLException exception) {
-         throw new PersistenciaException("No se ha podido estabalecer la conexion", exception);
+         throw new PersistenciaException(exception.getMessage());
       }
 
       return connection;
@@ -145,7 +141,7 @@ public abstract class DdBbRefactorizado {
             lista.add(cuenta);
          }
       } catch (SQLException exception) {
-         throw new PersistenciaException("Se ha producido un error en la busqueda", exception);
+         throw new PersistenciaException(exception.getMessage());
       } finally {
          closeConecction(connection, statement, resultSet);
       }
@@ -167,7 +163,7 @@ public abstract class DdBbRefactorizado {
          statement = connection.prepareStatement(sql);
          statement.executeUpdate();
       } catch (SQLException exception) {
-         throw new PersistenciaException("Se ha producido un error en la modificacion/insercion", exception);
+         throw new PersistenciaException(exception.getMessage());
       } finally {
          closeConecction(connection, statement, null);
       }
@@ -194,7 +190,7 @@ public abstract class DdBbRefactorizado {
             connection.close();
          }
       } catch (Exception e) {
-         throw new PersistenciaException("Se ha producido un error cerrando la sesion con la BBDD");
+         throw new PersistenciaException(e.getMessage());
       }
 
    }
@@ -226,7 +222,7 @@ public abstract class DdBbRefactorizado {
             }
          }
       } catch (PersistenciaException ex) {
-         throw new PersistenciaException("Error al ejecutar " + ex.getMessage());
+         throw new PersistenciaException(ex.getMessage());
       } finally {
          statement.close();
       }
