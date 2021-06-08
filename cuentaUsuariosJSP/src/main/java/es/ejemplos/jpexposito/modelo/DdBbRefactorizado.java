@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import es.ejemplos.jpexposito.api.Cuenta;
+import es.ejemplos.jpexposito.api.Usuario;
 import es.ejemplos.jpexposito.exception.PersistenciaException;
 
 public abstract class DdBbRefactorizado {
@@ -48,11 +48,9 @@ public abstract class DdBbRefactorizado {
             listaTablas.add(resultSet.getString("TABLE_NAME"));
          }
          if (!listaTablas.contains(tabla)) {
-            String sqlCrearTabla = "CREATE TABLE IF NOT EXISTS CUENTA (" 
-            + " codigo VARCHAR(50) PRIMARY KEY,"
-            + "cliente VARCHAR(9) NOT NULL," 
-            + "email VARCHAR(50) NOT NULL," 
-            + "saldo DOUBLE NOT NULL);";
+            String sqlCrearTabla = "CREATE TABLE IF NOT EXISTS usuario (" 
+            + "dni VARCHAR(9) PRIMARY KEY,"
+            + "nombre varchar(50));";
             update(sqlCrearTabla);
          }
 
@@ -133,12 +131,10 @@ public abstract class DdBbRefactorizado {
          resultSet = statement.executeQuery();
 
          while (resultSet.next()) {
-            Cuenta cuenta = new Cuenta();
-            cuenta.setCodigo(resultSet.getString("codigo"));
-            cuenta.setCliente(resultSet.getString("cliente"));
-            cuenta.setEmail(resultSet.getString("email"));
-            cuenta.setSaldo(resultSet.getDouble("saldo"));
-            lista.add(cuenta);
+            Usuario usuarioApi=new Usuario();
+            usuarioApi.setNombre(resultSet.getString("nombre"));
+            usuarioApi.setDni(resultSet.getString("dni"));
+            lista.add(usuarioApi);
          }
       } catch (SQLException exception) {
          throw new PersistenciaException(exception.getMessage());
@@ -215,10 +211,8 @@ public abstract class DdBbRefactorizado {
 
          if (resultSet.next()) {
             while (resultSet.next()) {
-               resultado = resultSet.getString("codigo");
-               resultado += resultSet.getString("cliente");
-               resultado += resultSet.getInt("email");
-               resultado += resultSet.getInt("saldo");
+               resultado = resultSet.getString("nombre");
+               resultado += resultSet.getString("dni");
             }
          }
       } catch (PersistenciaException ex) {

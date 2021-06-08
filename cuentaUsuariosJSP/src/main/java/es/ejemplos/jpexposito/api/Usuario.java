@@ -1,31 +1,19 @@
-package es.iesptocruz.victor.api;
+package es.ejemplos.jpexposito.api;
 
 public class Usuario {
-    
-    String dni;
     String nombre;
+    String dni;
 
     public Usuario(){}
+
+    public Usuario(String nombre, String dni) {
+        this.nombre = nombre;
+        this.dni = dni;
+    }
 
     @Override
     public String toString() {
         return "Usuario [dni=" + dni + ", nombre=" + nombre + "]";
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     @Override
@@ -57,6 +45,22 @@ public class Usuario {
         } else if (!nombre.equals(other.nombre))
             return false;
         return true;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     

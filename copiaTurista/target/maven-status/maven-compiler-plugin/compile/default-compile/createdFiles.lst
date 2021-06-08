@@ -1,7 +1,0 @@
-es/iesptocruz/victor/modelo/UsuarioModelo.class
-es/iesptocruz/victor/modelo/DdBb.class
-es/iesptocruz/victor/modelo/DdBbSqLite.class
-es/iesptocruz/victor/modelo/Sqlite.class
-es/iesptocruz/victor/controlador/UsuarioControlador.class
-es/iesptocruz/victor/api/Usuario.class
-es/iesptocruz/victor/excepciones/PersistenciaException.class
