@@ -55,6 +55,19 @@ public class UsuarioControlador {
    }
 
    /**
+    * Funcion que busca por dni
+    * @param dni a buscar
+    * @return si existe o no
+    * @throws PersistenciaException controlado
+    */
+   public Usuario buscarUsuario(String dni) throws PersistenciaException{
+      if(dni==null || dni.isEmpty()){
+         throw new PersistenciaException("El dni no puede estar vacio o ser nulo");
+      }
+      return usuarioModelo.buscar(dni);
+   }
+
+   /**
     * Metodo que actualiza una Usuario
     * @param Usuario a actualizar
     * @throws PersistenciaException controlado
@@ -70,8 +83,8 @@ public class UsuarioControlador {
     * @throws PersistenciaException controlado
     */
    public void validarCampos(Usuario usuario) throws PersistenciaException{
-      if(usuario==null || usuarioModelo.buscar(usuario.getDni())==null)
-         throw new PersistenciaException("Error");
+      if(usuario.getNombre()==null || usuario.getDni()==null)
+         throw new PersistenciaException("El nombre o el dni no deben ser nulos.");
    }
    
 }

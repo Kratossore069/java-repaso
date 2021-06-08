@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import es.ejemplos.jpexposito.api.Usuario;
+import es.ejemplos.jpexposito.controlador.UsuarioControlador;
 import es.ejemplos.jpexposito.exception.PersistenciaException;
 import es.ejemplos.jpexposito.modelo.UsuarioModelo;
 
@@ -33,7 +34,7 @@ public class ModelousuarioDdBbTest {
 
     @BeforeEach
     public void crearusuario() {
-        usuario = new Usuario("Víctor","45123658U");
+        usuario = new Usuario("Víctor", "45123658U");
         try {
             usuarioModelo.insertar(usuario);
         } catch (PersistenciaException e) {
@@ -83,20 +84,32 @@ public class ModelousuarioDdBbTest {
         }
     }
 
+    @Test
+    public void buscarUsuarioTest() {
+        String dni="45125897G";
+        try {
+            UsuarioControlador userController = new UsuarioControlador();
+            Usuario usuario = new Usuario("Victor", dni);
+            Usuario userEncontrado = userController.buscarUsuario(usuario);
+        } catch (Exception exception) {
+            fail(exception.getMessage());
+        }
+    }
+
     /**
      * Test que inserta una nueva usuario en el registro
      */
     @Test
     public void insertarusuarioTest() {
-        Usuario usuario2=new Usuario("Pedro","41254876Y");
+        Usuario usuario2 = new Usuario("Pedro", "41254876Y");
         try {
             usuarioModelo.insertar(usuario2);
             Usuario usuarioEncontrada = usuarioModelo.buscar(usuario2.getDni());
             assertEquals(usuario2, usuarioEncontrada, "No se ha encontrado lo esperado");
         } catch (PersistenciaException e) {
             fail("Se ha producido un error en la consulta del la usuario,e:" + e.getMessage());
-        }finally{
-            if(usuario2!=null){
+        } finally {
+            if (usuario2 != null) {
                 try {
                     usuarioModelo.eliminar(usuario2);
                 } catch (PersistenciaException e) {
@@ -107,7 +120,7 @@ public class ModelousuarioDdBbTest {
     }
 
     @Test
-    public void mostrarTest(){
+    public void mostrarTest() {
         try {
             System.out.println(usuarioModelo.mostrar());
         } catch (Exception e) {

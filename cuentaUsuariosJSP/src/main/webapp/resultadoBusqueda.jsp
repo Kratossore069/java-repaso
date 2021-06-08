@@ -1,8 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page errorPage="errores.jsp" %>
-<%@ page import="es.iesptocruz.victor.controlador.UsuarioControlador" %>
-<%@ page import="es.iesptocruz.victor.api.Usuario" %>
-<%@ page import="es.iesptocruz.victor.excepciones.*" %>
+<%@ page import="es.ejemplos.jpexposito.controlador.UsuarioControlador" %>
+<%@ page import="es.ejemplos.jpexposito.exception.*" %>
+<%@ page import="es.ejemplos.jpexposito.api.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,15 +17,19 @@
         <p>Dni recogido: <%= dni%></p>
 
         <%
+            Usuario userEncontrado=null;
             try{
                 UsuarioControlador userController = new UsuarioControlador();
-                Usuario userEncontrado = userController.buscarUsuario("Víctor",dni);
+                userEncontrado = userController.buscarUsuario(dni);
             }catch(Exception exception){
-                throw new PersistenciaException(exception.getMessage());
+                throw new PersistenciaException("Error encontrado "+exception.getMessage());
+            }
+            if(userEncontrado==null){
+                throw new PersistenciaException("EL USUARIO NO SE ENCUENTRA PORQUE ES NULO");
             }
         %>
 
-        <h3>Esto se ha encontrado: <%= userEncontrado.toString() %></h3>
+        <h4><%= userEncontrado.toString() %></h4>
 
         <%@ include file="pie.jsp"%>
     </body>
