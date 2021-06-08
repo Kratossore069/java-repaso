@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page errorPage="errores.jsp" %>
 <%@ page import="es.iesptocruz.victor.controlador.UsuarioControlador" %>
+<%@ page import="es.iesptocruz.victor.api.Usuario" %>
 <%@ page import="es.iesptocruz.victor.excepciones.*" %>
 <!DOCTYPE html>
 <html>
@@ -13,24 +14,19 @@
         
         <% String dni=request.getParameter("dni");%>
           
-        <p>Dni a encontrado: <%= dni%></p>
+        <p>Dni recogido: <%= dni%></p>
 
-        <% 
-        UsuarioControlador userController;
-        try{
-            userController=new UsuarioControlador();
-            userController.connectSqlite();
-        }catch(PersistenciaException ex){
-            throw new PersistenciaException("Algo no ha salido bien \n"+ex);
-        }
-        String resultado=null;
-        if(userController.validarDNI(dni)){
-            resultado="Este DNI es óptimo";
-        }else{
-            resultado="Este DNI no sirve para trabajar";
-        }
+        <%
+            try{
+                UsuarioControlador userController = new UsuarioControlador();
+                Usuario userEncontrado = userController.buscarUsuario("Víctor",dni);
+            }catch(Exception exception){
+                throw new PersistenciaException(exception.getMessage());
+            }
         %>
-        <h4><%= resultado%></h4>
+
+        <h3>Esto se ha encontrado: <%= userEncontrado.toString() %></h3>
+
         <%@ include file="pie.jsp"%>
     </body>
 </html>

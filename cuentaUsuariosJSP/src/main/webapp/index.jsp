@@ -1,5 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="es.iesptocruz.victor.modelo.UsuarioModelo" %>
 <!DOCTYPE html>
 <html>
 	<head>
