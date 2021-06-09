@@ -45,6 +45,16 @@ public class UsuarioControlador {
    }
 
    /**
+    * Metodo que elimina a partir del dni
+    * @param dni a buscar
+    * @throws PersistenciaException controlado
+    */
+   public void eliminarUsuario(String dni) throws PersistenciaException{
+      validarDni(dni);
+      usuarioModelo.eliminar(dni);
+   }
+
+   /**
     * Metodo para mostrar los campos de la bbdd
     * @throws PersistenciaException error
     * @throws SQLException controlado

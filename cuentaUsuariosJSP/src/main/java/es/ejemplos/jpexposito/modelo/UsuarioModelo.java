@@ -30,6 +30,11 @@ public class UsuarioModelo{
       persistencia.update(sql);
    }
 
+   public void eliminar(String dni) throws PersistenciaException {
+      String sql = "DELETE FROM "+TABLA+" WHERE "+CLAVE+" = '" + dni + "'";
+      persistencia.update(sql);
+   }
+
    public Usuario buscar(String codigo) throws PersistenciaException {
       return (Usuario) persistencia.buscarElemento(codigo);
    }
