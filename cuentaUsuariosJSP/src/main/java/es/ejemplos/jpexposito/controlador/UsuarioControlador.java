@@ -25,6 +25,16 @@ public class UsuarioControlador {
    }
 
    /**
+    * Metodo para aniadir a partir de un dni
+    * @param dni a insertar
+    * @throws PersistenciaException controlado
+    */
+   public void aniadirUsuario(String dni) throws PersistenciaException{
+      validarDni(dni);
+      usuarioModelo.insertar(dni);
+   }
+
+   /**
     * Metodo para eliminar una Usuario
     * @param Usuario a eliminar
     * @throws PersistenciaException controlado
@@ -78,6 +88,16 @@ public class UsuarioControlador {
    }
 
    /**
+    * Metodo para actualizar por un dni
+    * @param dni a buscar
+    * @throws PersistenciaException error
+    */
+   public void actualizaUsuario(String dni) throws PersistenciaException{
+      validarDni(dni);
+      usuarioModelo.actualizar(dni);
+   }
+
+   /**
     * Metodo para evaluar la entrada de datos
     * @param Usuario a evaluar
     * @throws PersistenciaException controlado
@@ -85,6 +105,16 @@ public class UsuarioControlador {
    public void validarCampos(Usuario usuario) throws PersistenciaException{
       if(usuario.getNombre()==null || usuario.getDni()==null)
          throw new PersistenciaException("El nombre o el dni no deben ser nulos.");
+   }
+
+   /**
+    * Metodo que valida el dni insertado
+    * @param dni a validar
+    * @throws PersistenciaException error
+    */
+   public void validarDni(String dni) throws PersistenciaException{
+      if(dni.isEmpty() || dni.length()>9 || dni.length()<9 || dni==null)
+         throw new PersistenciaException("HAY UN PROBLEMA INSERTANDO EL DNI");
    }
    
 }

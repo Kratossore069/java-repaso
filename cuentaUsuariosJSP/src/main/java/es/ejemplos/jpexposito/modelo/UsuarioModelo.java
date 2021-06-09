@@ -20,6 +20,11 @@ public class UsuarioModelo{
       persistencia.update(sql);
    }
 
+   public void insertar(String dni) throws PersistenciaException {
+      String sql="insert into "+TABLA+" (dni, nombre) values ('"+dni+"', 'Antonio');";
+      persistencia.update(sql);
+   }
+
    public void eliminar(Usuario usuario) throws PersistenciaException {
       String sql = "DELETE FROM "+TABLA+" WHERE "+CLAVE+" = '" + usuario.getDni() + "'";
       persistencia.update(sql);
@@ -32,6 +37,11 @@ public class UsuarioModelo{
    public void actualizar(Usuario usuario) throws PersistenciaException {
       String sql="update Usuario set nombre='"+usuario.getNombre()+
       "', dni='"+usuario.getDni()+"' where dni='"+usuario.getDni()+"'";
+      persistencia.update(sql);
+   }
+
+   public void actualizar(String dni) throws PersistenciaException {
+      String sql="update Usuario set nombre='cambiado', dni='cambiado' where dni='"+dni+"'";
       persistencia.update(sql);
    }
 
