@@ -4,11 +4,11 @@
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Registro con JSP</title>
-	<%@include file="cabecera.jsp"%>
+	<%@include file="assets/cabecera.jsp"%>
 	</head>
 	<body>
-		<%@include file="menu.jsp"%>
-		<%@include file="pie.jsp"%>
+		<%@include file="assets/menu.jsp"%>
+		<%@include file="assets/pie.jsp"%>
 	</body>
 </html>
 	

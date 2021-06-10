@@ -1,15 +1,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page errorPage="errores.jsp" %>
+<%@ page errorPage="includes/errores/errores.jsp" %>
 <%@ page import="es.ejemplos.jpexposito.controlador.UsuarioControlador" %>
 <%@ page import="es.ejemplos.jpexposito.exception.*" %>
 <!DOCTYPE html>
 <html>
     <head>
        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       <title>Resultado de AGREGAR</title>
+       <title>Resultado de actualizar</title>
     </head>
     <body>
-        <h1>Dni a agregar</h1>
+        <h1>Dni a actualizar</h1>
         
         <% String dni=request.getParameter("dni");%>
           
@@ -18,10 +18,10 @@
         <%
             try{
                 UsuarioControlador controller=new UsuarioControlador();
-                controller.aniadirUsuario(dni);
-                out.println("Añadido con éxito");
+                controller.actualizaUsuario(dni);
+                out.println("Cambiado con éxito");
             }catch(Exception exception){
-                throw new Exception("ERROR AL AÑADIR EL DNI, REVISE SU DNI INSERTADO");
+                throw new Exception("ERROR AL ACTUALIZAR EL DNI, REVISE SU DNI INSERTADO");
             }
         %>
 
