@@ -1,4 +1,4 @@
-<form method="post" action="PrimerServlet">
+<form method="post" action="primerServlet">
     <h1>Probando el Servlet</h1>
     Nombre: <input type="text" name="nombre"><br /><br />
     Apellido: <input type="text" name="apellido"><br /><br />

@@ -7,13 +7,13 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <servlet>
-    <servlet-name>Servlet</servlet-name>
+    <servlet-name>primerServlet</servlet-name>
     <servlet-class>es.ejemplos.jpexposito.servlet.PrimerServlet</servlet-class>
   </servlet>
 
 <servlet-mapping>
-  <servlet-name>Servlet</servlet-name>
-  <url-pattern>/servlet</url-pattern>
+  <servlet-name>primerServlet</servlet-name>
+  <url-pattern>/primerServlet</url-pattern>
 </servlet-mapping>
 
 </web-app>
