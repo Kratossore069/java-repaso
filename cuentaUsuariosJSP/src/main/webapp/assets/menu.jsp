@@ -2,3 +2,4 @@
 <%@include file="../includes/request/eliminar.jsp"%>
 <%@include file="../includes/request/actualizar.jsp"%>
 <%@include file="../includes/request/agregar.jsp"%>
+<%@include file="../includes/request/envioServlet.jsp"%>
