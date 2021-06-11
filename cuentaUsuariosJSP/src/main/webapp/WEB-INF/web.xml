@@ -7,13 +7,13 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <servlet>
-    <servlet-name>primerServlet</servlet-name>
-    <servlet-class>es.ejemplos.jpexposito.servlet.PrimerServlet</servlet-class>
+    <servlet-name>validarDni</servlet-name>
+    <servlet-class>es.iesptocruz.victor.servlet.ServletValidarDni</servlet-class>
   </servlet>
 
 <servlet-mapping>
-  <servlet-name>primerServlet</servlet-name>
-  <url-pattern>/primerServlet</url-pattern>
+  <servlet-name>validarDni</servlet-name>
+  <url-pattern>/validarDni</url-pattern>
 </servlet-mapping>
 
 </web-app>

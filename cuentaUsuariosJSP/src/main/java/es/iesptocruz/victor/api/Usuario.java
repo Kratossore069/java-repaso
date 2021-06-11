@@ -1,4 +1,4 @@
-package es.ejemplos.jpexposito.api;
+package es.iesptocruz.victor.api;
 
 public class Usuario {
     String nombre;

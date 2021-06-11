@@ -1,10 +1,10 @@
-package es.ejemplos.jpexposito.controlador;
+package es.iesptocruz.victor.controlador;
 
 import java.sql.SQLException;
 
-import es.ejemplos.jpexposito.api.Usuario;
-import es.ejemplos.jpexposito.exception.PersistenciaException;
-import es.ejemplos.jpexposito.modelo.UsuarioModelo;
+import es.iesptocruz.victor.api.Usuario;
+import es.iesptocruz.victor.exception.PersistenciaException;
+import es.iesptocruz.victor.modelo.UsuarioModelo;
 
 public class UsuarioControlador {
 
@@ -125,6 +125,17 @@ public class UsuarioControlador {
    public void validarDni(String dni) throws PersistenciaException{
       if(dni.isEmpty() || dni.length()>9 || dni.length()<9 || dni==null)
          throw new PersistenciaException("HAY UN PROBLEMA INSERTANDO EL DNI");
+   }
+
+   /**
+    * Funcion que valida el dni insertado para su posterior trabajo
+    * @param dni a validar
+    * @return true or false (boolean)
+    * @throws PersistenciaException controlado
+    */
+   public boolean validarDniInsertado(String dni) throws PersistenciaException{
+      validarDni(dni);
+      return usuarioModelo.validarDNI(dni);
    }
    
 }

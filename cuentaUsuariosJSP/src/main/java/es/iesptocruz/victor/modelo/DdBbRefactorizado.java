@@ -1,4 +1,4 @@
-package es.ejemplos.jpexposito.modelo;
+package es.iesptocruz.victor.modelo;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import es.ejemplos.jpexposito.api.Usuario;
-import es.ejemplos.jpexposito.exception.PersistenciaException;
+import es.iesptocruz.victor.api.Usuario;
+import es.iesptocruz.victor.exception.PersistenciaException;
 
 public abstract class DdBbRefactorizado {
 

@@ -1,11 +1,11 @@
-// package es.ejemplos.jpexposito.vista;
+// package es.iesptocruz.victor.vista;
 
 // import java.sql.SQLException;
 // import java.util.Scanner;
 
-// import es.ejemplos.jpexposito.api.Cuenta;
-// import es.ejemplos.jpexposito.controlador.CuentaControlador;
-// import es.ejemplos.jpexposito.exception.PersistenciaException;
+// import es.iesptocruz.victor.api.Cuenta;
+// import es.iesptocruz.victor.controlador.CuentaControlador;
+// import es.iesptocruz.victor.exception.PersistenciaException;
 
 // public class AppVista {
 //     CuentaControlador cuentaControlador;

@@ -1,11 +1,11 @@
-package es.ejemplos.jpexposito;
+package es.iesptocruz.victor;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
-import es.ejemplos.jpexposito.api.Usuario;
-import es.ejemplos.jpexposito.controlador.UsuarioControlador;
+import es.iesptocruz.victor.api.Usuario;
+import es.iesptocruz.victor.controlador.UsuarioControlador;
 
 public class ControladorUsuarioTest {
     

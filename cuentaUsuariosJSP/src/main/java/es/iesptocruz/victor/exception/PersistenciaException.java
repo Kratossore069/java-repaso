@@ -1,4 +1,4 @@
-package es.ejemplos.jpexposito.exception;
+package es.iesptocruz.victor.exception;
 
 public class PersistenciaException extends Exception{
 

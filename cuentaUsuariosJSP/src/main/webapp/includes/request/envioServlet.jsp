@@ -1,6 +1,5 @@
-<form method="post" action="primerServlet">
-    <h1>Probando el Servlet</h1>
-    Nombre: <input type="text" name="nombre"><br /><br />
-    Apellido: <input type="text" name="apellido"><br /><br />
-    <input type="submit" value="Enviar datos">
+<form method="post" action="validarDni">
+    <h1>Valida la integridad de tu DNI</h1>
+    Dni a validar: <input type="text" name="dni"><br /><br />
+    <input type="submit" value="Enviar dni">
 </form>

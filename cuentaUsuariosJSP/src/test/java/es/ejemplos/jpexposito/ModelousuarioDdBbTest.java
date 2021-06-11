@@ -1,4 +1,4 @@
-package es.ejemplos.jpexposito;
+package es.iesptocruz.victor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -10,10 +10,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import es.ejemplos.jpexposito.api.Usuario;
-import es.ejemplos.jpexposito.controlador.UsuarioControlador;
-import es.ejemplos.jpexposito.exception.PersistenciaException;
-import es.ejemplos.jpexposito.modelo.UsuarioModelo;
+import es.iesptocruz.victor.api.Usuario;
+import es.iesptocruz.victor.controlador.UsuarioControlador;
+import es.iesptocruz.victor.exception.PersistenciaException;
+import es.iesptocruz.victor.modelo.UsuarioModelo;
 
 public class ModelousuarioDdBbTest {
 

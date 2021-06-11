@@ -1,6 +1,6 @@
-package es.ejemplos.jpexposito.modelo;
+package es.iesptocruz.victor.modelo;
 
-import es.ejemplos.jpexposito.exception.PersistenciaException;
+import es.iesptocruz.victor.exception.PersistenciaException;
 
 public class DdBbSqLite extends DdBbRefactorizado {
    private static final String DRIVER = "org.sqlite.JDBC";

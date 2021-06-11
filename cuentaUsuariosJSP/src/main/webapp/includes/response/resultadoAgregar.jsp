@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page errorPage="includes/errores/errores.jsp" %>
-<%@ page import="es.ejemplos.jpexposito.controlador.UsuarioControlador" %>
-<%@ page import="es.ejemplos.jpexposito.exception.*" %>
+<%@ page import="es.iesptocruz.victor.controlador.UsuarioControlador" %>
+<%@ page import="es.iesptocruz.victor.exception.*" %>
 <!DOCTYPE html>
 <html>
     <head>
