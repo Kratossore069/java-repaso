@@ -1,1 +1,1 @@
-<a href="index.jsp">Volver al index</a>
+<a href="../../index.jsp">Volver al index</a>

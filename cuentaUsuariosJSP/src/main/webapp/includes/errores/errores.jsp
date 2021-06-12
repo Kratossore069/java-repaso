@@ -10,6 +10,6 @@
 <body>
     <h1>Error rescatado de la petición</h1>
     <% exception.printStackTrace(response.getWriter()); %>
-    <a href="index.jsp">Volver atrás</a>
+    <a href="../../index.jsp">Volver atrás</a>
 </body>
 </html>

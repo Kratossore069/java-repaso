@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page errorPage="includes/errores/errores.jsp" %>
+<%@ page errorPage="../errores/errores.jsp" %>
 <%@ page import="es.iesptocruz.victor.controlador.UsuarioControlador" %>
 <%@ page import="es.iesptocruz.victor.exception.*" %>
 <%@ page import="es.iesptocruz.victor.api.*" %>
@@ -31,6 +31,6 @@
 
         <h4><%= userEncontrado.toString() %></h4>
 
-        <%@ include file="pie.jsp"%>
+        <%@ include file="/assets/pie.jsp"%>
     </body>
 </html>
