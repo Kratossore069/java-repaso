@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import es.iesptocruz.victor.controlador.UsuarioControlador;
 import es.iesptocruz.victor.exception.PersistenciaException;
 
-public class ServletValidarDni extends HttpServlet {
+public class ServletActualizar extends HttpServlet {
     private static final long serialVersionUID = 1L;
     UsuarioControlador usuarioControlador;
 
@@ -20,7 +20,7 @@ public class ServletValidarDni extends HttpServlet {
      * 
      * @throws PersistenciaException controlado
      */
-    public ServletValidarDni() throws PersistenciaException {
+    public ServletActualizar() throws PersistenciaException {
         iniciarControlador();
     }
 
@@ -41,24 +41,24 @@ public class ServletValidarDni extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         String dniRecibido = request.getParameter("dni");
-        boolean dniValido=false;
+        String mensaje = null;
+
         try {
-            dniValido = usuarioControlador.validarDniInsertado(dniRecibido);
-        } catch (PersistenciaException e) {
-            out.println("ERROR AL VALIDAR DNI "+e.getMessage());
+            UsuarioControlador controller = new UsuarioControlador();
+            controller.actualizaUsuario(dniRecibido);
+            mensaje="Actualizado con éxito";
+        } catch (PersistenciaException exception) {
+            mensaje="ERROR AL ACTUALIZAR EL DNI "+dniRecibido;
         }
 
         response.setContentType("text/html");
-        String title = "Validar dni insertado";
+        String title = "Actualizar dni insertado";
         String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
-        String mensaje = null;
-        if (dniValido) {
-            mensaje = "El usuario con dni " + dniRecibido + " es válido ";
-        } else {
-            mensaje = "El usuario con dni " + dniRecibido + " no es válido ";
-        }
+
         out.println(docType + "<html><head><title>" + title + "</title></head><body><h1>" + mensaje
-                + "</h1></body></html>");
+                + "</h1><a href='../../index.jsp'>Volver al index</a>"+
+                "</body>"+
+                "</html>");
     }
 
     /**
