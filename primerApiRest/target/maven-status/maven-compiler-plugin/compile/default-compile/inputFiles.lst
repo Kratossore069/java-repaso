@@ -1,0 +1,12 @@
+/home/victor/java-repaso/primerApiRest/src/main/java/es/iespuertolacruz/rest/victor/servicios/Alumnos.java
+/home/victor/java-repaso/primerApiRest/src/main/java/es/iespuertolacruz/rest/victor/exception/NoExisteException.java
+/home/victor/java-repaso/primerApiRest/src/main/java/es/iespuertolacruz/rest/victor/servicios/Resta.java
+/home/victor/java-repaso/primerApiRest/src/main/java/es/iespuertolacruz/rest/victor/exception/ExisteException.java
+/home/victor/java-repaso/primerApiRest/src/main/java/es/iespuertolacruz/rest/victor/servicios/Dividir.java
+/home/victor/java-repaso/primerApiRest/src/main/java/es/iespuertolacruz/rest/victor/modelo/Alumno.java
+/home/victor/java-repaso/primerApiRest/src/main/java/es/iespuertolacruz/rest/victor/exception/ParametroIncorrectoException.java
+/home/victor/java-repaso/primerApiRest/src/main/java/es/iespuertolacruz/rest/victor/modelo/dao/Conectar.java
+/home/victor/java-repaso/primerApiRest/src/main/java/es/iespuertolacruz/rest/victor/servicios/HolaMundo.java
+/home/victor/java-repaso/primerApiRest/src/main/java/es/iespuertolacruz/rest/victor/modelo/dao/AlumnosDAO.java
+/home/victor/java-repaso/primerApiRest/src/main/java/es/iespuertolacruz/rest/victor/servicios/Multiplicar.java
+/home/victor/java-repaso/primerApiRest/src/main/java/es/iespuertolacruz/rest/victor/servicios/Sumar.java
