@@ -57,7 +57,8 @@ public class ServletValidarDni extends HttpServlet {
         } else {
             mensaje = "El usuario con dni " + dniRecibido + " no es válido ";
         }
-        out.println(docType + "<html><head><title>" + title + "</title></head><body><h1>" + mensaje
+        out.println(docType + "<html><head><title>" + title + "</title></head><body>"+
+        "<h1>" + mensaje
                 + "</h1></body></html>");
     }
 
