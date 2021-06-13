@@ -24,5 +24,11 @@ public class Resta {
         return Response.status(200).entity(output).build();
     }
 
+    @GET
+    @Path("/{valor1}/{valor2}")
+    public Response restaGet(@PathParam("valor1") Double valor1, @PathParam("valor2") Double valor2) {
+        String output = valor1 + " - " +valor2 + " = " +(valor1-valor2) ;
+        return Response.status(200).entity(output).build();
+    }
 
 }

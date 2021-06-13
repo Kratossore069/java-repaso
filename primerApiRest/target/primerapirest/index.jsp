@@ -1,5 +1,3 @@
-<html>
-<body>
-<h2>Hello World!</h2>
-</body>
-</html>
+<%@include file="assets/cabecera.jsp"%>
+<%@include file="request/pedirMensaje.jsp"%>
+<%@include file="assets/pie.jsp"%>
